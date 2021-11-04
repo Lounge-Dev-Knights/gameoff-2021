@@ -92,7 +92,7 @@ jobs:
     - run: ls ./release
     - id: create-release
       run: |
-        gh release create $VERSION --target $TARGET --notes "$VERSION" release/*
+        gh release create $VERSION --target $TARGET --notes "$VERSION" --title "$VERSION" release/*
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         VERSION: ${{needs.DefineVersion.outputs.VERSION}}
