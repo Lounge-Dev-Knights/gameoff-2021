@@ -1,0 +1,63 @@
+{
+	"events": [
+		{
+			"character": "character-1636405418.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "The party tonight is going to be great!\nBut I need to choose the right accessory first..."
+		},
+		{
+			"character": "character-1636405418.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Which accessory should I wear?"
+		},
+		{
+			"choice": "Sun glasses",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1636405924-787",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "Sun glasses"
+		},
+		{
+			"choice": "Bow tie",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1636405924-787",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "Bow tie"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1636405418.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Perfect! Now let's go!"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1636407789.json",
+		"name": "Styling"
+	}
+}

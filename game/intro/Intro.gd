@@ -8,8 +8,13 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	var dialog = Dialogic.start("Styling")
+	
+	add_child(dialog)
+	
+	yield(dialog, "timeline_end")
+	
+	SceneLoader.goto_scene("res://game/intro/DiscoArrival.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

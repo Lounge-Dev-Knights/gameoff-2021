@@ -1,0 +1,27 @@
+{
+	"events": [
+		{
+			"character": "character-1636405327.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Finally!\nYou're really late, mate...\nEverybody's waiting for instructions!"
+		},
+		{
+			"character": "character-1636405418.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "What? I think you've mistaken me for someone else..."
+		},
+		{
+			"character": "character-1636405327.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Very funny... We don't have time for this!\nWait, you forgot your nameplate again. Here is a new one... "
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1636405396.json",
+		"name": "Party Arrival"
+	}
+}
