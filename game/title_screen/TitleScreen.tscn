@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/title_screen/TitleScreen.gd" type="Script" id=1]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 463.0
+margin_top = 235.0
+margin_right = 560.0
+margin_bottom = 364.0
+mouse_filter = 2
+custom_constants/separation = 5
+
+[node name="NewGame" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 20.0
+text = "Start party!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gallery" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 97.0
+margin_bottom = 45.0
+disabled = true
+text = "Party reviews"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 97.0
+margin_bottom = 54.0
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 97.0
+margin_bottom = 79.0
+disabled = true
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 97.0
+margin_bottom = 104.0
+disabled = true
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 109.0
+margin_right = 97.0
+margin_bottom = 129.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 60.0
+margin_bottom = 64.0
+custom_constants/separation = 10
+alignment = 2
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

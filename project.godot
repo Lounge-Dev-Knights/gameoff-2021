@@ -11,8 +11,15 @@ config_version=4
 [application]
 
 config/name="gameoff-2021"
-run/main_scene="res://game/StartScreen.tscn"
+run/main_scene="res://game/title_screen/TitleScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneLoader="*res://util/SceneLoader.gd"
+Settings="*res://util/Settings.gd"
+MusicEngine="*res://sound/MusicEngine.gd"
+SoundEngine="*res://sound/SoundEngine.gd"
 
 [physics]
 

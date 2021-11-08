@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -8,7 +8,10 @@ extends CenterContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Hide quit button on html/mobile
+	if not OS.has_feature("pc"):
+		$MarginContainer/Quit.hide()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,3 +21,7 @@ func _ready() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_NewGame_pressed() -> void:
+	SceneLoader.goto_scene("res://game/intro/Intro.tscn")
