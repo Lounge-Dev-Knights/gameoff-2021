@@ -16,8 +16,12 @@ const version = process.argv[3] || 'SNAPSHOT'
 const target = process.argv[4] || OS_TARGETS[os] || 'macos';
 
 
+console.log(`Build for ${target} on ${os}`);
 // Get godot binary name and execute build command
 const godotCommand = await globby(OS_GODOT_COMMANDS[os]);
 await $`${godotCommand} --no-window --export ${target}`
 
-await $`7z a -sdel release/gameoff-2021-${target}.zip ./build/*`
+await $`ls -lah build`
+
+const releaseFiles = await globby('./build/*');
+await $`7z a -sdel release/gameoff-2021-${target}.zip ${releaseFiles}`
