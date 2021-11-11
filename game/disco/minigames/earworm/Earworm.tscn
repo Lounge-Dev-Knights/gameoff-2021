@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
+[ext_resource path="res://sound/bug_buzz_low.wav" type="AudioStream" id=2]
+[ext_resource path="res://game/disco/minigames/earworm/circle.png" type="Texture" id=3]
+[ext_resource path="res://sound/bug_buzz.wav" type="AudioStream" id=4]
+[ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=5]
+[ext_resource path="res://game/disco/minigames/earworm/circle_grey.png" type="Texture" id=6]
+[ext_resource path="res://sound/bug_buzz_bass.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/bug_buzz_high.wav" type="AudioStream" id=8]
+
+[node name="Earworm" type="Node2D"]
+position = Vector2( 2, -2 )
+script = ExtResource( 1 )
+
+[node name="Button" type="Node2D" parent="."]
+modulate = Color( 0, 0.156863, 1, 1 )
+position = Vector2( 288, 186 )
+script = ExtResource( 5 )
+
+[node name="TextureButton" type="TextureButton" parent="Button"]
+margin_left = -72.0
+margin_top = -68.0
+margin_right = 497.0
+margin_bottom = 504.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button"]
+stream = ExtResource( 4 )
+
+[node name="Button2" type="Node2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 442, 184 )
+script = ExtResource( 5 )
+
+[node name="TextureButton" type="TextureButton" parent="Button2"]
+margin_left = -72.0
+margin_top = -68.0
+margin_right = 497.0
+margin_bottom = 504.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button2"]
+stream = ExtResource( 7 )
+
+[node name="Button3" type="Node2D" parent="."]
+modulate = Color( 1, 0.960784, 0, 1 )
+position = Vector2( 446, 326 )
+script = ExtResource( 5 )
+
+[node name="TextureButton" type="TextureButton" parent="Button3"]
+margin_left = -72.0
+margin_top = -68.0
+margin_right = 497.0
+margin_bottom = 504.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button3"]
+stream = ExtResource( 8 )
+
+[node name="Button4" type="Node2D" parent="."]
+modulate = Color( 0.196078, 1, 0, 1 )
+position = Vector2( 292, 330 )
+script = ExtResource( 5 )
+
+[node name="TextureButton" type="TextureButton" parent="Button4"]
+margin_left = -72.0
+margin_top = -68.0
+margin_right = 497.0
+margin_bottom = 504.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button4"]
+stream = ExtResource( 2 )
+
+[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button2/TextureButton" to="Button2" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button3/TextureButton" to="Button3" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button4/TextureButton" to="Button4" method="_on_TextureButton_pressed"]
