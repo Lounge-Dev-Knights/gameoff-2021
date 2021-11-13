@@ -10,7 +10,7 @@ extends Control
 func _ready() -> void:
 	# Hide quit button on html/mobile
 	if not OS.has_feature("pc"):
-		$MarginContainer/Quit.hide()
+		$CenterContainer/VBoxContainer/Quit.hide()
 
 
 
