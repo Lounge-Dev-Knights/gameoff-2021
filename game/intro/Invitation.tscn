@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/Yuji_Boku/YujiBoku.tres" type="DynamicFont" id=1]
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.780392, 0.788235, 0.623529, 1 )
+
+[node name="Invitation" type="Sprite"]
+texture = SubResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 400, 600 )
+render_target_v_flip = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Viewport"]
+margin_right = 400.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Viewport/PanelContainer"]
+margin_right = 400.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Viewport/PanelContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 380.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_text = "INVITATION!!!
+
+You're invited to the great party at the waste dump tonight!
+
+Dress code: six legs"
+text = "INVITATION!!!
+
+You're invited to the great party at the waste dump tonight!
+
+Dress code: six legs"
