@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
+[ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=2]
 [ext_resource path="res://game/disco/minigames/earworm/circle_grey.png" type="Texture" id=4]
 [ext_resource path="res://sound/bug_buzz.wav" type="AudioStream" id=5]
 [ext_resource path="res://game/disco/minigames/earworm/circle.png" type="Texture" id=6]
@@ -8,104 +9,19 @@
 [ext_resource path="res://sound/bug_buzz_high.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/bug_buzz_low.wav" type="AudioStream" id=9]
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends Node2D
-
-var mouse_over = false
-onready var button = get_node(\"Button/TextureButton\")
-var timer
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	
-
-	
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	print(\"yay\")
-	$AudioStreamPlayer2D.play()
-
-
-func _on_Area2D_mouse_entered():
-	print(\"mouse entered\")
-
-
-func _on_Area2D_mouse_exited():
-	print(\"mouse exited\")
-
-
-func _on_TextureButton_pressed(robot):
-	$AudioStreamPlayer2D.play()
-	button.pressed = true
-	button.focus_mode = Control.FOCUS_CLICK
-	yield(get_tree().create_timer(0.5), \"timeout\")
-	button.pressed = false
-	button.focus_mode = Control.FOCUS_NONE
-"
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 69.0072
-
-[sub_resource type="StreamTexture" id=3]
-flags = 4
-load_path = "res://.import/circle_blue.png-191c4f7f527ba1302f50d9b1d323f2d7.stex"
-
 [node name="Earworm" type="Node2D"]
 position = Vector2( 2, -2 )
 script = ExtResource( 1 )
 
 [node name="Button" type="Node2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
+script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="Button"]
-position = Vector2( 74, 70 )
-script = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D"]
-visible = false
-position = Vector2( -3, 2 )
-shape = SubResource( 1 )
-
-[node name="White" type="TextureRect" parent="Button/Area2D/CollisionShape2D"]
-margin_left = -70.0
-margin_top = -71.0
-margin_right = 71.0
-margin_bottom = 70.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey" type="TextureRect" parent="Button/Area2D/CollisionShape2D"]
-margin_left = -69.0
-margin_top = -71.0
-margin_right = 70.0
-margin_bottom = 71.0
-texture = SubResource( 3 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Node2D" parent="Button/Area2D"]
-
-[node name="TextureButton" type="TextureButton" parent="Button/Area2D/Button"]
-margin_left = -72.0
-margin_top = -68.0
-margin_right = 497.0
-margin_bottom = 504.0
+[node name="TextureButton" type="TextureButton" parent="Button"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -116,56 +32,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button/Area2D"]
-position = Vector2( 106, 396 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button"]
+position = Vector2( 180, 466 )
 stream = ExtResource( 5 )
 
 [node name="Button2" type="Node2D" parent="."]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( 138, 2 )
+script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="Button2"]
-position = Vector2( 74, 70 )
-script = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button2/Area2D"]
-visible = false
-position = Vector2( -3, 2 )
-shape = SubResource( 1 )
-
-[node name="White" type="TextureRect" parent="Button2/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -70.0
-margin_top = -71.0
-margin_right = 71.0
-margin_bottom = 70.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey" type="TextureRect" parent="Button2/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -69.0
-margin_top = -71.0
-margin_right = 70.0
-margin_bottom = 71.0
-texture = SubResource( 3 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Node2D" parent="Button2/Area2D"]
-
-[node name="TextureButton" type="TextureButton" parent="Button2/Area2D/Button"]
-margin_left = -72.0
-margin_top = -68.0
-margin_right = 497.0
-margin_bottom = 504.0
+[node name="TextureButton" type="TextureButton" parent="Button2"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -176,56 +56,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button2/Area2D"]
-position = Vector2( 106, 396 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button2"]
+position = Vector2( 180, 466 )
 stream = ExtResource( 7 )
 
 [node name="Button3" type="Node2D" parent="."]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( 138, 142 )
+script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="Button3"]
-position = Vector2( 74, 70 )
-script = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button3/Area2D"]
-visible = false
-position = Vector2( -3, 2 )
-shape = SubResource( 1 )
-
-[node name="White" type="TextureRect" parent="Button3/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -70.0
-margin_top = -71.0
-margin_right = 71.0
-margin_bottom = 70.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey" type="TextureRect" parent="Button3/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -69.0
-margin_top = -71.0
-margin_right = 70.0
-margin_bottom = 71.0
-texture = SubResource( 3 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Node2D" parent="Button3/Area2D"]
-
-[node name="TextureButton" type="TextureButton" parent="Button3/Area2D/Button"]
-margin_left = -72.0
-margin_top = -68.0
-margin_right = 497.0
-margin_bottom = 504.0
+[node name="TextureButton" type="TextureButton" parent="Button3"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -236,56 +80,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button3/Area2D"]
-position = Vector2( 106, 396 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button3"]
+position = Vector2( 180, 466 )
 stream = ExtResource( 8 )
 
 [node name="Button4" type="Node2D" parent="."]
 modulate = Color( 0, 1, 0, 1 )
 position = Vector2( 0, 140 )
+script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="Button4"]
-position = Vector2( 74, 70 )
-script = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button4/Area2D"]
-visible = false
-position = Vector2( -3, 2 )
-shape = SubResource( 1 )
-
-[node name="White" type="TextureRect" parent="Button4/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -70.0
-margin_top = -71.0
-margin_right = 71.0
-margin_bottom = 70.0
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Grey" type="TextureRect" parent="Button4/Area2D/CollisionShape2D"]
-visible = false
-margin_left = -69.0
-margin_top = -71.0
-margin_right = 70.0
-margin_bottom = 71.0
-texture = SubResource( 3 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Node2D" parent="Button4/Area2D"]
-
-[node name="TextureButton" type="TextureButton" parent="Button4/Area2D/Button"]
-margin_left = -72.0
-margin_top = -68.0
-margin_right = 497.0
-margin_bottom = 504.0
+[node name="TextureButton" type="TextureButton" parent="Button4"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
@@ -296,26 +104,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button4/Area2D"]
-position = Vector2( 106, 396 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button4"]
+position = Vector2( 180, 466 )
 stream = ExtResource( 9 )
-[connection signal="input_event" from="Button/Area2D" to="Button/Area2D" method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Button/Area2D" to="Button/Area2D" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Button/Area2D" to="Button/Area2D" method="_on_Area2D_mouse_exited"]
-[connection signal="pressed" from="Button/Area2D/Button/TextureButton" to="Button/Area2D" method="_on_TextureButton_pressed" binds= [ false ]]
-[connection signal="pressed" from="Button/Area2D/Button/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
-[connection signal="input_event" from="Button2/Area2D" to="Button2/Area2D" method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Button2/Area2D" to="Button2/Area2D" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Button2/Area2D" to="Button2/Area2D" method="_on_Area2D_mouse_exited"]
-[connection signal="pressed" from="Button2/Area2D/Button/TextureButton" to="Button2/Area2D" method="_on_TextureButton_pressed" binds= [ false ]]
-[connection signal="pressed" from="Button2/Area2D/Button/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
-[connection signal="input_event" from="Button3/Area2D" to="Button3/Area2D" method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Button3/Area2D" to="Button3/Area2D" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Button3/Area2D" to="Button3/Area2D" method="_on_Area2D_mouse_exited"]
-[connection signal="pressed" from="Button3/Area2D/Button/TextureButton" to="Button3/Area2D" method="_on_TextureButton_pressed" binds= [ false ]]
-[connection signal="pressed" from="Button3/Area2D/Button/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
-[connection signal="input_event" from="Button4/Area2D" to="Button4/Area2D" method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Button4/Area2D" to="Button4/Area2D" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Button4/Area2D" to="Button4/Area2D" method="_on_Area2D_mouse_exited"]
-[connection signal="pressed" from="Button4/Area2D/Button/TextureButton" to="Button4/Area2D" method="_on_TextureButton_pressed" binds= [ false ]]
-[connection signal="pressed" from="Button4/Area2D/Button/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button2/TextureButton" to="Button2" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button3/TextureButton" to="Button3" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button4/TextureButton" to="Button4" method="_on_TextureButton_pressed"]

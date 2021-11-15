@@ -103,6 +103,5 @@ margin_right = 60.0
 margin_bottom = 64.0
 custom_constants/separation = 10
 alignment = 2
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
