@@ -18,6 +18,7 @@ var current_recipe: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	generate_recipe()
 
 
@@ -31,6 +32,7 @@ func finish_drink() -> void:
 	var score_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
 	
 	score_label.text = get_score_text(score)
+	score_label.particles = score > 0.8
 	score_label.position = get_local_mouse_position()
 	add_child(score_label)
 	
@@ -41,7 +43,7 @@ func get_score_text(score: float) -> String:
 	print(score)
 	if score >= 1.0:
 		return "PERFECT!!!"
-	elif score > 0.9:
+	elif score > 0.8:
 		return "GREAT!"
 	elif score > 0.5:
 		return "NICE"
