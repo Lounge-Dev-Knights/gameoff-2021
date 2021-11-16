@@ -19,4 +19,7 @@ polygon = PoolVector2Array( -84, -104, -70, -95, -46, 71, -3, 109, 42, 78, 63, -
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Content"]
-polygon = PoolVector2Array( -83, -104, 77, -104, 60, 122, -67, 119 )
+polygon = PoolVector2Array( -74.8149, -94.3967, 70.7002, -92.056, 46.1226, 111.587, -52.578, 110.027 )
+
+[connection signal="body_entered" from="Content" to="." method="_on_Content_body_entered"]
+[connection signal="body_exited" from="Content" to="." method="_on_Content_body_exited"]

@@ -10,14 +10,10 @@ const INGREDIENTS := [
 
 onready var ingredient_spawner = $IngredientSpawner
 onready var cocktail_shaker = $CocktailShaker
-onready var recipe_note = $CanvasLayer/PanelContainer/Recipe
+onready var recipe_container = $CanvasLayer/RecipeContainer
 
 
-var current_recipe
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var current_recipe: Dictionary
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,14 +21,10 @@ func _ready():
 	generate_recipe()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _unhandled_input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		finish_drink()
+
 
 func finish_drink() -> void:
 	var score = check_recipe(current_recipe)
@@ -44,7 +36,9 @@ func finish_drink() -> void:
 	
 	generate_recipe()
 
+
 func get_score_text(score: float) -> String:
+	print(score)
 	if score >= 1.0:
 		return "PERFECT!!!"
 	elif score > 0.9:
@@ -52,56 +46,59 @@ func get_score_text(score: float) -> String:
 	elif score > 0.5:
 		return "NICE"
 	else:
-		return "HMMM..."
+		return "OK..."
+
 
 func generate_recipe() -> void:
-	var recipe = []
+	var recipe = {}
 	
 	for _n in randi() % 5 + 3:
-		var ingredient = INGREDIENTS[randi() % INGREDIENTS.size()]
-		recipe.append(ingredient.resource_path.get_file().trim_suffix(".tscn"))
+		var ingredient = INGREDIENTS[randi() % INGREDIENTS.size()].resource_path.get_file().trim_suffix(".tscn")
+		
+		if recipe.has(ingredient):
+			recipe[ingredient] += 1
+		else:
+			recipe[ingredient] = 1
+			
 		
 	current_recipe = recipe
-	recipe_note.text = recipe_to_string(recipe)
+	
+	for child in recipe_container.get_children():
+		child.queue_free()
+	
+	var recipe_note = preload("res://game/disco/minigames/cocktail_bar/recipe/Recipe.tscn").instance()
+	recipe_note.ingredients = recipe
+	recipe_container.call_deferred("add_child", recipe_note)
+	# recipe_note.text = recipe_to_string(recipe)
 
 
-func recipe_to_string(recipe: Array) -> String:
-	var ingredients = {}
-	for ingredient in recipe:
-		if ingredients.has(ingredient):
-			ingredients[ingredient] += 1
-		else:
-			ingredients[ingredient] = 1
-	
-	var recipe_string = ""
-	for ingredient in ingredients.keys():
-		recipe_string += "%dx %s\n" % [ingredients[ingredient], ingredient]
-	
-	return recipe_string
 
 # checks if the cocktail shaker contains the correct ingredients and returns a score
-func check_recipe(recipe: Array) -> float:
-	var score := 0.0
+func check_recipe(recipe: Dictionary) -> float:
+	var score: float = 0.0
 	
-	var content = cocktail_shaker.get_content()
+	var content = cocktail_shaker.get_content(true)
+	# content.clear()
 	
-	print(recipe)
-	print(content)
+	print("recipe: %s" % str(recipe))
+	print("content: %s" % str(content))
 	
-	for ingredient in recipe:
-		if ingredient in content:
-			content.erase(ingredient)
-			print("+1")
-			score += 1
-		else:
-			score -= 1
-			print("-1")
+	var max_score: float = 0.0
 	
-	score -= content.size()
-	print("-" + str(content.size()))
+	for ingredient in recipe.keys():
+		var target = recipe[ingredient]
+		max_score += target
+		var actual = content[ingredient] if content.has(ingredient) else 0
+		score += target
+		score -= abs(target - actual)
+		content.erase(ingredient)
 	
-	return score / recipe.size()
-
+	for remaining in content.keys():
+		score -= content[remaining]
+	
+	
+	print("%d/%d" % [score, max_score])
+	return score / float(max_score)
 
 
 func spawn_ingredient() -> void:
@@ -117,11 +114,12 @@ func spawn_ingredient() -> void:
 	ingredient.position = spawn_position
 	
 	add_child(ingredient)
-	
-	
 
 
 func _on_IngredientSpawnTimer_timeout():
 	call_deferred("spawn_ingredient")
 
 
+func _on_CocktailShaker_content_changed(content: Dictionary) -> void:
+	for recipe_note in recipe_container.get_children():
+		recipe_note.update_progress(content)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/Yuji_Boku/YujiBoku.tres" type="DynamicFont" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 226, 49.5 )
@@ -22,7 +21,7 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="RecipeContainer" type="PanelContainer" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -36,12 +35,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Recipe" type="Label" parent="CanvasLayer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 111.0
-margin_bottom = 42.0
-custom_fonts/font = ExtResource( 3 )
-text = "- Recipe"
-
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
+[connection signal="content_changed" from="CocktailShaker" to="." method="_on_CocktailShaker_content_changed"]
