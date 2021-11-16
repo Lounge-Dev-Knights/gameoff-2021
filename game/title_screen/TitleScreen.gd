@@ -25,3 +25,7 @@ func _on_Quit_pressed() -> void:
 
 func _on_NewGame_pressed() -> void:
 	SceneLoader.goto_scene("res://game/intro/Intro.tscn")
+
+
+func _on_Earworm_pressed() -> void:
+	SceneLoader.goto_scene("res://game/disco/minigames/earworm/Earworm.tscn")
