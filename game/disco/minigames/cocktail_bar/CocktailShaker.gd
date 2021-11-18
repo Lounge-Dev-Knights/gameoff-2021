@@ -22,6 +22,7 @@ func get_content(clear := false) -> Dictionary:
 		
 		if clear:
 			body.free()
+			call_deferred("emit_signal", "content_changed", {})
 	
 	return content
 

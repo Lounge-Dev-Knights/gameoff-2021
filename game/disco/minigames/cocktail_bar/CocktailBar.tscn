@@ -20,20 +20,41 @@ autostart = true
 [node name="CocktailShaker" parent="." instance=ExtResource( 2 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="RecipeContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -66.0
-margin_top = -14.0
-margin_bottom = 14.0
+margin_left = -40.0
+margin_top = -20.0
+margin_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RecipeContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+grow_horizontal = 0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecipeTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="content_changed" from="CocktailShaker" to="." method="_on_CocktailShaker_content_changed"]
+[connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]

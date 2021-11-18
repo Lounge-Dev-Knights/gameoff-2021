@@ -10,10 +10,9 @@ const INGREDIENTS := [
 
 onready var ingredient_spawner = $IngredientSpawner
 onready var cocktail_shaker = $CocktailShaker
-onready var recipe_container = $CanvasLayer/RecipeContainer
+onready var recipe_container = $CanvasLayer/MarginContainer/RecipeContainer
 
 
-var current_recipe: Dictionary
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,21 +21,18 @@ func _ready():
 	generate_recipe()
 
 
-func _unhandled_input(event) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		finish_drink()
 
-
-func finish_drink() -> void:
-	var score = check_recipe(current_recipe)
-	var score_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
+func finish_drink(recipe_note: Node) -> void:
+	var recipe = recipe_note.ingredients
+	var score = check_recipe(recipe)
 	
+	recipe_note.queue_free()
+	
+	var score_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
 	score_label.text = get_score_text(score)
 	score_label.particles = score > 0.8
 	score_label.position = get_local_mouse_position()
 	add_child(score_label)
-	
-	generate_recipe()
 
 
 func get_score_text(score: float) -> String:
@@ -62,17 +58,18 @@ func generate_recipe() -> void:
 		else:
 			recipe[ingredient] = 1
 			
-		
-	current_recipe = recipe
 	
-	for child in recipe_container.get_children():
-		child.queue_free()
 	
 	var recipe_note = preload("res://game/disco/minigames/cocktail_bar/recipe/Recipe.tscn").instance()
 	recipe_note.ingredients = recipe
+	recipe_note.connect("gui_input", self, "_recipe_note_input", [recipe_note])
 	recipe_container.call_deferred("add_child", recipe_note)
 	# recipe_note.text = recipe_to_string(recipe)
 
+
+func _recipe_note_input(event: InputEvent, recipe_note: Control) -> void:
+	if event.is_action("finish_drink"):
+		finish_drink(recipe_note)
 
 
 # checks if the cocktail shaker contains the correct ingredients and returns a score
@@ -123,5 +120,11 @@ func _on_IngredientSpawnTimer_timeout():
 
 
 func _on_CocktailShaker_content_changed(content: Dictionary) -> void:
+	print("update %s" % content)
 	for recipe_note in recipe_container.get_children():
 		recipe_note.update_progress(content)
+
+
+func _on_RecipeTimer_timeout():
+	if recipe_container.get_child_count() < 3:
+		generate_recipe()
