@@ -10,7 +10,7 @@ extends Control
 func _ready() -> void:
 	# Hide quit button on html/mobile
 	if not OS.has_feature("pc"):
-		$MarginContainer/Quit.hide()
+		$CenterContainer/VBoxContainer/Quit.hide()
 
 
 
@@ -25,3 +25,7 @@ func _on_Quit_pressed() -> void:
 
 func _on_NewGame_pressed() -> void:
 	SceneLoader.goto_scene("res://game/intro/Intro.tscn")
+
+
+func _on_Earworm_pressed() -> void:
+	SceneLoader.goto_scene("res://game/disco/minigames/earworm/Earworm.tscn")

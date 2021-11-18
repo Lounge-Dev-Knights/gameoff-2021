@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
+[ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=2]
+[ext_resource path="res://game/disco/minigames/earworm/circle_grey.png" type="Texture" id=4]
+[ext_resource path="res://sound/bug_buzz.wav" type="AudioStream" id=5]
+[ext_resource path="res://game/disco/minigames/earworm/circle.png" type="Texture" id=6]
+[ext_resource path="res://sound/bug_buzz_bass.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/bug_buzz_high.wav" type="AudioStream" id=8]
+[ext_resource path="res://sound/bug_buzz_low.wav" type="AudioStream" id=9]
+
+[node name="Earworm" type="Node2D"]
+position = Vector2( 2, -2 )
+script = ExtResource( 1 )
+
+[node name="Button" type="Node2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 96, 76 )
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="Button"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button"]
+position = Vector2( 180, 466 )
+stream = ExtResource( 5 )
+
+[node name="Button2" type="Node2D" parent="."]
+modulate = Color( 0, 0, 1, 1 )
+position = Vector2( 580, 72 )
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="Button2"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button2"]
+position = Vector2( 180, 466 )
+stream = ExtResource( 7 )
+
+[node name="Button3" type="Node2D" parent="."]
+modulate = Color( 1, 1, 0, 1 )
+position = Vector2( 580, 332 )
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="Button3"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button3"]
+position = Vector2( 180, 466 )
+stream = ExtResource( 8 )
+
+[node name="Button4" type="Node2D" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 86, 344 )
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="Button4"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 571.0
+margin_bottom = 574.0
+rect_scale = Vector2( 0.244721, 0.244721 )
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button4"]
+position = Vector2( 180, 466 )
+stream = ExtResource( 9 )
+
+[node name="Score" type="RichTextLabel" parent="."]
+margin_left = 350.0
+margin_top = 260.0
+margin_right = 390.0
+margin_bottom = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="."]
+margin_left = 346.0
+margin_top = 464.0
+margin_right = 429.0
+margin_bottom = 484.0
+text = "Start Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button2/TextureButton" to="Button2" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button3/TextureButton" to="Button3" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button4/TextureButton" to="Button4" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="StartGame" to="." method="_on_StartGame_pressed"]
