@@ -24,6 +24,8 @@ var order
 var play_order = []
 var clicked_order = []
 
+var playback_speed = 1
+
 var score = 0
 
 
@@ -42,9 +44,10 @@ func play_round(round_number) -> void:
 	
 	# play back sequence
 	playback = true
+	var time = increase_playback_speed(1.0, round_number)
 	for i in play_order:
 		buttons[i].emit_signal("pressed")
-		yield(get_tree().create_timer(1.0), "timeout")	
+		yield(get_tree().create_timer(time), "timeout")	
 	playback = false
 
 
@@ -52,6 +55,9 @@ func _ready() -> void:
 	$Score.text = ""
 	order = generate_order(100)
 	
+func increase_playback_speed(time, factor) -> float:
+	return time - 0.05*factor 
+
 	
 func end_round() -> void:
 	if not is_sequence_correct():

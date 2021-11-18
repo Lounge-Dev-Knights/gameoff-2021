@@ -127,12 +127,12 @@ text = "Start Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Button/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
+[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Button2/TextureButton" to="Button2" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Button2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
 [connection signal="pressed" from="Button3/TextureButton" to="Button3" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Button3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
-[connection signal="pressed" from="Button4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
 [connection signal="pressed" from="Button4/TextureButton" to="Button4" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Button4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
 [connection signal="pressed" from="StartGame" to="." method="_on_StartGame_pressed"]
