@@ -29,3 +29,11 @@ func _on_NewGame_pressed() -> void:
 
 func _on_Earworm_pressed() -> void:
 	SceneLoader.goto_scene("res://game/disco/minigames/earworm/Earworm.tscn")
+
+
+func _on_Disco_Light_pressed():
+	SceneLoader.goto_scene("res://game/disco/disco_light_minigame/LightMinigame.tscn")
+
+
+func _on_Cocktail_Bar_pressed():
+	SceneLoader.goto_scene("res://game/disco/minigames/cocktail_bar/CocktailBar.tscn")
