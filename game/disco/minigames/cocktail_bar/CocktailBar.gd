@@ -10,7 +10,6 @@ const INGREDIENTS := [
 
 onready var ingredient_spawner = $IngredientSpawner
 onready var cocktail_shaker = $CocktailShaker
-onready var recipe_container = $CanvasLayer/MarginContainer/RecipeContainer
 
 
 

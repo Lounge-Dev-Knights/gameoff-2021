@@ -4,6 +4,8 @@ extends KinematicBody2D
 onready var content_area = $Content
 onready var shaker = $CocktailShaker
 onready var glass = $CocktailGlass
+onready var particles := $CPUParticles2D
+onready var tween := $Tween
 
 var is_cocktail := false
 
@@ -30,6 +32,7 @@ func create_cocktail() -> void:
 	shaker.visible = false
 	glass.visible = true
 	is_cocktail = true
+	particles.emitting = true
 
 
 func reset_cocktail() -> void:
@@ -58,3 +61,51 @@ func get_content(clear := false) -> Dictionary:
 	
 	return content
 
+
+func _on_Content_body_entered(body: KinematicBody2D) -> void:
+	tween.stop_all()
+	tween.interpolate_property(
+		shaker,
+		"scale",
+		shaker.scale,
+		Vector2(0.55, 0.55),
+		0.05,
+		Tween.TRANS_CIRC,
+		Tween.EASE_IN
+	)
+	tween.interpolate_property(
+		shaker,
+		"scale",
+		Vector2(0.55, 0.55),
+		Vector2(0.5, 0.5),
+		0.05,
+		Tween.TRANS_CIRC,
+		Tween.EASE_OUT,
+		0.05
+	)
+	tween.start()
+
+
+
+func _on_Content_body_exited(body: KinematicBody2D) -> void:
+	tween.stop_all()
+	tween.interpolate_property(
+		shaker,
+		"scale",
+		shaker.scale,
+		Vector2(0.45, 0.45),
+		0.05,
+		Tween.TRANS_CIRC,
+		Tween.EASE_IN
+	)
+	tween.interpolate_property(
+		shaker,
+		"scale",
+		Vector2(0.45, 0.45),
+		Vector2(0.5, 0.5),
+		0.05,
+		Tween.TRANS_CIRC,
+		Tween.EASE_OUT,
+		0.05
+	)
+	tween.start()
