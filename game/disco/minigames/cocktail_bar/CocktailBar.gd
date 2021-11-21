@@ -51,23 +51,29 @@ func get_score_text(score: float) -> String:
 
 
 func generate_recipe() -> void:
-	var recipe = {}
+	var slots = get_tree().get_nodes_in_group("recipe_slots")
+	slots.shuffle()
+	# search empty slot, and generate recipe in it when found
+	for slot in slots:
+		if slot.get_child_count() == 0:
+			var recipe = {}
 	
-	for _n in randi() % 3 + 3:
-		var ingredient = INGREDIENTS[randi() % INGREDIENTS.size()].resource_path.get_file().trim_suffix(".tscn")
-		
-		if recipe.has(ingredient):
-			recipe[ingredient] += 1
-		else:
-			recipe[ingredient] = 1
+			for _n in randi() % 3 + 3:
+				var ingredient = INGREDIENTS[randi() % INGREDIENTS.size()].resource_path.get_file().trim_suffix(".tscn")
+				
+				if recipe.has(ingredient):
+					recipe[ingredient] += 1
+				else:
+					recipe[ingredient] = 1
+					
 			
+			var recipe_note = preload("res://game/disco/minigames/cocktail_bar/recipe/Recipe.tscn").instance()
+			recipe_note.ingredients = recipe
+			recipe_note.connect("gui_input", self, "_recipe_note_input", [recipe_note])
 	
-	
-	var recipe_note = preload("res://game/disco/minigames/cocktail_bar/recipe/Recipe.tscn").instance()
-	recipe_note.ingredients = recipe
-	recipe_note.connect("gui_input", self, "_recipe_note_input", [recipe_note])
-	recipe_container.call_deferred("add_child", recipe_note)
-	# recipe_note.text = recipe_to_string(recipe)
+			
+			slot.call_deferred("add_child", recipe_note)
+			return
 
 
 func _recipe_note_input(event: InputEvent, recipe_note: Control) -> void:
@@ -124,10 +130,10 @@ func _on_IngredientSpawnTimer_timeout():
 
 func update_content() -> void:
 	var content = cocktail_shaker.get_content()
-	for recipe_note in recipe_container.get_children():
-		recipe_note.update_progress(content)
+	for slot in get_tree().get_nodes_in_group("recipe_slots"):
+		for recipe_note in slot.get_children():
+			recipe_note.update_progress(content)
 
 
 func _on_RecipeTimer_timeout():
-	if recipe_container.get_child_count() < 3:
-		generate_recipe()
+	generate_recipe()

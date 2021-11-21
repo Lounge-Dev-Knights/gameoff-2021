@@ -21,6 +21,10 @@ func _input(event: InputEvent) -> void:
 
 
 func create_cocktail() -> void:
+	print(get_content())
+	if get_content().size() == 0:
+		return
+	
 	_content = get_content(true)
 	set_collision_mask_bit(0, false)
 	shaker.visible = false

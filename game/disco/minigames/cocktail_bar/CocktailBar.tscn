@@ -22,31 +22,31 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -20.0
-margin_bottom = 20.0
-grow_horizontal = 0
+[node name="RecipeSlot1" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
+margin_left = 623.098
+margin_top = 299.693
+margin_right = 663.098
+margin_bottom = 339.693
+grow_horizontal = 2
 grow_vertical = 2
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RecipeContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
-grow_horizontal = 0
-mouse_filter = 2
+[node name="RecipeSlot2" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
+margin_left = 770.33
+margin_top = 318.154
+margin_right = 810.33
+margin_bottom = 358.154
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecipeSlot3" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
+margin_left = 904.707
+margin_top = 294.755
+margin_right = 944.707
+margin_bottom = 334.755
 __meta__ = {
 "_edit_use_anchors_": false
 }
