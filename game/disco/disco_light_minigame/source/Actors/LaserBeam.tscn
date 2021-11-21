@@ -22,8 +22,9 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 100, 24 )
 
 [node name="LaserEnd" type="Position2D" parent="."]
+z_as_relative = false
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 100, 0 )
-collision_mask = 32
+collision_mask = 8
