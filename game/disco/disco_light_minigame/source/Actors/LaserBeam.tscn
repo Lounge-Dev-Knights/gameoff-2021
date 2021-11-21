@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/LaserBeam.png" type="Texture" id=1]
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/LaserBegin.png" type="Texture" id=2]
+[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LaserBeam.gd" type="Script" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[node name="LaserBeam" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="LaserBegin" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="LaserBeam" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 0, -12 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 24 )
+
+[node name="LaserEnd" type="Position2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 100, 0 )
+collision_mask = 32

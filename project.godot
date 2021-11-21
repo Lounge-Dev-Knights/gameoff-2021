@@ -121,6 +121,7 @@ finish_drink={
 2d_physics/layer_3="coins"
 2d_physics/layer_4="world"
 2d_physics/layer_5="friends"
+2d_physics/layer_6="Laser"
 
 [physics]
 
