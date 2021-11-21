@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_LENGTH = 300
+const MAX_LENGTH = 2000
 
 onready var beam = $LaserBeam
 onready var laserend = $LaserEnd

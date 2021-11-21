@@ -759,10 +759,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="DiscoRoomBackground1" type="TextureRect" parent="CanvasLayer"]
+[node name="DiscoRoomBackground1" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1024.0
@@ -772,30 +769,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameBug1" type="Sprite" parent="CanvasLayer"]
+[node name="GameBug1" type="Sprite" parent="."]
 position = Vector2( 927, 402 )
 scale = Vector2( 0.245117, 0.3425 )
 texture = ExtResource( 9 )
 
-[node name="GameBug4" type="Sprite" parent="CanvasLayer"]
+[node name="GameBug4" type="Sprite" parent="."]
 position = Vector2( 596, 426 )
 scale = Vector2( 0.245117, 0.3425 )
 texture = ExtResource( 10 )
 
-[node name="GameBug6" type="Sprite" parent="CanvasLayer"]
+[node name="GameBug6" type="Sprite" parent="."]
 position = Vector2( 343.84, 425.47 )
 scale = Vector2( 0.127266, 0.188235 )
 texture = ExtResource( 7 )
 
-[node name="GameBug2" type="Sprite" parent="CanvasLayer"]
+[node name="GameBug2" type="Sprite" parent="."]
 position = Vector2( 269, 394 )
 scale = Vector2( 0.0904694, 0.143136 )
 texture = ExtResource( 7 )
 
-[node name="GameBug7" type="Sprite" parent="CanvasLayer"]
+[node name="GameBug7" type="Sprite" parent="."]
 position = Vector2( 699, 418 )
 scale = Vector2( 0.199219, 0.251667 )
 texture = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -819,7 +819,7 @@ speed = Vector2( 250, 200 )
 position = Vector2( 101, 509 )
 
 [node name="LaserBeam2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 200, 291 )
+position = Vector2( 946, 78 )
 
 [node name="LaserFly" parent="." instance=ExtResource( 5 )]
-position = Vector2( 516, 355 )
+position = Vector2( 939, 184 )

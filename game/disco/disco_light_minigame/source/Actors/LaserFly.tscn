@@ -48,6 +48,7 @@ position = Vector2( 0, -41 )
 shape = SubResource( 1 )
 
 [node name="RedLaser" type="Light2D" parent="."]
+visible = false
 position = Vector2( -124.855, 122.291 )
 rotation = -0.675013
 scale = Vector2( 0.15134, 2.5097 )
@@ -57,6 +58,7 @@ color = Color( 0.898039, 0.0784314, 0.0784314, 1 )
 energy = 16.0
 
 [node name="GreenLaser" type="Light2D" parent="."]
+visible = false
 position = Vector2( -98.8416, 124.651 )
 rotation = -2.37006
 scale = Vector2( 0.00105482, 289.556 )
@@ -69,8 +71,7 @@ position = Vector2( -0.500003, 22.5 )
 scale = Vector2( 2.13462, 1.125 )
 texture = ExtResource( 4 )
 
-[node name="LaserBeam" parent="." instance=ExtResource( 5 )]
-show_behind_parent = true
+[node name="LaserBeam2" parent="." instance=ExtResource( 5 )]
 
 [node name="LightRefillSource" type="Area2D" parent="."]
 collision_layer = 0
