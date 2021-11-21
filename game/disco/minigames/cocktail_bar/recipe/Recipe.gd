@@ -1,15 +1,28 @@
-extends Control
+extends Node2D
+
+signal recipe_clicked(recipe_note)
+
+
+const BUGS = [
+	preload("res://game/assets/bugs/Game_Bug6.png"),
+	preload("res://game/assets/bugs/Game_Bug7.png"),
+	preload("res://game/assets/bugs/Game_Bug8.png"),
+	preload("res://game/assets/bugs/Game_Bug9.png"),
+]
 
 
 var ingredients: Dictionary
 
-onready var ingredient_container := $VBoxContainer/IngredientContainer
-onready var time_left := $VBoxContainer/TimeLeft
+onready var ingredient_container := $PanelContainer/VBoxContainer/IngredientContainer
+onready var time_left := $PanelContainer/VBoxContainer/TimeLeft
 onready var timer := $Timer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	$Guest.texture = BUGS[randi() % BUGS.size()]
+	
 	for ingredient in ingredients.keys():
 		var label = preload("res://game/disco/minigames/cocktail_bar/recipe/IngredientLabel.tscn").instance()
 		label.ingredient = ingredient
@@ -43,5 +56,14 @@ func update_progress(content: Dictionary) -> void:
 			label.modulate = Color.white
 
 
+func exit() -> void:
+	$AnimationPlayer.play("exit")
+
+
 func _on_Timer_timeout() -> void:
-	queue_free()
+	exit()
+
+
+func _on_PanelContainer_gui_input(event: InputEvent) -> void:
+	if event.is_action("finish_drink"):
+		emit_signal("recipe_clicked", self)

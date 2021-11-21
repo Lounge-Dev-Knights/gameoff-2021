@@ -18,42 +18,28 @@ wait_time = 0.5
 autostart = true
 
 [node name="CocktailShaker" parent="." instance=ExtResource( 2 )]
+z_index = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="RecipeSlot1" type="Node2D" parent="." groups=["recipe_slots"]]
+position = Vector2( 631.464, 343.856 )
+z_index = 1
 
-[node name="RecipeSlot1" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
-margin_left = 623.098
-margin_top = 299.693
-margin_right = 663.098
-margin_bottom = 339.693
-grow_horizontal = 2
-grow_vertical = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RecipeSlot2" type="Node2D" parent="." groups=["recipe_slots"]]
+position = Vector2( 782.253, 339 )
+z_index = 1
 
-[node name="RecipeSlot2" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
-margin_left = 770.33
-margin_top = 318.154
-margin_right = 810.33
-margin_bottom = 358.154
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RecipeSlot3" type="Control" parent="CanvasLayer" groups=["recipe_slots"]]
-margin_left = 904.707
-margin_top = 294.755
-margin_right = 944.707
-margin_bottom = 334.755
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RecipeSlot3" type="Node2D" parent="." groups=["recipe_slots"]]
+position = Vector2( 930.695, 340.053 )
+z_index = 1
 
 [node name="RecipeTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -6.50079, -20.431 )
+color = Color( 0.447059, 0.286275, 0.235294, 1 )
+polygon = PoolVector2Array( -72.4363, 354.088, 1164.57, 342.944, 1138.57, 727.419, -60.3634, 679.127 )
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
