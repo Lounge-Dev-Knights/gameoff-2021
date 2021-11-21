@@ -15,7 +15,7 @@ func _physics_process(delta: float):
 	rotation_degrees = clamp(get_local_mouse_position().x * 0.1, -20, 20)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action("finish_drink") and event.is_pressed():
 		create_cocktail()
 
