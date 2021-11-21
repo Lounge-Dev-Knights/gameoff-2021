@@ -27,7 +27,7 @@ func finish_drink(recipe_note: Node) -> void:
 	var recipe = recipe_note.ingredients
 	var score = check_recipe(recipe)
 	
-	recipe_note.queue_free()
+	recipe_note.exit()
 	
 	var score_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
 	score_label.text = get_score_text(score)
@@ -68,15 +68,15 @@ func generate_recipe() -> void:
 			
 			var recipe_note = preload("res://game/disco/minigames/cocktail_bar/recipe/Recipe.tscn").instance()
 			recipe_note.ingredients = recipe
-			recipe_note.connect("gui_input", self, "_recipe_note_input", [recipe_note])
+			recipe_note.connect("recipe_clicked", self, "recipe_note_clicked")
 	
 			
 			slot.call_deferred("add_child", recipe_note)
 			return
 
 
-func _recipe_note_input(event: InputEvent, recipe_note: Control) -> void:
-	if event.is_action("finish_drink") and cocktail_shaker.is_cocktail:
+func recipe_note_clicked(recipe_note: Node) -> void:
+	if cocktail_shaker.is_cocktail:
 		finish_drink(recipe_note)
 
 
@@ -130,8 +130,7 @@ func _on_IngredientSpawnTimer_timeout():
 func update_content() -> void:
 	var content = cocktail_shaker.get_content()
 	for slot in get_tree().get_nodes_in_group("recipe_slots"):
-		for recipe_note in slot.get_children():
-			recipe_note.update_progress(content)
+		for recipe_note in slot.get_children():			recipe_note.update_progress(content)
 
 
 func _on_RecipeTimer_timeout():
