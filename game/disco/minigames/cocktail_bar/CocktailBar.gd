@@ -20,6 +20,8 @@ func _ready():
 	randomize()
 	generate_recipe()
 
+func _process(delta: float) -> void:
+	update_content()
 
 
 func finish_drink(recipe_note: Node) -> void:
@@ -33,6 +35,7 @@ func finish_drink(recipe_note: Node) -> void:
 	score_label.particles = score > 0.8
 	score_label.position = get_local_mouse_position()
 	add_child(score_label)
+	cocktail_shaker.reset_cocktail()
 
 
 func get_score_text(score: float) -> String:
@@ -50,7 +53,7 @@ func get_score_text(score: float) -> String:
 func generate_recipe() -> void:
 	var recipe = {}
 	
-	for _n in randi() % 5 + 3:
+	for _n in randi() % 3 + 3:
 		var ingredient = INGREDIENTS[randi() % INGREDIENTS.size()].resource_path.get_file().trim_suffix(".tscn")
 		
 		if recipe.has(ingredient):
@@ -68,7 +71,7 @@ func generate_recipe() -> void:
 
 
 func _recipe_note_input(event: InputEvent, recipe_note: Control) -> void:
-	if event.is_action("finish_drink"):
+	if event.is_action("finish_drink") and cocktail_shaker.is_cocktail:
 		finish_drink(recipe_note)
 
 
@@ -76,7 +79,7 @@ func _recipe_note_input(event: InputEvent, recipe_note: Control) -> void:
 func check_recipe(recipe: Dictionary) -> float:
 	var score: float = 0.0
 	
-	var content = cocktail_shaker.get_content(true)
+	var content = cocktail_shaker.get_content()
 	# content.clear()
 	
 	print("recipe: %s" % str(recipe))
@@ -119,8 +122,8 @@ func _on_IngredientSpawnTimer_timeout():
 	call_deferred("spawn_ingredient")
 
 
-func _on_CocktailShaker_content_changed(content: Dictionary) -> void:
-	print("update %s" % content)
+func update_content() -> void:
+	var content = cocktail_shaker.get_content()
 	for recipe_note in recipe_container.get_children():
 		recipe_note.update_progress(content)
 
