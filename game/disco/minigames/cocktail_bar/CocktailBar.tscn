@@ -56,5 +56,4 @@ wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
-[connection signal="content_changed" from="CocktailShaker" to="." method="_on_CocktailShaker_content_changed"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
