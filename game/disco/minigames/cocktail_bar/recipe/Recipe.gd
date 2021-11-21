@@ -3,7 +3,10 @@ extends Control
 
 var ingredients: Dictionary
 
-onready var ingredient_container := $IngredientContainer
+onready var ingredient_container := $VBoxContainer/IngredientContainer
+onready var time_left := $VBoxContainer/TimeLeft
+onready var timer := $Timer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,7 +15,14 @@ func _ready() -> void:
 		label.ingredient = ingredient
 		label.target = ingredients[ingredient]
 		ingredient_container.add_child(label)
+
+
+func _process(delta: float) -> void:
+	var time := int(timer.time_left)
+	time_left.text = "%ds" % time
 	
+	if time < 5:
+		time_left.modulate = Color.red
 	
 
 
@@ -31,3 +41,7 @@ func update_progress(content: Dictionary) -> void:
 			label.modulate = Color.green
 		else:
 			label.modulate = Color.white
+
+
+func _on_Timer_timeout() -> void:
+	queue_free()

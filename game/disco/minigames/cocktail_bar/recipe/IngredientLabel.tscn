@@ -16,6 +16,7 @@ bg_color = Color( 0.176471, 0.176471, 0.176471, 1 )
 [node name="IngredientLabel" type="VBoxContainer"]
 margin_right = 96.0
 margin_bottom = 38.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,6 +33,7 @@ margin_top = 40.0
 margin_right = 106.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 0, 6 )
+mouse_filter = 2
 size_flags_horizontal = 3
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
@@ -41,3 +43,4 @@ percent_visible = false
 margin_top = 50.0
 margin_right = 106.0
 margin_bottom = 54.0
+mouse_filter = 2
