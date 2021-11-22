@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/recipe/Recipe.gd" type="Script" id=1]
 [ext_resource path="res://game/assets/bugs/Game_Bug7.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -198,6 +199,9 @@ tracks/4/keys = {
 } ]
 }
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
+
 [node name="Recipe" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -249,6 +253,7 @@ __meta__ = {
 margin_top = 4.0
 margin_bottom = 18.0
 mouse_filter = 1
+custom_fonts/font = SubResource( 4 )
 align = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

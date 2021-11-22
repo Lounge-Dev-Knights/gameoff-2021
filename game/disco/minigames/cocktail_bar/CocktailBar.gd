@@ -8,10 +8,14 @@ const INGREDIENTS := [
 ]
 
 
-onready var ingredient_spawner = $IngredientSpawner
-onready var cocktail_shaker = $CocktailShaker
+onready var ingredient_spawner := $IngredientSpawner
+onready var cocktail_shaker := $CocktailShaker
+onready var score_label := $CanvasLayer/MarginContainer/VBoxContainer/ScoreLabel
+onready var time_label := $CanvasLayer/MarginContainer/VBoxContainer/TimeLabel
+onready var game_timer := $GameTimer
 
 
+var total_score := 0 setget _set_score
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,19 +25,24 @@ func _ready():
 
 func _process(delta: float) -> void:
 	update_content()
+	var time_left := int(game_timer.time_left)
+	time_label.text = "Time %d:%02d" % [time_left / 60, time_left % 60]
+	
 
 
 func finish_drink(recipe_note: Node) -> void:
 	var recipe = recipe_note.ingredients
 	var score = check_recipe(recipe)
 	
+	self.total_score += int(score * 10)
+	
 	recipe_note.exit()
 	
-	var score_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
-	score_label.text = get_score_text(score)
-	score_label.particles = score > 0.8
-	score_label.position = get_local_mouse_position()
-	add_child(score_label)
+	var finish_label = preload("res://game/disco/minigames/cocktail_bar/PopupLabel.tscn").instance()
+	finish_label.text = get_score_text(score)
+	finish_label.particles = score > 0.8
+	finish_label.position = get_local_mouse_position()
+	add_child(finish_label)
 	cocktail_shaker.reset_cocktail()
 
 
@@ -82,7 +91,8 @@ func recipe_note_clicked(recipe_note: Node) -> void:
 
 # checks if the cocktail shaker contains the correct ingredients and returns a score
 func check_recipe(recipe: Dictionary) -> float:
-	var score: float = 0.0
+	var score: int = 0
+	var max_score: int = 0
 	
 	var content = cocktail_shaker.get_content()
 	# content.clear()
@@ -90,11 +100,11 @@ func check_recipe(recipe: Dictionary) -> float:
 	print("recipe: %s" % str(recipe))
 	print("content: %s" % str(content))
 	
-	var max_score: float = 0.0
 	
 	for ingredient in recipe.keys():
 		var target = recipe[ingredient]
 		max_score += target
+		
 		var actual = content[ingredient] if content.has(ingredient) else 0
 		score += target
 		score -= abs(target - actual)
@@ -104,8 +114,7 @@ func check_recipe(recipe: Dictionary) -> float:
 		score -= content[remaining]
 	
 	
-	print("%d/%d" % [score, max_score])
-	return score / float(max_score)
+	return float(score) / float(max_score)
 
 
 func spawn_ingredient() -> void:
@@ -135,3 +144,8 @@ func update_content() -> void:
 
 func _on_RecipeTimer_timeout():
 	generate_recipe()
+
+
+func _set_score(new_score: int) -> void:
+	total_score = new_score
+	score_label.text = "Score: %3d" % new_score
