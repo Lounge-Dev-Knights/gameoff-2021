@@ -23,8 +23,7 @@ func _input(event: InputEvent) -> void:
 
 
 func create_cocktail() -> void:
-	print(get_content())
-	if get_content().size() == 0:
+	if is_cocktail or get_content().size() == 0:
 		return
 	
 	_content = get_content(true)
@@ -33,6 +32,8 @@ func create_cocktail() -> void:
 	glass.visible = true
 	is_cocktail = true
 	particles.emitting = true
+	
+	print("Cocktail created with: %s" % str(_content))
 
 
 func reset_cocktail() -> void:
