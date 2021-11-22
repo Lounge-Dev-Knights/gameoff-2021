@@ -2,10 +2,10 @@ extends Node2D
 
 
 # list of buttons pressed
-onready var green = get_node("Button4/TextureButton")
-onready var blue = get_node("Button2/TextureButton")
-onready var red = get_node("Button/TextureButton")
-onready var yellow = get_node("Button3/TextureButton")
+onready var red = get_node("Bug1/TextureButton")
+onready var blue = get_node("Bug2/TextureButton")
+onready var yellow = get_node("Bug3/TextureButton")
+onready var green = get_node("Bug4/TextureButton")
 
 onready var buttons = {
 	1: red,

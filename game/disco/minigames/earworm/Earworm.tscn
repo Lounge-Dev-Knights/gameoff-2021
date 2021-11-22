@@ -1,113 +1,536 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=2]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/010.png" type="Texture" id=3]
 [ext_resource path="res://game/disco/minigames/earworm/circle_grey.png" type="Texture" id=4]
 [ext_resource path="res://sound/bug_buzz.wav" type="AudioStream" id=5]
 [ext_resource path="res://game/disco/minigames/earworm/circle.png" type="Texture" id=6]
 [ext_resource path="res://sound/bug_buzz_bass.wav" type="AudioStream" id=7]
 [ext_resource path="res://sound/bug_buzz_high.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/bug_buzz_low.wav" type="AudioStream" id=9]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/007.png" type="Texture" id=10]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/006.png" type="Texture" id=11]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/000.png" type="Texture" id=12]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/001.png" type="Texture" id=13]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/003.png" type="Texture" id=14]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/002.png" type="Texture" id=15]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/005.png" type="Texture" id=16]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/000.png" type="Texture" id=17]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/001.png" type="Texture" id=18]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/002.png" type="Texture" id=19]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/008.png" type="Texture" id=20]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/007.png" type="Texture" id=21]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/005.png" type="Texture" id=22]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/003.png" type="Texture" id=23]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/006.png" type="Texture" id=24]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/008.png" type="Texture" id=25]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/009.png" type="Texture" id=26]
+[ext_resource path="res://game/assets/bugs/earworm/bug2/004.png" type="Texture" id=27]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/010.png" type="Texture" id=28]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/003.png" type="Texture" id=29]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/000.png" type="Texture" id=30]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/001.png" type="Texture" id=31]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/006.png" type="Texture" id=32]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/002.png" type="Texture" id=33]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/004.png" type="Texture" id=34]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/005.png" type="Texture" id=35]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/008.png" type="Texture" id=36]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/007.png" type="Texture" id=37]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/009.png" type="Texture" id=38]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/005.png" type="Texture" id=39]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/004.png" type="Texture" id=40]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/001.png" type="Texture" id=41]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/000.png" type="Texture" id=42]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/007.png" type="Texture" id=43]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/008.png" type="Texture" id=44]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/003.png" type="Texture" id=45]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/006.png" type="Texture" id=46]
+[ext_resource path="res://game/assets/bugs/earworm/bug4/002.png" type="Texture" id=47]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walk"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/leg_left_front:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/leg_right_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Body/leg_left_middle:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -10, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Body/leg_right_middle:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Body/leg_left_back:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Body/leg_right_back:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Wings"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/Wing1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/Wing2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Wings"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/wing_right:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/wing_left:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Wings"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/wing_right:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/wing_left:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Wings"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/wing_left:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/wing_right:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
 
 [node name="Earworm" type="Node2D"]
 position = Vector2( 2, -2 )
 script = ExtResource( 1 )
 
-[node name="Button" type="Node2D" parent="."]
-modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 96, 76 )
+[node name="Bug1" type="Node2D" parent="."]
+position = Vector2( 147, 101 )
 script = ExtResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="Button"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 571.0
-margin_bottom = 574.0
+[node name="TextureButton" type="TextureButton" parent="Bug1"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -77.0
+margin_top = 4.0
+margin_right = 229.0
+margin_bottom = 576.0
+rect_rotation = -60.6771
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button"]
-position = Vector2( 180, 466 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bug1"]
+position = Vector2( 1, 0 )
 stream = ExtResource( 5 )
 
-[node name="Button2" type="Node2D" parent="."]
-modulate = Color( 0, 0, 1, 1 )
+[node name="Body" type="Sprite" parent="Bug1"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 20 )
+
+[node name="leg_left_front" type="Sprite" parent="Bug1/Body"]
+position = Vector2( -110, 46.6667 )
+texture = ExtResource( 12 )
+offset = Vector2( 100, -50 )
+
+[node name="leg_right_front" type="Sprite" parent="Bug1/Body"]
+position = Vector2( -16.6667, -110 )
+texture = ExtResource( 13 )
+offset = Vector2( -85, -60 )
+
+[node name="leg_left_middle" type="Sprite" parent="Bug1/Body"]
+position = Vector2( -66.6667, 113.333 )
+texture = ExtResource( 14 )
+offset = Vector2( 35, 70 )
+
+[node name="leg_right_middle" type="Sprite" parent="Bug1/Body"]
+position = Vector2( 63.3333, -63.3333 )
+texture = ExtResource( 15 )
+offset = Vector2( -30, -50 )
+
+[node name="leg_left_back" type="Sprite" parent="Bug1/Body"]
+position = Vector2( 33.3333, 176.667 )
+texture = ExtResource( 14 )
+offset = Vector2( 35, 70 )
+
+[node name="leg_right_back" type="Sprite" parent="Bug1/Body"]
+position = Vector2( 190, 26.6667 )
+texture = ExtResource( 16 )
+offset = Vector2( 70, 70 )
+
+[node name="Wing1" type="Sprite" parent="Bug1/Body"]
+position = Vector2( -86.6667, -33.3333 )
+texture = ExtResource( 11 )
+offset = Vector2( 70, 115 )
+
+[node name="Wing2" type="Sprite" parent="Bug1/Body"]
+position = Vector2( -80, -36.6667 )
+texture = ExtResource( 10 )
+offset = Vector2( 145, 30 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bug1"]
+anims/Walk = SubResource( 3 )
+anims/Wings = SubResource( 1 )
+
+[node name="Bug2" type="Node2D" parent="."]
 position = Vector2( 580, 72 )
 script = ExtResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="Button2"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 571.0
-margin_bottom = 574.0
+[node name="TextureButton" type="TextureButton" parent="Bug2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -69.0
+margin_top = -42.0
+margin_right = 581.0
+margin_bottom = 334.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button2"]
-position = Vector2( 180, 466 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bug2"]
+position = Vector2( 1, 0 )
 stream = ExtResource( 7 )
 
-[node name="Button3" type="Node2D" parent="."]
-modulate = Color( 1, 1, 0, 1 )
-position = Vector2( 580, 332 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bug2"]
+anims/Wings = SubResource( 4 )
+
+[node name="Body" type="Sprite" parent="Bug2"]
+position = Vector2( 62, 1 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="antenna_right" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -312.5, -67.5 )
+z_index = -1
+texture = ExtResource( 17 )
+offset = Vector2( 55, -75 )
+
+[node name="antenna_left" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -310, 50 )
+z_index = -1
+texture = ExtResource( 18 )
+offset = Vector2( 53, 80 )
+
+[node name="leg_left_front" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -215, 60 )
+texture = ExtResource( 19 )
+offset = Vector2( 5, 20 )
+
+[node name="leg_left_middle" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -162.5, 95 )
+texture = ExtResource( 23 )
+offset = Vector2( 5, 20 )
+
+[node name="leg_left_back" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -52.5, 47.5 )
+scale = Vector2( 1.5, 1 )
+texture = ExtResource( 27 )
+offset = Vector2( 25, 7 )
+
+[node name="leg_right_back" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -52.5, -32.5 )
+scale = Vector2( 1.5, 1 )
+texture = ExtResource( 22 )
+offset = Vector2( 25, 0 )
+
+[node name="leg_right_middle" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -150, -97.5 )
+texture = ExtResource( 24 )
+offset = Vector2( 5, -20 )
+
+[node name="leg_right_front" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -205, -72.5 )
+texture = ExtResource( 21 )
+offset = Vector2( 10, -20 )
+
+[node name="wing_right" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -235, -15 )
+scale = Vector2( 1.1, 1.1 )
+z_index = 2
+texture = ExtResource( 25 )
+offset = Vector2( 130, -40 )
+
+[node name="wing_left" type="Sprite" parent="Bug2/Body"]
+position = Vector2( -245, 12.5 )
+scale = Vector2( 1.1, 1.1 )
+z_index = 1
+texture = ExtResource( 26 )
+offset = Vector2( 130, 50 )
+
+[node name="Bug3" type="Node2D" parent="."]
+modulate = Color( 0.968627, 0.968627, 0.968627, 1 )
+position = Vector2( 590, 328 )
 script = ExtResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="Button3"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 571.0
-margin_bottom = 574.0
+[node name="TextureButton" type="TextureButton" parent="Bug3"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -70.0
+margin_top = -43.0
+margin_right = 261.0
+margin_bottom = 529.0
+rect_rotation = -23.7712
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button3"]
-position = Vector2( 180, 466 )
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bug3"]
+position = Vector2( -1, 0 )
 stream = ExtResource( 8 )
 
-[node name="Button4" type="Node2D" parent="."]
-modulate = Color( 0, 1, 0, 1 )
-position = Vector2( 86, 344 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bug3"]
+anims/Wings = SubResource( 5 )
+
+[node name="Body" type="Sprite" parent="Bug3"]
+position = Vector2( -16, 11 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 28 )
+
+[node name="wing_left" type="Sprite" parent="Bug3/Body"]
+position = Vector2( -45.7142, -85.7143 )
+texture = ExtResource( 30 )
+offset = Vector2( 2.1427, 120 )
+
+[node name="wing_right" type="Sprite" parent="Bug3/Body"]
+position = Vector2( 57.1429, -111.429 )
+texture = ExtResource( 31 )
+offset = Vector2( 99.9999, 137.143 )
+
+[node name="leg_left_middle" type="Sprite" parent="Bug3/Body"]
+position = Vector2( -117.143, -34.2857 )
+texture = ExtResource( 33 )
+offset = Vector2( -30, 80 )
+
+[node name="leg_left_back" type="Sprite" parent="Bug3/Body"]
+position = Vector2( -51.4286, 162.857 )
+texture = ExtResource( 29 )
+offset = Vector2( 10, 60 )
+
+[node name="leg_right_back" type="Sprite" parent="Bug3/Body"]
+position = Vector2( 208.571, 74.2858 )
+texture = ExtResource( 34 )
+offset = Vector2( -80, 100 )
+
+[node name="leg_right_middle" type="Sprite" parent="Bug3/Body"]
+position = Vector2( 137.143, -114.286 )
+texture = ExtResource( 35 )
+offset = Vector2( 75, 90 )
+
+[node name="leg_right_front" type="Sprite" parent="Bug3/Body"]
+position = Vector2( 117.143, -145.714 )
+texture = ExtResource( 32 )
+offset = Vector2( 48.5714, -62.8572 )
+
+[node name="antenna_right" type="Sprite" parent="Bug3/Body"]
+position = Vector2( 37.1429, -200 )
+texture = ExtResource( 37 )
+offset = Vector2( 5.71423, -45.7143 )
+
+[node name="antenna_left" type="Sprite" parent="Bug3/Body"]
+position = Vector2( -80, -168.571 )
+texture = ExtResource( 36 )
+offset = Vector2( -37.1428, -37.1429 )
+
+[node name="leg_left_front" type="Sprite" parent="Bug3/Body"]
+position = Vector2( -111.428, -94.2857 )
+texture = ExtResource( 38 )
+offset = Vector2( -100, 45.7143 )
+
+[node name="Bug4" type="Node2D" parent="."]
+position = Vector2( 185, 348 )
 script = ExtResource( 2 )
 
-[node name="TextureButton" type="TextureButton" parent="Button4"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 571.0
-margin_bottom = 574.0
+[node name="TextureButton" type="TextureButton" parent="Bug4"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -46.0
+margin_top = -74.0
+margin_right = 338.0
+margin_bottom = 457.0
 rect_scale = Vector2( 0.244721, 0.244721 )
 toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_focused = ExtResource( 6 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button4"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bug4"]
 position = Vector2( 180, 466 )
 stream = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bug4"]
+anims/Wings = SubResource( 6 )
+
+[node name="Body" type="Sprite" parent="Bug4"]
+position = Vector2( 1, -1.00003 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 44 )
+offset = Vector2( -230, -7.5 )
+
+[node name="wing_right" type="Sprite" parent="Bug4/Body"]
+position = Vector2( 7.49997, -95 )
+texture = ExtResource( 43 )
+offset = Vector2( 50, 107.5 )
+
+[node name="wing_left" type="Sprite" parent="Bug4/Body"]
+position = Vector2( 0, -92.5 )
+texture = ExtResource( 46 )
+offset = Vector2( -62.5, 102.5 )
+
+[node name="leg_right_front" type="Sprite" parent="Bug4/Body"]
+position = Vector2( 107.5, -110 )
+texture = ExtResource( 39 )
+offset = Vector2( 35.0001, -79.9999 )
+
+[node name="leg_left_back" type="Sprite" parent="Bug4/Body"]
+position = Vector2( -95, 24.9999 )
+texture = ExtResource( 47 )
+offset = Vector2( 2.5, 122.5 )
+
+[node name="leg_right_back" type="Sprite" parent="Bug4/Body"]
+position = Vector2( 85, 24.9999 )
+texture = ExtResource( 45 )
+offset = Vector2( 0, 120 )
+
+[node name="leg_right_middle" type="Sprite" parent="Bug4/Body"]
+position = Vector2( 125, -55.0001 )
+texture = ExtResource( 40 )
+offset = Vector2( 17.5, 57.5 )
+
+[node name="leg_left_front" type="Sprite" parent="Bug4/Body"]
+position = Vector2( -95, -120 )
+texture = ExtResource( 42 )
+offset = Vector2( 112.5, -75 )
+
+[node name="leg_left_middle" type="Sprite" parent="Bug4/Body"]
+position = Vector2( -127.5, -62.5001 )
+texture = ExtResource( 41 )
+offset = Vector2( -15, 60 )
 
 [node name="Score" type="RichTextLabel" parent="."]
 margin_left = 350.0
@@ -127,12 +550,12 @@ text = "Start Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Button/TextureButton" to="Button" method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="Button/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
-[connection signal="pressed" from="Button2/TextureButton" to="Button2" method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="Button2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
-[connection signal="pressed" from="Button3/TextureButton" to="Button3" method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="Button3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
-[connection signal="pressed" from="Button4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
-[connection signal="pressed" from="Button4/TextureButton" to="Button4" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Bug1/TextureButton" to="Bug1" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Bug1/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
+[connection signal="pressed" from="Bug2/TextureButton" to="Bug2" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Bug2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
+[connection signal="pressed" from="Bug3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
+[connection signal="pressed" from="Bug3/TextureButton" to="Bug3" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Bug4/TextureButton" to="Bug4" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Bug4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
 [connection signal="pressed" from="StartGame" to="." method="_on_StartGame_pressed"]
