@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/light_the_disco_paint.jpg" type="Texture" id=1]
+[ext_resource path="res://game/disco/disco_light_minigame/LightMinigame.gd" type="Script" id=2]
+
+[node name="MainSceneLightMiniGame" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+margin_left = -25.0
+margin_top = 223.0
+margin_right = 999.0
+margin_bottom = 578.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/CenterContainer"]
+margin_left = 512.0
+margin_top = 177.0
+margin_right = 512.0
+margin_bottom = 177.0
+
+[node name="NameCard" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
+margin_left = 472.0
+margin_top = 103.0
+margin_right = 551.0
+margin_bottom = 251.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/NameCard"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 72.0
+margin_bottom = 141.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/NameCard/VBoxContainer"]
+margin_right = 65.0
+margin_bottom = 14.0
+text = "Difficulty:"
+align = 1
+
+[node name="Start" type="Button" parent="CanvasLayer/CenterContainer/NameCard/VBoxContainer"]
+margin_left = 12.0
+margin_top = 24.0
+margin_right = 53.0
+margin_bottom = 44.0
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="Medium" type="Button" parent="CanvasLayer/CenterContainer/NameCard/VBoxContainer"]
+margin_top = 54.0
+margin_right = 65.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
+text = "Medium"
+
+[node name="Hard" type="Button" parent="CanvasLayer/CenterContainer/NameCard/VBoxContainer"]
+margin_left = 11.0
+margin_top = 84.0
+margin_right = 53.0
+margin_bottom = 104.0
+size_flags_horizontal = 4
+text = "Hard"
+
+[node name="Quit" type="Button" parent="CanvasLayer/CenterContainer/NameCard/VBoxContainer"]
+margin_left = 12.0
+margin_top = 114.0
+margin_right = 52.0
+margin_bottom = 134.0
+size_flags_horizontal = 4
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/NameCard/VBoxContainer/Start" to="." method="_on_Start_pressed"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Firefly.gd" type="Script" id=2]
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/light.png" type="Texture" id=3]
+[ext_resource path="res://game/disco/disco_light_minigame/source/tileset_Kings and Pigs/Sprites/09-Bomb/Bomb Off.png" type="Texture" id=4]
+[ext_resource path="res://game/assets/bugs/Game_Bug5-1.png" type="Texture" id=5]
+[ext_resource path="res://game/assets/bugs/Game_Bug5-3.png" type="Texture" id=6]
+[ext_resource path="res://game/assets/bugs/Game_Bug5-2.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 30.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 19.0
+height = 112.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14, 28.5 )
+
+[node name="Firefly" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 9
+script = ExtResource( 2 )
+speed = Vector2( 300, 200 )
+gravity = 0
+
+[node name="Firefly" type="AnimatedSprite" parent="."]
+position = Vector2( -6, -40 )
+rotation = 1.5708
+scale = Vector2( 0.171667, 0.171667 )
+frames = SubResource( 3 )
+animation = "New Anim"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -43 )
+shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, 11 )
+texture = ExtResource( 3 )
+texture_scale = 0.6
+color = Color( 0.882353, 0.835294, 0.0901961, 1 )
+
+[node name="LightSourceVisual" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1, 5.5 )
+scale = Vector2( 1.80769, 2.98214 )
+texture = ExtResource( 4 )
+
+[node name="LightRefillSource" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefillSource"]
+modulate = Color( 0.0901961, 0, 0.458824, 1 )
+position = Vector2( 1, 13 )
+shape = SubResource( 2 )

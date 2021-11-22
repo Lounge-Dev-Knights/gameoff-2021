@@ -15,3 +15,4 @@ build/!.gdignore
 bin/
 release/
 .DS_Store
+game/disco/disco_light_minigame/source/Actors/LaserBeam.gd
