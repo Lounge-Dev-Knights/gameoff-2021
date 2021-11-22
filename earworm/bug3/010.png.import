@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/010.png-dc637b5ae21328fbcd43c273756fada3.stex"
+path="res://.import/010.png-65289803debe20b5b21db2581e93e8e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/assets/bugs/earworm/bug3/010.png"
-dest_files=[ "res://.import/010.png-dc637b5ae21328fbcd43c273756fada3.stex" ]
+source_file="res://earworm/bug3/010.png"
+dest_files=[ "res://.import/010.png-65289803debe20b5b21db2581e93e8e3.stex" ]
 
 [params]
 
