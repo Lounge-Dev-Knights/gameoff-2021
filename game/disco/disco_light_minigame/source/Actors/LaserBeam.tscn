@@ -8,6 +8,7 @@
 blend_mode = 1
 
 [node name="LaserBeam" type="Node2D"]
+position = Vector2( 205, 125 )
 script = ExtResource( 3 )
 
 [node name="LaserBegin" type="Sprite" parent="."]
