@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=2]
@@ -48,7 +48,7 @@
 [ext_resource path="res://game/assets/bugs/earworm/bug4/006.png" type="Texture" id=46]
 [ext_resource path="res://game/assets/bugs/earworm/bug4/002.png" type="Texture" id=47]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Walk"
 loop = true
 tracks/0/type = "bezier"
@@ -112,8 +112,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Wings"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Body/Wing1:rotation_degrees")
 tracks/0/interp = 1
@@ -134,6 +133,37 @@ tracks/1/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
 }
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 32.4349
+height = 51.4225
+
+[sub_resource type="Animation" id=3]
+resource_name = "Wings"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/wing_right:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/wing_left:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 44.0
+height = 44.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "Wings"
@@ -161,29 +191,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "Wings"
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("Body/wing_right:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("Body/wing_left:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Wings"
-tracks/0/type = "bezier"
 tracks/0/path = NodePath("Body/wing_left:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -208,7 +215,7 @@ tracks/1/keys = {
 position = Vector2( 2, -2 )
 script = ExtResource( 1 )
 
-[node name="Bug1" type="Node2D" parent="."]
+[node name="Bug1" type="RigidBody2D" parent="."]
 position = Vector2( 147, 101 )
 script = ExtResource( 2 )
 
@@ -240,31 +247,37 @@ texture = ExtResource( 20 )
 
 [node name="leg_left_front" type="Sprite" parent="Bug1/Body"]
 position = Vector2( -110, 46.6667 )
+rotation = -0.0430286
 texture = ExtResource( 12 )
 offset = Vector2( 100, -50 )
 
 [node name="leg_right_front" type="Sprite" parent="Bug1/Body"]
 position = Vector2( -16.6667, -110 )
+rotation = 0.0430286
 texture = ExtResource( 13 )
 offset = Vector2( -85, -60 )
 
 [node name="leg_left_middle" type="Sprite" parent="Bug1/Body"]
 position = Vector2( -66.6667, 113.333 )
+rotation = -0.0215143
 texture = ExtResource( 14 )
 offset = Vector2( 35, 70 )
 
 [node name="leg_right_middle" type="Sprite" parent="Bug1/Body"]
 position = Vector2( 63.3333, -63.3333 )
+rotation = 0.0322715
 texture = ExtResource( 15 )
 offset = Vector2( -30, -50 )
 
 [node name="leg_left_back" type="Sprite" parent="Bug1/Body"]
 position = Vector2( 33.3333, 176.667 )
+rotation = -0.064543
 texture = ExtResource( 14 )
 offset = Vector2( 35, 70 )
 
 [node name="leg_right_back" type="Sprite" parent="Bug1/Body"]
 position = Vector2( 190, 26.6667 )
+rotation = 0.064543
 texture = ExtResource( 16 )
 offset = Vector2( 70, 70 )
 
@@ -279,10 +292,16 @@ texture = ExtResource( 10 )
 offset = Vector2( 145, 30 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bug1"]
-anims/Walk = SubResource( 3 )
-anims/Wings = SubResource( 1 )
+anims/Walk = SubResource( 1 )
+anims/Wings = SubResource( 2 )
 
-[node name="Bug2" type="Node2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bug1"]
+position = Vector2( 10, 10 )
+rotation = 2.22138
+scale = Vector2( 1.41619, 1.40623 )
+shape = SubResource( 6 )
+
+[node name="Bug2" type="RigidBody2D" parent="."]
 position = Vector2( 580, 72 )
 script = ExtResource( 2 )
 
@@ -308,7 +327,7 @@ position = Vector2( 1, 0 )
 stream = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bug2"]
-anims/Wings = SubResource( 4 )
+anims/Wings = SubResource( 3 )
 
 [node name="Body" type="Sprite" parent="Bug2"]
 position = Vector2( 62, 1 )
@@ -373,7 +392,13 @@ z_index = 1
 texture = ExtResource( 26 )
 offset = Vector2( 130, 50 )
 
-[node name="Bug3" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bug2"]
+position = Vector2( 3, 2 )
+rotation = 1.52159
+scale = Vector2( 1.05449, 1.11395 )
+shape = SubResource( 7 )
+
+[node name="Bug3" type="RigidBody2D" parent="."]
 modulate = Color( 0.968627, 0.968627, 0.968627, 1 )
 position = Vector2( 590, 328 )
 script = ExtResource( 2 )
@@ -401,7 +426,7 @@ position = Vector2( -1, 0 )
 stream = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bug3"]
-anims/Wings = SubResource( 5 )
+anims/Wings = SubResource( 4 )
 
 [node name="Body" type="Sprite" parent="Bug3"]
 position = Vector2( -16, 11 )
@@ -458,7 +483,7 @@ position = Vector2( -111.428, -94.2857 )
 texture = ExtResource( 38 )
 offset = Vector2( -100, 45.7143 )
 
-[node name="Bug4" type="Node2D" parent="."]
+[node name="Bug4" type="RigidBody2D" parent="."]
 position = Vector2( 185, 348 )
 script = ExtResource( 2 )
 
@@ -484,7 +509,7 @@ position = Vector2( 180, 466 )
 stream = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bug4"]
-anims/Wings = SubResource( 6 )
+anims/Wings = SubResource( 5 )
 
 [node name="Body" type="Sprite" parent="Bug4"]
 position = Vector2( 1, -1.00003 )
@@ -552,10 +577,10 @@ __meta__ = {
 }
 [connection signal="pressed" from="Bug1/TextureButton" to="Bug1" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Bug1/TextureButton" to="." method="_on_Button1_pressed" binds= [ true ]]
-[connection signal="pressed" from="Bug2/TextureButton" to="Bug2" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Bug2/TextureButton" to="." method="_on_Button2_pressed" binds= [ true ]]
+[connection signal="pressed" from="Bug2/TextureButton" to="Bug2" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Bug3/TextureButton" to="." method="_on_Button3_pressed" binds= [ true ]]
 [connection signal="pressed" from="Bug3/TextureButton" to="Bug3" method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="Bug4/TextureButton" to="Bug4" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Bug4/TextureButton" to="." method="_on_Button4_pressed" binds= [ true ]]
+[connection signal="pressed" from="Bug4/TextureButton" to="Bug4" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="StartGame" to="." method="_on_StartGame_pressed"]

@@ -1,8 +1,12 @@
 extends Node2D
 
-var mouse_over = false
 onready var button = get_node("TextureButton")
+
+var mouse_over = false
+
 var timer
+
+var speed = 0
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -12,10 +16,15 @@ var timer
 func _ready():
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#
+func _process(delta):
+	if speed:
+		
+
+	
+
+func move():
+	pass
 
 func _on_TextureButton_pressed():
 	$AudioStreamPlayer2D.play()
