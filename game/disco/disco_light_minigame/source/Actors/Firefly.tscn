@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://game/disco/disco_light_minigame/source/ui/LightHpBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Firefly.gd" type="Script" id=2]
 [ext_resource path="res://game/disco/disco_light_minigame/source/images/light.png" type="Texture" id=3]
 [ext_resource path="res://game/disco/disco_light_minigame/source/tileset_Kings and Pigs/Sprites/09-Bomb/Bomb Off.png" type="Texture" id=4]
@@ -27,6 +28,9 @@ height = 112.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14, 28.5 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 12, 25.5 )
+
 [node name="Firefly" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 9
@@ -40,8 +44,7 @@ rotation = 1.5708
 scale = Vector2( 0.171667, 0.171667 )
 frames = SubResource( 3 )
 animation = "New Anim"
-frame = 1
-playing = true
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -43 )
@@ -51,7 +54,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, 11 )
 texture = ExtResource( 3 )
 texture_scale = 0.6
-color = Color( 0.882353, 0.835294, 0.0901961, 1 )
+color = Color( 1, 0.972549, 0.545098, 1 )
 
 [node name="LightSourceVisual" type="Sprite" parent="."]
 visible = false
@@ -60,10 +63,23 @@ scale = Vector2( 1.80769, 2.98214 )
 texture = ExtResource( 4 )
 
 [node name="LightRefillSource" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 16
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightRefillSource"]
 modulate = Color( 0.0901961, 0, 0.458824, 1 )
 position = Vector2( 1, 13 )
 shape = SubResource( 2 )
+
+[node name="LightRefillerArea2d" type="Area2D" parent="."]
+
+[node name="Lightrefillercollision" type="CollisionShape2D" parent="LightRefillerArea2d"]
+shape = SubResource( 4 )
+
+[node name="LightHPbar" parent="." instance=ExtResource( 1 )]
+margin_left = -20.0
+margin_top = 29.0
+margin_right = -20.0
+margin_bottom = 29.0
+
+[connection signal="body_entered" from="LightRefillerArea2d" to="." method="_on_LightRefillerArea2d_body_entered"]
