@@ -1,3 +1,13 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
 
 [node name="DiscoOverview" type="Node2D"]
+
+[node name="BugBunny" parent="." instance=ExtResource( 1 )]
+position = Vector2( 352.96, 349.209 )
+
+[node name="DoctorBug" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 725.53, 270.478 )
