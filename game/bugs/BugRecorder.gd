@@ -1,6 +1,6 @@
 extends Node2D
 
-var duration := 3.0
+var duration := 5.0
 var fps := 30
 
 
