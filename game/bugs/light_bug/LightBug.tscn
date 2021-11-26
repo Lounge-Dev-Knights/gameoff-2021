@@ -357,6 +357,7 @@ offset = Vector2( -106.458, -676.022 )
 [node name="Light2D" type="Light2D" parent="bug/TailLight"]
 position = Vector2( 1.94459, 121.535 )
 texture = ExtResource( 13 )
+texture_scale = 4.0
 
 [node name="LegTopRight" type="Sprite" parent="bug"]
 position = Vector2( 271.259, -328.497 )
