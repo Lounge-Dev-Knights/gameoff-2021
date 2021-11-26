@@ -1,0 +1,169 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-2.png" type="Texture" id=1]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-8.png" type="Texture" id=2]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-3.png" type="Texture" id=3]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-4.png" type="Texture" id=4]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-5.png" type="Texture" id=5]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-6.png" type="Texture" id=6]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-7.png" type="Texture" id=7]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-9.png" type="Texture" id=8]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-10.png" type="Texture" id=9]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-11.png" type="Texture" id=10]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-12.png" type="Texture" id=11]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-1.png" type="Texture" id=12]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+void fragment() {
+	vec2 offset = (UV - vec2(0.5)) * 2.0;
+	float r2 = offset.x * offset.x + offset.y + offset.y;
+	
+	COLOR.a = 1 - r2;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 4 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../bug/WingLeft:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../bug/WingRight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../bug/WingLeft:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 37.2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../bug/WingRight:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -39.1613 ]
+}
+
+[node name="LightBug" type="Node2D"]
+
+[node name="bug" type="Node2D" parent="."]
+position = Vector2( -9.70322, 29.5867 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="TailLight" type="Sprite" parent="bug"]
+position = Vector2( 128.136, 639.397 )
+texture = ExtResource( 12 )
+offset = Vector2( -106.458, -676.022 )
+
+[node name="Light2D" type="Light2D" parent="bug/TailLight"]
+material = SubResource( 6 )
+position = Vector2( 1.94459, 121.535 )
+texture = SubResource( 3 )
+
+[node name="LegTopRight" type="Sprite" parent="bug"]
+position = Vector2( 271.259, -328.497 )
+texture = ExtResource( 1 )
+offset = Vector2( -249.581, 291.873 )
+
+[node name="LegTopLeft" type="Sprite" parent="bug"]
+position = Vector2( -230.882, -277.556 )
+texture = ExtResource( 3 )
+offset = Vector2( 252.56, 240.931 )
+
+[node name="LegBottomRight" type="Sprite" parent="bug"]
+position = Vector2( 244.575, -13.1432 )
+texture = ExtResource( 4 )
+offset = Vector2( -222.897, -23.4814 )
+
+[node name="LegBottomLeft" type="Sprite" parent="bug"]
+position = Vector2( -179.94, 23.2438 )
+texture = ExtResource( 5 )
+offset = Vector2( 201.618, -59.8685 )
+
+[node name="LegCenterRight" type="Sprite" parent="bug"]
+position = Vector2( 346.459, -158.691 )
+texture = ExtResource( 6 )
+offset = Vector2( -324.78, 122.067 )
+
+[node name="LegCenterLeft" type="Sprite" parent="bug"]
+position = Vector2( -272.121, -134.433 )
+texture = ExtResource( 7 )
+offset = Vector2( 293.799, 97.8086 )
+
+[node name="EyeTopRight" type="Sprite" parent="bug"]
+position = Vector2( 181.504, -352.755 )
+texture = ExtResource( 2 )
+offset = Vector2( -159.826, 316.131 )
+
+[node name="EyeTopLeft" type="Sprite" parent="bug"]
+position = Vector2( -189.644, -333.349 )
+texture = ExtResource( 8 )
+offset = Vector2( 211.322, 296.724 )
+
+[node name="Body" type="Sprite" parent="bug"]
+position = Vector2( 52.9367, -139.285 )
+texture = ExtResource( 9 )
+offset = Vector2( -31.2585, 102.66 )
+
+[node name="WingLeft" type="Sprite" parent="bug"]
+position = Vector2( -41.6696, -389.142 )
+texture = ExtResource( 10 )
+offset = Vector2( 63.3478, 352.518 )
+
+[node name="WingRight" type="Sprite" parent="bug"]
+position = Vector2( 18.9754, -391.568 )
+texture = ExtResource( 11 )
+offset = Vector2( 2.70276, 354.944 )
+
+[node name="WingAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
