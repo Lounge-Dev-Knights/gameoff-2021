@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game/bugs/BugRecorder.gd" type="Script" id=1]
 [ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/bugs/bug_queen/BugQueen.tscn" type="PackedScene" id=4]
 
 [node name="BugRecorder" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,14 +13,18 @@ visible = false
 position = Vector2( 522.911, 239.667 )
 
 [node name="BugBunny" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 520.157, 378.805 )
 
 [node name="RecordingRect" type="ColorRect" parent="."]
-margin_left = 391.0
-margin_top = 17.0
-margin_right = 641.0
-margin_bottom = 558.0
+margin_left = 334.0
+margin_top = 236.0
+margin_right = 563.0
+margin_bottom = 445.0
 color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BugQueen" parent="." instance=ExtResource( 4 )]
+position = Vector2( 445.309, 344.517 )
