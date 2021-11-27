@@ -15,6 +15,18 @@ const sounds = {
 		"stream": preload("res://sound/bug_buzz_bass.wav"),
 		"volume": -18
 		},
+	"Cocktail_drop": {
+		"stream": preload("res://sound/Drop.ogg"),
+		"volume": 0
+		},
+	"Cocktail_move": {
+		"stream": preload("res://sound/Glass_move.ogg"),
+		"volume": 0
+		},
+	"Cocktail_done": {
+		"stream": preload("res://sound/Shake.ogg"),
+		"volume": 0
+		},
 }
 
 

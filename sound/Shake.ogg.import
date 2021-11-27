@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Shake.ogg-e995f0677e64632554ffa20b09106a5d.oggstr" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

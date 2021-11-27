@@ -34,6 +34,8 @@ func create_cocktail() -> void:
 	particles.emitting = true
 	
 	print("Cocktail created with: %s" % str(_content))
+	
+	SoundEngine.play_sound("Cocktail_done")
 
 
 func reset_cocktail() -> void:
@@ -43,6 +45,8 @@ func reset_cocktail() -> void:
 	glass.visible = false
 	
 	is_cocktail = false
+	
+	SoundEngine.play_sound("MenuButtonSound")
 
 
 func get_content(clear := false) -> Dictionary:
@@ -61,6 +65,8 @@ func get_content(clear := false) -> Dictionary:
 			body.free()
 	
 	return content
+	
+	
 
 
 func _on_Content_body_entered(body: KinematicBody2D) -> void:
@@ -85,6 +91,9 @@ func _on_Content_body_entered(body: KinematicBody2D) -> void:
 		0.05
 	)
 	tween.start()
+	
+	SoundEngine.play_sound("Cocktail_drop")
+
 
 
 
