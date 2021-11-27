@@ -216,7 +216,7 @@ tracks/7/keys = {
 [node name="BugQueen" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="LegTopLeft" type="Sprite" parent="bug"]
 position = Vector2( -79.7775, -76.8862 )

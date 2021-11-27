@@ -212,72 +212,59 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 8 )
 
 [node name="LegCenterRight" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="LegTopLeft" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 9 )
 
 [node name="LegCenterLeft" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 16 )
 
 [node name="LegTopRight" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 
 [node name="LegBottomLeft" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 7 )
 
 [node name="LegBottomRight" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 6 )
 
 [node name="Sting" type="Sprite" parent="bug/Body"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="BeakLeft" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( -251.192, -326.345 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 10 )
 offset = Vector2( 251.192, 326.345 )
 
 [node name="BeakRight" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( 73.9783, -374.637 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
 offset = Vector2( -73.9783, 374.637 )
 
 [node name="WingRightBottom" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( 128.71, 195.215 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 offset = Vector2( -128.71, -195.215 )
 
 [node name="WingLeftBottom" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( -194.85, 245.118 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 13 )
 offset = Vector2( 194.85, -245.118 )
 
 [node name="WingLeftTop" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( -218.997, 203.264 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 offset = Vector2( 218.997, -203.264 )
 
 [node name="WingRightTop" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( 139.978, 156.581 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 15 )
 offset = Vector2( -139.978, -156.581 )
 
@@ -288,13 +275,11 @@ offset = Vector2( 136.636, 933.274 )
 
 [node name="EyeLight" type="Sprite" parent="bug/Body/Eyes"]
 position = Vector2( 1.9727, 0.00012207 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 offset = Vector2( 134.664, 933.275 )
 
 [node name="EyePattern" type="Sprite" parent="bug/Body/Eyes"]
 position = Vector2( 1.9727, 0.493408 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 17 )
 offset = Vector2( 134.664, 932.781 )
 
