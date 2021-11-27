@@ -19,6 +19,18 @@ var tween: Tween
 
 # all available songs
 const songs = {
+	"Club1": {
+	"stream": preload("res://sound/music/club1.ogg"),
+		"volume": 0
+	},
+	"Club2": {
+	"stream": preload("res://sound/music/club1.ogg"),
+		"volume": 0
+	},
+	"Club3": {
+	"stream": preload("res://sound/music/club3.ogg"),
+		"volume": 0
+	},
 	#"Awakening": {
 	#	"stream": preload("res://audio/songs/ZitronSound - Awakening.ogg"),
 	#	"volume": 0

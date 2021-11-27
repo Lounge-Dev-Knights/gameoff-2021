@@ -51,6 +51,7 @@ func play_round(round_number) -> void:
 func _ready() -> void:
 	$Score.text = ""
 	order = generate_order(100)
+	MusicEngine.play_song("Club3")
 	
 	
 func end_round() -> void:

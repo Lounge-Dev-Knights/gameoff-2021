@@ -8,9 +8,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	MusicEngine.play_song("Club2")
+	
 	# Hide quit button on html/mobile
 	if not OS.has_feature("pc"):
 		$CenterContainer/VBoxContainer/Quit.hide()
+	
 
 
 
