@@ -21,19 +21,23 @@ func _ready() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
-
+	SoundEngine.play_sound("MenuButtonSound")
 
 func _on_NewGame_pressed() -> void:
 	SceneLoader.goto_scene("res://game/intro/Intro.tscn")
-
+	SoundEngine.play_sound("MenuButtonSound")
 
 func _on_Earworm_pressed() -> void:
 	SceneLoader.goto_scene("res://game/disco/minigames/earworm/Earworm.tscn")
-
+	SoundEngine.play_sound("MenuButtonSound")
 
 func _on_Disco_Light_pressed():
 	SceneLoader.goto_scene("res://game/disco/disco_light_minigame/LightMinigame.tscn")
-
+	SoundEngine.play_sound("MenuButtonSound")
 
 func _on_Cocktail_Bar_pressed():
 	SceneLoader.goto_scene("res://game/disco/minigames/cocktail_bar/CocktailBar.tscn")
+	SoundEngine.play_sound("MenuButtonSound")
+
+func _on_Button_mouse_entered():
+	SoundEngine.play_sound("MenuButtonHoverSound")

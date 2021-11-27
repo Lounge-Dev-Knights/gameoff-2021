@@ -114,8 +114,16 @@ margin_right = 97.0
 margin_bottom = 86.0
 text = "Cocktail Bar"
 
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Gallery" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Earworm" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Earworm" to="." method="_on_Earworm_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Disco Light" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Disco Light" to="." method="_on_Disco_Light_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Cocktail Bar" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Cocktail Bar" to="." method="_on_Cocktail_Bar_pressed"]
