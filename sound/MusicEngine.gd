@@ -24,7 +24,7 @@ const songs = {
 		"volume": 0
 	},
 	"Club2": {
-	"stream": preload("res://sound/music/club1.ogg"),
+	"stream": preload("res://sound/music/club2.ogg"),
 		"volume": 0
 	},
 	"Club3": {
