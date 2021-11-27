@@ -7,7 +7,28 @@ const sounds = {
 	#	"stream": preload("res://audio/effects/CREAK_Wood_Hollow_Deep_Smooth_mono.wav"),
 	#	"volume": 0
 	#},
+	"MenuButtonSound": {
+		"stream": preload("res://sound/bug_buzz.wav"),
+		"volume": 0
+		},
+	"MenuButtonHoverSound": {
+		"stream": preload("res://sound/bug_buzz_bass.wav"),
+		"volume": -18
+		},
+	"Cocktail_drop": {
+		"stream": preload("res://sound/Drop.ogg"),
+		"volume": 0
+		},
+	"Cocktail_move": {
+		"stream": preload("res://sound/Glass_move.ogg"),
+		"volume": 0
+		},
+	"Cocktail_done": {
+		"stream": preload("res://sound/Shake.ogg"),
+		"volume": 0
+		},
 }
+
 
 
 # Called when the node enters the scene tree for the first time.
