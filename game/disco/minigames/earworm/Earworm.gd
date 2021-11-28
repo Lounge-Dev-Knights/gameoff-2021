@@ -44,13 +44,14 @@ func play_round(round_number) -> void:
 	playback = true
 	for i in play_order:
 		buttons[i].emit_signal("pressed")
-		yield(get_tree().create_timer(1.0), "timeout")	
+		yield(get_tree().create_timer(0.5), "timeout")	
 	playback = false
 
 
 func _ready() -> void:
 	$Score.text = ""
 	order = generate_order(100)
+	MusicEngine.play_song("Club3")
 	
 	
 func end_round() -> void:

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://game/bugs/BugRecorder.gd" type="Script" id=1]
+[ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/bugs/bug_queen/BugQueen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/bugs/nose_bug/NoseBug.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=6]
+
+[node name="BugRecorder" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.14902, 0.14902, 0.14902, 1 )
+polygon = PoolVector2Array( -78.7346, -67.0411, 1138.52, -74.7064, 1156.91, 679.56, -133.925, 684.159 )
+
+[node name="DoctorBug" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 522.911, 239.667 )
+
+[node name="BugBunny" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 520.157, 378.805 )
+
+[node name="RecordingRect" type="ColorRect" parent="."]
+margin_left = 179.0
+margin_top = 155.0
+margin_right = 530.0
+margin_bottom = 567.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LightBug" parent="." instance=ExtResource( 6 )]
+position = Vector2( 353.532, 332.848 )
+
+[node name="BugQueen" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 445.309, 344.517 )
+
+[node name="NoseBug" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 450.877, 321.276 )

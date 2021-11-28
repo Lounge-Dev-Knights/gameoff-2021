@@ -5,16 +5,36 @@ const MAX_LENGTH = 2000
 onready var beam = $LaserBeam
 onready var laserend = $LaserEnd
 onready var rayCast2D = $RayCast2D
+var interpolatedpoint: = Vector2.ZERO
+var totalDelta: = 0.0
+
+func _ready() -> void:
+	interpolatedpoint = _setRandomPoint()
+	laserend.global_position = interpolatedpoint
+	print("ready func finished")
 
 func _physics_process(delta: float) -> void:
-	var aim_position = Vector2(50, 500)
-	var mouse_position = get_local_mouse_position()
-	var max_cast_to = mouse_position.normalized() * MAX_LENGTH
-	rayCast2D.cast_to = max_cast_to
-	if rayCast2D.is_colliding():
-		laserend.global_position = rayCast2D.get_collision_point()
-	else:
+	totalDelta += delta
+	if totalDelta >= 0.08:
+		if interpolatedpoint.x <= laserend.global_position.x + 8 and interpolatedpoint.x >= laserend.global_position.x - 8:
+			interpolatedpoint = _setRandomPoint()
+		#interpolatedpoint = lerp(interpolatedpoint, laserend.global_position, 0.1)
+		#rayCast2D.cast_to = interpolatedpoint #max_cast_to
+		rayCast2D.cast_to = rayCast2D.cast_to.linear_interpolate(interpolatedpoint, 0.2)
+		#if rayCast2D.is_colliding():
+		#	laserend.global_position = rayCast2D.get_collision_point()
+		#else:
 		laserend.global_position = rayCast2D.cast_to
-	beam.rotation = rayCast2D.cast_to.angle()
-	beam.region_rect.end.x = laserend.position.length()
+		print(rayCast2D.cast_to)
+		beam.rotation = rayCast2D.cast_to.angle()
+		beam.region_rect.end.x = laserend.position.length()
+		totalDelta = 0
+
+func _setRandomPoint() -> Vector2:
+	#var randomVector = Vector2(rand_range(0,1024),rand_range(0, 600))
+	randomize()
+	var randomVector = Vector2(randi() % 1000 + 5,randi() % 590 + 5)
+	print("random number:")
+	print(randomVector)
+	return randomVector
 	

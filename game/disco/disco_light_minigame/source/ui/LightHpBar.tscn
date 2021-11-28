@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/lightbar_bkgrd.png" type="Texture" id=1]
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/lightbar_front.png" type="Texture" id=2]
+[ext_resource path="res://game/disco/disco_light_minigame/source/ui/LightHpBar.gd" type="Script" id=3]
+
+[node name="LightHPbar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="theBar" type="TextureProgress" parent="."]
+margin_right = 48.0
+margin_bottom = 13.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 0, 0.647059, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
