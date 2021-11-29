@@ -2,7 +2,7 @@ tool
 extends Area2D
 
 
-export(String) var label_text: String
+export(String) var label_text: String = "minigame"
 export(String, FILE, "*.tscn") var scene: String
 export(String) var soundeffect: String
 
@@ -24,7 +24,7 @@ func _set_label_text(new_label_text: String) -> void:
 
 
 func _on_MinigamePortal_mouse_entered() -> void:
-	if soundeffect != null:
+	if soundeffect != "":
 		SoundEngine.play_sound(soundeffect)
 	animation_player.play("focus")
 
