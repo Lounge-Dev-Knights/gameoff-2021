@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=9]
 [ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://game/score_screen/ScoreScreen.gd" type="Script" id=11]
+[ext_resource path="res://game/bugs/chandelier_bug/ChandelierBUg.tscn" type="PackedScene" id=12]
+[ext_resource path="res://earworm/bug2/MothBug.tscn" type="PackedScene" id=14]
+[ext_resource path="res://earworm/bug3/EggBug.tscn" type="PackedScene" id=15]
+[ext_resource path="res://earworm/bug4/ButterflyBug.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -198,10 +202,28 @@ position = Vector2( 844.337, 545.846 )
 [node name="LightBug" parent="PartyAudience" instance=ExtResource( 9 )]
 position = Vector2( 975.15, 541.089 )
 
+[node name="Node2D" parent="PartyAudience" instance=ExtResource( 12 )]
+position = Vector2( 647.71, 519.016 )
+scale = Vector2( 0.259259, 0.28 )
+
+[node name="Body2" parent="PartyAudience" instance=ExtResource( 14 )]
+position = Vector2( 799.787, 472.926 )
+scale = Vector2( 0.489947, 0.489947 )
+
+[node name="Body3" parent="PartyAudience" instance=ExtResource( 15 )]
+position = Vector2( 170.276, 479.38 )
+
+[node name="Body4" parent="PartyAudience" instance=ExtResource( 16 )]
+position = Vector2( 918.495, 420.666 )
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
-margin_left = 5.94604
-margin_right = 1040.95
-margin_bottom = 602.0
+margin_left = 0.533092
+margin_top = -110.184
+margin_right = 1035.54
+margin_bottom = 491.816
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 367.0
