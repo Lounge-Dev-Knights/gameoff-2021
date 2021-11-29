@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=6]
 [ext_resource path="res://game/disco/disco_overview/DiscoOverview.gd" type="Script" id=7]
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=8]
+[ext_resource path="res://game/disco/disco_overview/MinigamePortal.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Shader" id=7]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
@@ -164,25 +165,53 @@ scale_amount_curve = SubResource( 9 )
 color_ramp = SubResource( 10 )
 
 [node name="BugQueen" parent="." instance=ExtResource( 4 )]
-position = Vector2( 541.428, 463.585 )
+position = Vector2( 390.299, 482.857 )
+scale = Vector2( 0.657615, 0.619658 )
 
-[node name="LightBug" parent="." instance=ExtResource( 3 )]
-position = Vector2( 417.554, 199.268 )
+[node name="DiscolightPortal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 453.259, 107.914 )
+label_text = "DiscoLight"
+scene = "res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.tscn"
+soundeffect = "Cocktail_drop"
+
+[node name="LightBug" parent="DiscolightPortal" instance=ExtResource( 3 )]
+position = Vector2( -126.335, -6.9129 )
+rotation = -0.0786564
+scale = Vector2( 0.381244, 0.416327 )
+
+[node name="LightBug2" parent="DiscolightPortal" instance=ExtResource( 3 )]
+position = Vector2( 139.203, -5.51529 )
+rotation = 0.223157
+scale = Vector2( 0.381244, 0.416327 )
+
+[node name="BarPortal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 162.505, 395.132 )
+label_text = "Bar"
+scene = "res://game/disco/minigames/cocktail_bar/CocktailBar.tscn"
+soundeffect = "Cocktail_drop"
+
+[node name="EarwormPortal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 794.716, 352.836 )
+label_text = "Earworm"
+scene = "res://game/disco/minigames/earworm/Earworm.tscn"
 
 [node name="BugBunny" parent="." instance=ExtResource( 1 )]
-position = Vector2( 240.921, 369.723 )
+position = Vector2( 453.922, 399.137 )
+scale = Vector2( 0.426156, 0.466252 )
 
 [node name="DoctorBug" parent="." instance=ExtResource( 2 )]
-position = Vector2( 725.53, 270.478 )
+position = Vector2( 552.005, 428.901 )
+scale = Vector2( 0.513268, 0.633729 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-modulate = Color( 0.6, 0.384, 0.3876, 1 )
+modulate = Color( 1, 0.5, 0.508333, 1 )
 material = SubResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 6 )
 expand = true
 stretch_mode = 7
@@ -194,6 +223,7 @@ __meta__ = {
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.192157, 0.192157, 0.192157, 1 )
 script = ExtResource( 8 )
 __meta__ = {
@@ -204,6 +234,7 @@ __meta__ = {
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.192157, 0.192157, 0.192157, 1 )
 script = ExtResource( 8 )
 __meta__ = {
@@ -214,6 +245,7 @@ __meta__ = {
 material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.192157, 0.192157, 0.192157, 1 )
 script = ExtResource( 8 )
 __meta__ = {
