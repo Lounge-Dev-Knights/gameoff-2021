@@ -1,0 +1,249 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://game/assets/bugs/earworm/bug1/008.png" type="Texture" id=1]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/007.png" type="Texture" id=2]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/000.png" type="Texture" id=3]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/006.png" type="Texture" id=4]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/001.png" type="Texture" id=5]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/002.png" type="Texture" id=6]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/003.png" type="Texture" id=7]
+[ext_resource path="res://game/assets/bugs/earworm/bug1/005.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/leg_left_front:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/leg_right_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Body/leg_left_middle:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -10, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Body/leg_right_middle:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Body/leg_left_back:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Body/leg_right_back:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/Wing1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/Wing2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Dance"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body/leg_left_front:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -10, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.5, 0.8, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body/leg_right_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 0.8, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Body/leg_left_middle:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.5, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Body/leg_right_middle:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Body/leg_left_back:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Body/leg_right_back:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Body/Wing1:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.7 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Body/Wing2:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.9 )
+}
+
+[node name="Body" type="Sprite"]
+rotation = 0.914501
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+
+[node name="Wings" type="AnimationPlayer" parent="."]
+anims/Walk = SubResource( 1 )
+anims/Wings = SubResource( 2 )
+
+[node name="Walk" type="AnimationPlayer" parent="."]
+autoplay = "Dance"
+anims/Dance = SubResource( 3 )
+anims/Walk = SubResource( 1 )
+
+[node name="Body" type="Node" parent="."]
+
+[node name="leg_left_front" type="Sprite" parent="Body"]
+position = Vector2( -31.2278, -17.6019 )
+rotation = -0.174822
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+offset = Vector2( 100, -50 )
+
+[node name="leg_right_front" type="Sprite" parent="Body"]
+position = Vector2( 23.0936, -24.0974 )
+rotation = 0.174822
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+offset = Vector2( -85, -60 )
+
+[node name="leg_left_middle" type="Sprite" parent="Body"]
+position = Vector2( -39.1404, 4.90109 )
+rotation = -0.0874112
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
+offset = Vector2( 35, 70 )
+
+[node name="leg_right_middle" type="Sprite" parent="Body"]
+position = Vector2( 26.6464, 3.45937 )
+rotation = 0.131117
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+offset = Vector2( -30, -50 )
+
+[node name="leg_left_back" type="Sprite" parent="Body"]
+position = Vector2( -35.8879, 40.2625 )
+rotation = -0.262233
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
+offset = Vector2( 35, 70 )
+
+[node name="leg_right_back" type="Sprite" parent="Body"]
+position = Vector2( 28.4425, 50.0402 )
+rotation = 0.262233
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 8 )
+offset = Vector2( 70, 70 )
+
+[node name="Wing1" type="Sprite" parent="Body"]
+position = Vector2( -7.94227, -26.7006 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
+offset = Vector2( 70, 115 )
+
+[node name="Wing2" type="Sprite" parent="Body"]
+position = Vector2( -5.92962, -25.7262 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+offset = Vector2( 145, 30 )

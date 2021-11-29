@@ -11,7 +11,7 @@ onready var bugs = get_node("PartyAudience").get_children()
 
 
 func _ready():
-	bug_appearances = range(1, TotalScore.calculate_total(), 30)
+	bug_appearances = range(1, TotalScore.maximum_score, 20)
 	yield(get_tree().create_timer(2.0), "timeout")
 	target_score += TotalScore.earworm_score
 	
@@ -22,7 +22,7 @@ func _ready():
 	
 func _process(delta):
 	score = lerp(score, target_score, 0.01)
-	if len(bugs) > 1 and int(score) == bug_appearances[0] :
+	if len(bugs) > 0 and int(score) == bug_appearances[0]:
 		bug_appearances.pop_front()
 		bug_appears(bugs.pop_front())
 	score_text.text = str(int(score))
