@@ -22,12 +22,13 @@ var total_score := 0 setget _set_score
 func _ready():
 	randomize()
 	generate_recipe()
+	MusicEngine.play_song("Club2")
 
 func _process(delta: float) -> void:
 	update_content()
 	var time_left := int(game_timer.time_left)
 	time_label.text = "Time %d:%02d" % [time_left / 60, time_left % 60]
-	
+
 
 
 func finish_drink(recipe_note: Node) -> void:

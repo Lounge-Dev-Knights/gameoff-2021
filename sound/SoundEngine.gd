@@ -9,23 +9,39 @@ const sounds = {
 	#},
 	"MenuButtonSound": {
 		"stream": preload("res://sound/bug_buzz.wav"),
-		"volume": 0
+		"volume": -20
 		},
 	"MenuButtonHoverSound": {
 		"stream": preload("res://sound/bug_buzz_bass.wav"),
-		"volume": -18
+		"volume": -40
 		},
 	"Cocktail_drop": {
 		"stream": preload("res://sound/Drop.ogg"),
-		"volume": 0
+		"volume": -20
 		},
 	"Cocktail_move": {
 		"stream": preload("res://sound/Glass_move.ogg"),
-		"volume": 0
+		"volume": -20
 		},
 	"Cocktail_done": {
 		"stream": preload("res://sound/Shake.ogg"),
-		"volume": 0
+		"volume": -20
+		},
+	"Bug1": {
+		"stream": preload("res://sound/bug_buzz.wav"),
+		"volume": -20
+		},
+	"Bug2": {
+		"stream": preload("res://sound/bug_buzz_bass.wav"),
+		"volume": -20
+		},
+	"Bug3": {
+		"stream": preload("res://sound/bug_buzz_high.wav"),
+		"volume": -20
+		},
+	"Bug4": {
+		"stream": preload("res://sound/bug_buzz_low.wav"),
+		"volume": -20
 		},
 }
 
@@ -44,8 +60,10 @@ func _get_idle_player():
 		if not (player as AudioStreamPlayer).playing:
 			return player
 
-func play_sound(sound_name: String):
-	var audio_player: AudioStreamPlayer = _get_idle_player()
+func play_sound(sound_name: String, audio_player = null):
+	if audio_player == null:
+		audio_player = _get_idle_player()
+	
 	if audio_player != null:
 		var sound = sounds[sound_name]
 		audio_player.stream = sound["stream"]

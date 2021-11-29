@@ -12,6 +12,8 @@ onready var background = $CanvasLayer/TextureRect
 func _ready() -> void:
 	print(modulate)
 	pass # Replace with function body.
+	MusicEngine.play_song("Club1")
+
 
 
 func _process(delta: float) -> void:

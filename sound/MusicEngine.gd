@@ -21,15 +21,15 @@ var tween: Tween
 const songs = {
 	"Club1": {
 	"stream": preload("res://sound/music/club1.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	"Club2": {
 	"stream": preload("res://sound/music/club2.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	"Club3": {
 	"stream": preload("res://sound/music/club3.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	#"Awakening": {
 	#	"stream": preload("res://audio/songs/ZitronSound - Awakening.ogg"),
@@ -43,8 +43,9 @@ const songs = {
 func _ready():
 	# two players are needed for blending between songs
 	for i in range(2):
-		var player = AudioStreamPlayer.new()
+		var player := AudioStreamPlayer.new()
 		player.bus = "Music"
+		player.connect("finished", self, "_on_song_finished", [player])
 		players.append(player)
 		add_child(player)
 	
@@ -77,6 +78,10 @@ func play_song(song_name: String, transition: float = 2.0):
 	
 	tween.interpolate_callback(active_player, transition, "stop")
 	tween.start()
+
+
+func _on_song_finished(audio_player: AudioStreamPlayer) -> void:
+	audio_player.play()
 
 
 func set_active_player_volume(new_volume: float):
