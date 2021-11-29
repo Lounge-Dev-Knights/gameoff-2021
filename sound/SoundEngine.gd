@@ -60,8 +60,10 @@ func _get_idle_player():
 		if not (player as AudioStreamPlayer).playing:
 			return player
 
-func play_sound(sound_name: String):
-	var audio_player: AudioStreamPlayer = _get_idle_player()
+func play_sound(sound_name: String, audio_player = null):
+	if audio_player == null:
+		audio_player = _get_idle_player()
+	
 	if audio_player != null:
 		var sound = sounds[sound_name]
 		audio_player.stream = sound["stream"]
