@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/bugs/bug_queen/BugQueen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/disco/disco_overview/club3.ogg" type="AudioStream" id=5]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=6]
 [ext_resource path="res://game/disco/disco_overview/DiscoOverview.gd" type="Script" id=7]
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=8]
@@ -220,7 +219,3 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-autoplay = true
