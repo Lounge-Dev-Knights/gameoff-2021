@@ -2,6 +2,7 @@ extends RigidBody2D
 
 
 onready var button = get_node("TextureButton")
+onready var walk_anim = get_node("Walk")
 
 var mouse_over = false
 
@@ -29,15 +30,19 @@ func _process(delta):
 	if moving:
 		direction = Vector2(1, 0).rotated(rotation).rotated(deg2rad(270)).normalized()
 		linear_velocity = direction * delta * speed
-		$Walk.play("Walk")
+		walk_anim.play("Walk")
 	else:
-		$Walk.stop()
+		if not walk_anim.is_playing():
+			walk_anim.stop()
 
 
-			
+func start_dancing() -> void:
+	walk_anim.play("Dance")
 	
+func stop_dancing() -> void:
+	walk_anim.stop()
 	
-func _on_TextureButton_pressed():
+func _on_TextureButton_pressed() -> void:
 	$AudioStreamPlayer2D.play()
 	$Wings.playback_speed = 2.0
 	$Wings.play("Wings")

@@ -54,6 +54,7 @@ func play_round(round_number) -> void:
 
 
 func _ready() -> void:
+	set_bugs_dancing(true)
 	scoreText.text = ""
 	rng.randomize()
 	order = generate_order(100)
@@ -64,7 +65,15 @@ func set_bugs_moving(moving = true, speed = 500) -> void:
 	for bug in all_bugs:
 		bug.moving = moving
 		bug.speed = speed
-	
+
+func set_bugs_dancing(dancing: bool) -> void:
+	var all_bugs = get_tree().get_nodes_in_group("bugs")
+	for bug in all_bugs:
+		if dancing:
+			bug.start_dancing()
+		else:
+			bug.stop_dancing()
+
 func get_avg_bug_speed() -> float:
 	var all_bugs = get_tree().get_nodes_in_group("bugs")
 	var speed = 0
@@ -140,6 +149,7 @@ func _on_Button4_pressed(human) -> void:
 
 
 func _on_StartGame_pressed() -> void:
+	set_bugs_dancing(false)
 	var tween = get_node("Tween")
 	tween.interpolate_property(startButton, "modulate", 
 	  Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0, 
@@ -147,5 +157,6 @@ func _on_StartGame_pressed() -> void:
 	tween.start()
 	yield(get_tree().create_timer(1.0), "timeout")
 
-	startButton.hide()	
+	startButton.hide()
+	
 	play_round(round_number)
