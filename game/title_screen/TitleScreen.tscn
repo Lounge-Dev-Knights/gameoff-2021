@@ -113,7 +113,6 @@ margin_top = 66.0
 margin_right = 97.0
 margin_bottom = 86.0
 text = "Cocktail Bar"
-
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Gallery" to="." method="_on_Button_mouse_entered"]
