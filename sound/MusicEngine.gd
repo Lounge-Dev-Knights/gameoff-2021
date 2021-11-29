@@ -21,15 +21,15 @@ var tween: Tween
 const songs = {
 	"Club1": {
 	"stream": preload("res://sound/music/club1.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	"Club2": {
 	"stream": preload("res://sound/music/club2.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	"Club3": {
 	"stream": preload("res://sound/music/club3.ogg"),
-		"volume": 0
+		"volume": -25
 	},
 	#"Awakening": {
 	#	"stream": preload("res://audio/songs/ZitronSound - Awakening.ogg"),

@@ -18,7 +18,6 @@ func _ready():
 #
 
 func _on_TextureButton_pressed():
-	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.playback_speed = 2.0
 	$AnimationPlayer.play("Wings")
 	button.pressed = true

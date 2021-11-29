@@ -94,24 +94,28 @@ func _on_Button1_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(1)
 		end_round()
+	SoundEngine.play_sound("Bug1")
 
 
 func _on_Button2_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(2)
 		end_round()
+	SoundEngine.play_sound("Bug2")
 
 
 func _on_Button3_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(3)
 		end_round()
+	SoundEngine.play_sound("Bug3")
 
 
 func _on_Button4_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(4)
 		end_round()
+	SoundEngine.play_sound("Bug4")
 
 
 func _on_StartGame_pressed() -> void:
