@@ -10,11 +10,24 @@ const INGREDIENTS := [
 
 onready var ingredient_spawner := $IngredientSpawner
 onready var cocktail_shaker := $CocktailShaker
-onready var score_label := $CanvasLayer/MarginContainer/VBoxContainer/ScoreLabel
-onready var time_label := $CanvasLayer/MarginContainer/VBoxContainer/TimeLabel
+onready var score_label := $CanvasLayer/Score/VBoxContainer/ScoreLabel
+onready var time_label := $CanvasLayer/Score/VBoxContainer/TimeLabel
+onready var tutorial := $CanvasLayer/Tutorial
 onready var game_timer := $GameTimer
+onready var menu_popup := $CanvasLayer/MenuPopup
+onready var gameover_score_label := $CanvasLayer/GameOverPopup/MarginContainer/VBoxContainer/Score
+onready var menu_continue := $CanvasLayer/GameOverPopup/MarginContainer/VBoxContainer/Continue
+onready var confirmation := $CanvasLayer/ConfirmationDialog
 
 
+enum GameState {
+	INIT,
+	STARTED,
+	ENDED
+}
+
+
+var game_state = GameState.INIT
 var total_score := 0 setget _set_score
 
 
@@ -24,11 +37,30 @@ func _ready():
 	generate_recipe()
 	MusicEngine.play_song("Club2")
 
+
+
 func _process(delta: float) -> void:
 	update_content()
 	var time_left := int(game_timer.time_left)
 	time_label.text = "Time %d:%02d" % [time_left / 60, time_left % 60]
 
+
+
+func clear_recipes() -> void:
+	for slot in get_tree().get_nodes_in_group("recipe_slots"):
+		for recipe in slot.get_children():
+			recipe.free()
+
+
+func start_game() -> void:
+	game_state = GameState.STARTED
+	clear_recipes()
+	cocktail_shaker.reset_cocktail()
+	generate_recipe()
+	
+	self.total_score = 0
+	tutorial.hide()
+	game_timer.start()
 
 
 func finish_drink(recipe_note: Node) -> void:
@@ -154,3 +186,57 @@ func _on_RecipeTimer_timeout():
 func _set_score(new_score: int) -> void:
 	total_score = new_score
 	score_label.text = "Score: %3d" % new_score
+
+
+func _on_Start_pressed():
+	start_game()
+
+
+func _on_TryAgain_pressed():
+	if game_state == GameState.STARTED:
+		confirm_progress_loss()
+	
+	menu_popup.hide()
+	start_game()
+
+
+func _on_ShowInstructions_pressed():
+	if game_state == GameState.STARTED:
+		confirm_progress_loss()
+	
+	tutorial.show()
+	total_score = 0
+	menu_popup.hide()
+	
+
+
+func _on_BackToParty_pressed():
+	if game_state == GameState.STARTED:
+		confirm_progress_loss()
+		
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
+
+
+func _on_GameTimer_timeout():
+	game_state = GameState.ENDEND
+	gameover_score_label.text = "Score: %d" % total_score
+	menu_popup.hide()
+
+
+
+func confirm_progress_loss() -> void:
+	var confirm = ConfirmationDialog.new()
+	confirm.dialog_text = "Are you sure?\nYour progress for the running game will be lost!"
+	confirm.popup_exclusive = true
+	confirm.connect("popup_hide", confirm, "queue_free")
+	$CanvasLayer.add_child(confirm)
+	yield(confirm, "confirmed")
+	print("confirmed")
+
+
+func _on_Menu_pressed():
+	$CanvasLayer/PausePopup.popup_centered()
+
+
+func _on_MenuPopup_about_to_show():
+	pass # Replace with function body.
