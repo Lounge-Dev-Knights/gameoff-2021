@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/start.png" type="Texture" id=4]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/start_pressed.png" type="Texture" id=5]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Background-BAR.png" type="Texture" id=6]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Front-BAR.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 226, 49.5 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="CocktailBar" type="Node2D"]
@@ -26,11 +32,11 @@ autostart = true
 z_index = 2
 
 [node name="RecipeSlot1" type="Node2D" parent="." groups=["recipe_slots"]]
-position = Vector2( 631.464, 343.856 )
+position = Vector2( 620.61, 361.947 )
 z_index = 1
 
 [node name="RecipeSlot2" type="Node2D" parent="." groups=["recipe_slots"]]
-position = Vector2( 782.253, 339 )
+position = Vector2( 783.158, 311.864 )
 z_index = 1
 
 [node name="RecipeSlot3" type="Node2D" parent="." groups=["recipe_slots"]]
@@ -41,7 +47,13 @@ z_index = 1
 wait_time = 5.0
 autostart = true
 
+[node name="GameFront-Bar" type="Sprite" parent="."]
+position = Vector2( 512.652, 213.688 )
+scale = Vector2( 0.26, 0.26 )
+texture = ExtResource( 7 )
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 position = Vector2( -6.50079, -20.431 )
 color = Color( 0.447059, 0.286275, 0.235294, 1 )
 polygon = PoolVector2Array( -72.4363, 354.088, 1164.57, 342.944, 1138.57, 727.419, -60.3634, 679.127 )
@@ -65,19 +77,19 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Score"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 131.0
-margin_bottom = 82.0
+margin_right = 170.0
+margin_bottom = 100.0
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
-margin_right = 111.0
-margin_bottom = 29.0
+margin_right = 150.0
+margin_bottom = 38.0
 custom_fonts/font = SubResource( 2 )
 text = "Score:   0"
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
-margin_top = 33.0
-margin_right = 111.0
-margin_bottom = 62.0
+margin_top = 42.0
+margin_right = 150.0
+margin_bottom = 80.0
 custom_fonts/font = SubResource( 2 )
 text = "Time: 2:00"
 
@@ -127,30 +139,32 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tutorial"]
 margin_left = 619.0
 margin_top = 110.0
-margin_right = 958.0
-margin_bottom = 150.0
+margin_right = 938.0
+margin_bottom = 175.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/Tutorial/VBoxContainer"]
-margin_right = 339.0
-margin_bottom = 61.0
+margin_right = 424.0
+margin_bottom = 79.0
 custom_fonts/font = SubResource( 2 )
 text = "Serve as many good cocktails
  as possible in 2 minutes. "
 align = 1
 valign = 1
 
-[node name="Start" type="Button" parent="CanvasLayer/Tutorial/VBoxContainer"]
-margin_left = 94.0
-margin_top = 65.0
-margin_right = 244.0
-margin_bottom = 115.0
-rect_min_size = Vector2( 150, 50 )
-size_flags_horizontal = 4
-custom_fonts/font = SubResource( 2 )
-text = "START"
+[node name="Start" type="TextureButton" parent="CanvasLayer/Tutorial/VBoxContainer"]
+margin_top = 83.0
+margin_right = 424.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 0, 150 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -173,7 +187,7 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 149.0
-margin_bottom = 134.0
+margin_bottom = 173.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -183,7 +197,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 135.0
-margin_bottom = 120.0
+margin_bottom = 159.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -230,14 +244,22 @@ __meta__ = {
 }
 
 [node name="Menu" type="ToolButton" parent="CanvasLayer/MarginContainer"]
-margin_right = 80.0
-margin_bottom = 40.0
+margin_right = 102.0
+margin_bottom = 46.0
 custom_fonts/font = SubResource( 2 )
 text = "MENU"
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="GameBackground-Bar" type="Sprite" parent="Background"]
+position = Vector2( 516.938, 297.306 )
+scale = Vector2( 0.26, 0.26 )
+texture = ExtResource( 6 )
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
