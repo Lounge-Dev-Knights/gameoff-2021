@@ -9,7 +9,7 @@
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=8]
 [ext_resource path="res://game/disco/disco_overview/MinigamePortal.tscn" type="PackedScene" id=9]
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=13]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
 
 shader_type canvas_item;
@@ -26,12 +26,12 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 7 )
+shader = SubResource( 13 )
 
-[sub_resource type="OpenSimplexNoise" id=8]
+[sub_resource type="OpenSimplexNoise" id=14]
 
 [sub_resource type="NoiseTexture" id=6]
-noise = SubResource( 8 )
+noise = SubResource( 14 )
 
 [sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.0682907, 0.0, 0, 0 ]
@@ -148,7 +148,7 @@ shader_param/ray4_offset = 3.1
 [node name="DiscoOverview" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
 material = SubResource( 5 )
 position = Vector2( 1210.01, 528.911 )
 amount = 16
