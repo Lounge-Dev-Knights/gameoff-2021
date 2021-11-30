@@ -45,8 +45,6 @@ func reset_cocktail() -> void:
 	glass.visible = false
 	
 	is_cocktail = false
-	
-	SoundEngine.play_sound("MenuButtonSound")
 
 
 func get_content(clear := false) -> Dictionary:

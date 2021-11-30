@@ -50,12 +50,16 @@ func finish_drink(recipe_note: Node) -> void:
 func get_score_text(score: float) -> String:
 	print(score)
 	if score >= 1.0:
+		SoundEngine.play_sound("PERFECT")
 		return "PERFECT!!!"
 	elif score > 0.8:
+		SoundEngine.play_sound("GEART")
 		return "GREAT!"
 	elif score > 0.5:
+		SoundEngine.play_sound("NICE")
 		return "NICE"
 	else:
+		SoundEngine.play_sound("OK")
 		return "OK..."
 
 
