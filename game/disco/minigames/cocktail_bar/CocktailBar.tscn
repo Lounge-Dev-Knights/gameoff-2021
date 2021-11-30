@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://game/disco/minigames/cocktail_bar/start.png" type="Texture" id=4]
-[ext_resource path="res://game/disco/minigames/cocktail_bar/start_pressed.png" type="Texture" id=5]
+[ext_resource path="res://game/ui/StartButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Background-BAR.png" type="Texture" id=6]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Front-BAR.png" type="Texture" id=7]
 
@@ -201,20 +200,7 @@ text = "Serve as many good cocktails
 align = 1
 valign = 1
 
-[node name="Start" type="TextureButton" parent="CanvasLayer/Tutorial/VBoxContainer"]
-margin_top = 125.0
-margin_right = 500.0
-margin_bottom = 275.0
-rect_min_size = Vector2( 0, 150 )
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 5 )
-texture_focused = ExtResource( 5 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Start" parent="CanvasLayer/Tutorial/VBoxContainer" instance=ExtResource( 4 )]
 
 [node name="MenuPopup" type="PopupPanel" parent="CanvasLayer"]
 visible = true
@@ -314,7 +300,6 @@ texture = ExtResource( 6 )
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/MenuPopup" to="." method="_on_MenuPopup_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/TryAgain" to="." method="_on_TryAgain_pressed"]

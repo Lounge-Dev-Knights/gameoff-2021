@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/start_pressed.png-4286bb42b6862a6081475d6dc1da3a34.stex"
+path="res://.import/menu.png-1127a66ae5e5ffa7326d50a72bf8ab06.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/disco/minigames/cocktail_bar/start_pressed.png"
-dest_files=[ "res://.import/start_pressed.png-4286bb42b6862a6081475d6dc1da3a34.stex" ]
+source_file="res://game/ui/images/menu.png"
+dest_files=[ "res://.import/menu.png-1127a66ae5e5ffa7326d50a72bf8ab06.stex" ]
 
 [params]
 
