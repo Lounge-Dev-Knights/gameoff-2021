@@ -2,7 +2,7 @@
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/start.png" type="Texture" id=4]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/start_pressed.png" type="Texture" id=5]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Background-BAR.png" type="Texture" id=6]
@@ -43,7 +43,7 @@ offsets = PoolRealArray( 0, 0.0233161, 0.313471, 0.388601, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.352941, 1, 1, 1, 0 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
+size = 40
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -124,19 +124,19 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Score"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 170.0
-margin_bottom = 100.0
+margin_right = 183.0
+margin_bottom = 142.0
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
-margin_right = 150.0
-margin_bottom = 38.0
+margin_right = 163.0
+margin_bottom = 59.0
 custom_fonts/font = SubResource( 2 )
 text = "Score:   0"
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
-margin_top = 42.0
-margin_right = 150.0
-margin_bottom = 80.0
+margin_top = 63.0
+margin_right = 163.0
+margin_bottom = 122.0
 custom_fonts/font = SubResource( 2 )
 text = "Time: 2:00"
 
@@ -160,10 +160,10 @@ __meta__ = {
 }
 
 [node name="Create" type="Label" parent="CanvasLayer/Tutorial"]
-margin_left = 127.558
-margin_top = 403.432
-margin_right = 508.558
-margin_bottom = 464.432
+margin_left = 86.5222
+margin_top = 391.463
+margin_right = 533.522
+margin_bottom = 452.463
 custom_fonts/font = SubResource( 2 )
 text = "2. Click to create a cocktail"
 align = 1
@@ -172,10 +172,10 @@ __meta__ = {
 }
 
 [node name="Serve" type="Label" parent="CanvasLayer/Tutorial"]
-margin_left = 224.292
-margin_top = 469.351
-margin_right = 590.292
-margin_bottom = 507.351
+margin_left = 116.003
+margin_top = 446.553
+margin_right = 549.003
+margin_bottom = 505.553
 custom_fonts/font = SubResource( 2 )
 text = "3. Click on recipe to serve"
 align = 1
@@ -184,17 +184,17 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tutorial"]
-margin_left = 306.031
-margin_top = 63.681
-margin_right = 730.031
-margin_bottom = 296.681
+margin_left = 301.471
+margin_top = 52.2822
+margin_right = 801.471
+margin_bottom = 327.282
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/Tutorial/VBoxContainer"]
-margin_right = 424.0
-margin_bottom = 79.0
+margin_right = 500.0
+margin_bottom = 121.0
 custom_fonts/font = SubResource( 2 )
 text = "Serve as many good cocktails
  as possible in 2 minutes. "
@@ -202,9 +202,9 @@ align = 1
 valign = 1
 
 [node name="Start" type="TextureButton" parent="CanvasLayer/Tutorial/VBoxContainer"]
-margin_top = 83.0
-margin_right = 424.0
-margin_bottom = 233.0
+margin_top = 125.0
+margin_right = 500.0
+margin_bottom = 275.0
 rect_min_size = Vector2( 0, 150 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
@@ -234,8 +234,8 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuPopup"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 149.0
-margin_bottom = 182.0
+margin_right = 157.0
+margin_bottom = 203.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -244,8 +244,8 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPopup/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 135.0
-margin_bottom = 168.0
+margin_right = 143.0
+margin_bottom = 189.0
 custom_constants/separation = 10
 alignment = 1
 __meta__ = {
@@ -253,37 +253,37 @@ __meta__ = {
 }
 
 [node name="Score" type="Label" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
-margin_right = 125.0
-margin_bottom = 38.0
+margin_right = 133.0
+margin_bottom = 59.0
 custom_fonts/font = SubResource( 2 )
 text = "Score: 0"
 align = 1
 
 [node name="Continue" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
-margin_top = 48.0
-margin_right = 125.0
-margin_bottom = 68.0
+margin_top = 69.0
+margin_right = 133.0
+margin_bottom = 89.0
 text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TryAgain" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
-margin_top = 78.0
-margin_right = 125.0
-margin_bottom = 98.0
+margin_top = 99.0
+margin_right = 133.0
+margin_bottom = 119.0
 text = "Restart"
 
 [node name="ShowInstructions" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
-margin_top = 108.0
-margin_right = 125.0
-margin_bottom = 128.0
+margin_top = 129.0
+margin_right = 133.0
+margin_bottom = 149.0
 text = "Show instructions"
 
 [node name="BackToParty" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
-margin_top = 138.0
-margin_right = 125.0
-margin_bottom = 158.0
+margin_top = 159.0
+margin_right = 133.0
+margin_bottom = 179.0
 text = "Back to the Party"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
@@ -294,8 +294,8 @@ __meta__ = {
 }
 
 [node name="Menu" type="ToolButton" parent="CanvasLayer/MarginContainer"]
-margin_right = 102.0
-margin_bottom = 46.0
+margin_right = 101.0
+margin_bottom = 67.0
 custom_fonts/font = SubResource( 2 )
 text = "MENU"
 
