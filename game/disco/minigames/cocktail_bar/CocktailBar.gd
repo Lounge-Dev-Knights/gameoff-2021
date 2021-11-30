@@ -19,6 +19,8 @@ onready var gameover_score_label := $CanvasLayer/MenuPopup/MarginContainer/VBoxC
 onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
 onready var confirmation := $CanvasLayer/ConfirmationDialog
 
+onready var background := $"Background/GameBackground-Bar"
+
 
 enum GameState {
 	INIT,
@@ -41,10 +43,13 @@ func _ready():
 
 func _process(delta: float) -> void:
 	update_content()
+	
+	# update timer
 	var time_left := int(game_timer.time_left)
 	time_label.text = "Time %d:%02d" % [time_left / 60, time_left % 60]
-
-
+	
+	# modulate background
+	background.modulate.h = wrapf(background.modulate.h + delta * 0.2, 0.0, 1.0)
 
 func clear_recipes() -> void:
 	for slot in get_tree().get_nodes_in_group("recipe_slots"):
@@ -77,6 +82,7 @@ func finish_drink(recipe_note: Node) -> void:
 	finish_label.position = get_local_mouse_position()
 	add_child(finish_label)
 	cocktail_shaker.reset_cocktail()
+	
 
 
 func get_score_text(score: float) -> String:
@@ -85,9 +91,9 @@ func get_score_text(score: float) -> String:
 		SoundEngine.play_sound("PERFECT")
 		return "PERFECT!!!"
 	elif score > 0.8:
-		SoundEngine.play_sound("GEART")
+		SoundEngine.play_sound("GREAT")
 		return "GREAT!"
-	elif score > 0.5:
+	elif score > 0.4:
 		SoundEngine.play_sound("NICE")
 		return "NICE"
 	else:
@@ -96,8 +102,18 @@ func get_score_text(score: float) -> String:
 
 
 func generate_recipe() -> void:
-	var slots = get_tree().get_nodes_in_group("recipe_slots")
-	slots.shuffle()
+	var slots: Array
+	
+	if game_state == GameState.INIT:
+		slots = [$RecipeSlot2]
+	elif game_state == GameState.STARTED:
+		slots = get_tree().get_nodes_in_group("recipe_slots")
+		slots.shuffle()
+	else:
+		slots = []
+	
+	
+	
 	# search empty slot, and generate recipe in it when found
 	for slot in slots:
 		if slot.get_child_count() == 0:
@@ -219,6 +235,12 @@ func _on_BackToParty_pressed():
 
 func _on_GameTimer_timeout():
 	game_state = GameState.ENDED
+	
+	for slot in get_tree().get_nodes_in_group("recipe_slots"):
+		for recipe_note in slot.get_children():
+			recipe_note.exit()
+	cocktail_shaker.reset_cocktail()
+	
 	gameover_score_label.text = "Score: %d" % total_score
 	menu_popup.show()
 

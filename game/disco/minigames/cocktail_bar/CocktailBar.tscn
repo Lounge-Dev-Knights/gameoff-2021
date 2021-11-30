@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
@@ -10,6 +10,37 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 226, 49.5 )
+
+[sub_resource type="Shader" id=7]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+
+void fragment() {
+	vec2 offset = (UV - vec2(0.5)) * 2.0;
+	float r = offset.x * offset.x + offset.y * offset.y;
+	
+	
+	COLOR.a *= texture(TEXTURE, UV).r - r;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 7 )
+
+[sub_resource type="OpenSimplexNoise" id=8]
+
+[sub_resource type="NoiseTexture" id=10]
+noise = SubResource( 8 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.0682907, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.0233161, 0.313471, 0.388601, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.352941, 1, 1, 1, 0 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -44,8 +75,24 @@ position = Vector2( 930.695, 340.053 )
 z_index = 1
 
 [node name="RecipeTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+material = SubResource( 9 )
+position = Vector2( 1175.12, 613.048 )
+amount = 16
+lifetime = 30.0
+randomness = 0.12
+texture = SubResource( 10 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, -1 )
+initial_velocity = 50.0
+initial_velocity_random = 0.3
+angle_random = 1.0
+scale_amount_curve = SubResource( 11 )
+color_ramp = SubResource( 12 )
 
 [node name="GameFront-Bar" type="Sprite" parent="."]
 position = Vector2( 512.652, 213.688 )
@@ -101,10 +148,10 @@ __meta__ = {
 }
 
 [node name="Collect" type="Label" parent="CanvasLayer/Tutorial"]
-margin_left = 110.0
-margin_top = 160.0
-margin_right = 414.0
-margin_bottom = 189.0
+margin_left = 59.3461
+margin_top = 332.766
+margin_right = 363.346
+margin_bottom = 370.766
 custom_fonts/font = SubResource( 2 )
 text = "1. Collect ingredients"
 align = 1
@@ -113,10 +160,10 @@ __meta__ = {
 }
 
 [node name="Create" type="Label" parent="CanvasLayer/Tutorial"]
-margin_left = 76.0
-margin_top = 417.0
-margin_right = 428.0
-margin_bottom = 478.0
+margin_left = 127.558
+margin_top = 403.432
+margin_right = 508.558
+margin_bottom = 464.432
 custom_fonts/font = SubResource( 2 )
 text = "2. Click to create a cocktail"
 align = 1
@@ -125,10 +172,10 @@ __meta__ = {
 }
 
 [node name="Serve" type="Label" parent="CanvasLayer/Tutorial"]
-margin_left = 625.0
-margin_top = 539.0
-margin_right = 946.0
-margin_bottom = 568.0
+margin_left = 224.292
+margin_top = 469.351
+margin_right = 590.292
+margin_bottom = 507.351
 custom_fonts/font = SubResource( 2 )
 text = "3. Click on recipe to serve"
 align = 1
@@ -137,10 +184,10 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tutorial"]
-margin_left = 619.0
-margin_top = 110.0
-margin_right = 938.0
-margin_bottom = 175.0
+margin_left = 306.031
+margin_top = 63.681
+margin_right = 730.031
+margin_bottom = 296.681
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -187,7 +234,7 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 149.0
-margin_bottom = 173.0
+margin_bottom = 182.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -197,7 +244,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 135.0
-margin_bottom = 159.0
+margin_bottom = 168.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -257,6 +304,7 @@ one_shot = true
 layer = -1
 
 [node name="GameBackground-Bar" type="Sprite" parent="Background"]
+modulate = Color( 1, 0.72, 0.724667, 1 )
 position = Vector2( 516.938, 297.306 )
 scale = Vector2( 0.26, 0.26 )
 texture = ExtResource( 6 )
