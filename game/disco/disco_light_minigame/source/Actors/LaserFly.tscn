@@ -72,6 +72,7 @@ scale = Vector2( 2.13462, 1.125 )
 texture = ExtResource( 4 )
 
 [node name="LaserBeam2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1, 14 )
 
 [node name="LightRefillSource" type="Area2D" parent="."]
 collision_layer = 0

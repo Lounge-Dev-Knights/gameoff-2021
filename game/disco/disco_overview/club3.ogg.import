@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/club3.ogg-6dade95a7586a39aa1629792251bc416.oggstr"
+
+[deps]
+
+source_file="res://game/disco/disco_overview/club3.ogg"
+dest_files=[ "res://.import/club3.ogg-6dade95a7586a39aa1629792251bc416.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

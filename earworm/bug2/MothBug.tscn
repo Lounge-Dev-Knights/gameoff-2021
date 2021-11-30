@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://game/assets/bugs/earworm/bug3/009.png" type="Texture" id=1]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/002.png" type="Texture" id=2]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/000.png" type="Texture" id=3]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/001.png" type="Texture" id=4]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/004.png" type="Texture" id=5]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/010.png" type="Texture" id=6]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/007.png" type="Texture" id=7]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/006.png" type="Texture" id=8]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/008.png" type="Texture" id=9]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/003.png" type="Texture" id=10]
+[ext_resource path="res://game/assets/bugs/earworm/bug3/005.png" type="Texture" id=11]
+
+[node name="Body" type="Sprite"]
+position = Vector2( -16, 11 )
+rotation = 0.34388
+scale = Vector2( 0.35, 0.35 )
+z_index = 2
+texture = ExtResource( 6 )
+
+[node name="wing_left" type="Sprite" parent="."]
+position = Vector2( -45.7142, -85.7143 )
+texture = ExtResource( 3 )
+offset = Vector2( 2.1427, 120 )
+
+[node name="wing_right" type="Sprite" parent="."]
+position = Vector2( 57.1429, -111.429 )
+texture = ExtResource( 4 )
+offset = Vector2( 99.9999, 137.143 )
+
+[node name="leg_left_middle" type="Sprite" parent="."]
+position = Vector2( -111.584, -37.4354 )
+texture = ExtResource( 2 )
+offset = Vector2( -30, 80 )
+
+[node name="leg_left_back" type="Sprite" parent="."]
+position = Vector2( -52.985, 154.927 )
+texture = ExtResource( 10 )
+offset = Vector2( 10, 60 )
+
+[node name="leg_right_back" type="Sprite" parent="."]
+position = Vector2( 202.234, 73.4705 )
+texture = ExtResource( 5 )
+offset = Vector2( -80, 100 )
+
+[node name="leg_right_middle" type="Sprite" parent="."]
+position = Vector2( 129.991, -108.765 )
+texture = ExtResource( 11 )
+offset = Vector2( 75, 90 )
+
+[node name="leg_right_front" type="Sprite" parent="."]
+position = Vector2( 103.654, -141.008 )
+texture = ExtResource( 8 )
+offset = Vector2( 48.5714, -62.8572 )
+
+[node name="antenna_right" type="Sprite" parent="."]
+position = Vector2( 37.1429, -200 )
+texture = ExtResource( 7 )
+offset = Vector2( 5.71423, -45.7143 )
+
+[node name="antenna_left" type="Sprite" parent="."]
+position = Vector2( -80, -168.571 )
+texture = ExtResource( 9 )
+offset = Vector2( -37.1428, -37.1429 )
+
+[node name="leg_left_front" type="Sprite" parent="."]
+position = Vector2( -106.685, -91.0987 )
+texture = ExtResource( 1 )
+offset = Vector2( -100, 45.7143 )

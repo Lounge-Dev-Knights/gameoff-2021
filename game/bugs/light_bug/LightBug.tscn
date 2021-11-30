@@ -1,0 +1,437 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-2.png" type="Texture" id=1]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-8.png" type="Texture" id=2]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-3.png" type="Texture" id=3]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-4.png" type="Texture" id=4]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-5.png" type="Texture" id=5]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-6.png" type="Texture" id=6]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-7.png" type="Texture" id=7]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-9.png" type="Texture" id=8]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-10.png" type="Texture" id=9]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-11.png" type="Texture" id=10]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-12.png" type="Texture" id=11]
+[ext_resource path="res://game/bugs/light_bug/Untitled_Artwork-1.png" type="Texture" id=12]
+[ext_resource path="res://game/bugs/light_bug/light.png" type="Texture" id=13]
+[ext_resource path="res://game/bugs/light_bug/LightBug.gd" type="Script" id=14]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../bug/WingLeft:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../bug/WingRight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../bug/WingLeft:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 37.2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../bug/WingRight:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -39.1613 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("bug/EyeTopRight:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bug/EyeTopLeft:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bug:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -9.70322, 29.5867 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("bug:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("bug/LegTopRight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("bug/LegTopLeft:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("bug/LegBottomRight:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("bug/LegBottomLeft:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("bug/LegCenterRight:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("bug/LegCenterLeft:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("bug/TailLight:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("bug/EyeTopRight:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.4, 2.5, 2.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("bug/EyeTopLeft:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 1, 1.1, 2.3, 2.4, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, 0.0, 0.0, 10.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bug:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.70322, 29.5867 ), Vector2( -9.703, 10 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("bug:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -3.0, -5.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("bug/LegTopRight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1, 1.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 7.6, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("bug/LegTopLeft:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.764915, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 8.6, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("bug/LegBottomRight:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 8.6 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("bug/LegBottomLeft:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.7, 1.23844 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -12.9, 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("bug/LegCenterRight:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.947966, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -17.1, 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("bug/LegCenterLeft:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.2, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -8.6 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("bug/TailLight:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+
+[node name="LightBug" type="Node2D"]
+script = ExtResource( 14 )
+
+[node name="bug" type="Node2D" parent="."]
+position = Vector2( -9.70322, 29.5867 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="TailLight" type="Sprite" parent="bug"]
+position = Vector2( 128.136, 639.397 )
+texture = ExtResource( 12 )
+offset = Vector2( -106.458, -676.022 )
+
+[node name="Light2D" type="Light2D" parent="bug/TailLight"]
+position = Vector2( 1.94459, 121.535 )
+texture = ExtResource( 13 )
+texture_scale = 4.0
+
+[node name="LegTopRight" type="Sprite" parent="bug"]
+position = Vector2( 271.259, -328.497 )
+texture = ExtResource( 1 )
+offset = Vector2( -249.581, 291.873 )
+
+[node name="LegTopLeft" type="Sprite" parent="bug"]
+position = Vector2( -230.882, -277.556 )
+texture = ExtResource( 3 )
+offset = Vector2( 252.56, 240.931 )
+
+[node name="LegBottomRight" type="Sprite" parent="bug"]
+position = Vector2( 244.575, -13.1432 )
+texture = ExtResource( 4 )
+offset = Vector2( -222.897, -23.4814 )
+
+[node name="LegBottomLeft" type="Sprite" parent="bug"]
+position = Vector2( -179.94, 23.2438 )
+texture = ExtResource( 5 )
+offset = Vector2( 201.618, -59.8685 )
+
+[node name="LegCenterRight" type="Sprite" parent="bug"]
+position = Vector2( 346.459, -158.691 )
+texture = ExtResource( 6 )
+offset = Vector2( -324.78, 122.067 )
+
+[node name="LegCenterLeft" type="Sprite" parent="bug"]
+position = Vector2( -272.121, -134.433 )
+texture = ExtResource( 7 )
+offset = Vector2( 293.799, 97.8086 )
+
+[node name="EyeTopRight" type="Sprite" parent="bug"]
+position = Vector2( 181.504, -352.755 )
+texture = ExtResource( 2 )
+offset = Vector2( -159.826, 316.131 )
+
+[node name="Light2D" type="Light2D" parent="bug/EyeTopRight"]
+position = Vector2( -57.7754, -289.547 )
+texture = ExtResource( 13 )
+
+[node name="EyeTopLeft" type="Sprite" parent="bug"]
+position = Vector2( -189.644, -333.349 )
+scale = Vector2( 1, 0.996592 )
+texture = ExtResource( 8 )
+offset = Vector2( 211.322, 296.724 )
+
+[node name="Light2D" type="Light2D" parent="bug/EyeTopLeft"]
+position = Vector2( 36.6485, -295.08 )
+texture = ExtResource( 13 )
+
+[node name="Body" type="Sprite" parent="bug"]
+position = Vector2( 52.9367, -139.285 )
+texture = ExtResource( 9 )
+offset = Vector2( -31.2585, 102.66 )
+
+[node name="WingLeft" type="Sprite" parent="bug"]
+position = Vector2( -41.6696, -389.142 )
+texture = ExtResource( 10 )
+offset = Vector2( 63.3478, 352.518 )
+
+[node name="WingRight" type="Sprite" parent="bug"]
+position = Vector2( 18.9754, -391.568 )
+texture = ExtResource( 11 )
+offset = Vector2( 2.70276, 354.944 )
+
+[node name="WingAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 7 )
+anims/idle = SubResource( 8 )

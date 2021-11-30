@@ -2,10 +2,13 @@ extends Node2D
 
 
 # list of buttons pressed
-onready var green = get_node("Button4/TextureButton")
-onready var blue = get_node("Button2/TextureButton")
-onready var red = get_node("Button/TextureButton")
-onready var yellow = get_node("Button3/TextureButton")
+onready var red = get_node("Bug1/TextureButton")
+onready var blue = get_node("Bug2/TextureButton")
+onready var yellow = get_node("Bug3/TextureButton")
+onready var green = get_node("Bug4/TextureButton")
+
+onready var scoreText = get_node("CenterContainer/Score")
+onready var startButton = get_node("CenterContainer/StartGame")
 
 onready var buttons = {
 	1: red,
@@ -30,7 +33,7 @@ var score = 0
 func generate_order(num=1000) -> Array:
 	var numbers = []
 	for i in num:
-		var number = buttons.keys()[randi() % buttons.keys().size()]
+		var number = buttons.keys()[rng.randi() % buttons.keys().size()]
 		numbers.append(number)
 	return numbers
 
@@ -42,16 +45,41 @@ func play_round(round_number) -> void:
 	
 	# play back sequence
 	playback = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for i in play_order:
 		buttons[i].emit_signal("pressed")
-		yield(get_tree().create_timer(1.0), "timeout")	
+		yield(get_tree().create_timer(0.5), "timeout")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	playback = false
 
 
 func _ready() -> void:
-	$Score.text = ""
+	set_bugs_dancing(true)
+	scoreText.text = ""
+	rng.randomize()
 	order = generate_order(100)
+	MusicEngine.play_song("Club3")
 	
+func set_bugs_moving(moving = true, speed = 500) -> void:
+	var all_bugs = get_tree().get_nodes_in_group("bugs")
+	for bug in all_bugs:
+		bug.moving = moving
+		bug.speed = speed
+
+func set_bugs_dancing(dancing: bool) -> void:
+	var all_bugs = get_tree().get_nodes_in_group("bugs")
+	for bug in all_bugs:
+		if dancing:
+			bug.start_dancing()
+		else:
+			bug.stop_dancing()
+
+func get_avg_bug_speed() -> float:
+	var all_bugs = get_tree().get_nodes_in_group("bugs")
+	var speed = 0
+	for bug in all_bugs:
+		speed += bug.speed
+	return speed/len(all_bugs)
 	
 func end_round() -> void:
 	if not is_sequence_correct():
@@ -60,18 +88,25 @@ func end_round() -> void:
 		if is_sequence_complete():
 			print("good job! playing next round")
 			increase_score()
-			yield(get_tree().create_timer(2.0), "timeout")	
+			yield(get_tree().create_timer(1.5), "timeout")	
 			round_number += 1
+			if round_number == 4:
+				set_bugs_moving(true)
+				
+			if round_number == 6:
+				set_bugs_moving(true, get_avg_bug_speed()+(round_number^2))
+				
+
 			play_round(round_number)
 		
 func game_over() -> void:
-	$Score.text = "Game over."
+	scoreText.text = "Game over."
 	print("Game over")
 	
 	
 func increase_score() -> void:
 	score += 1
-	$Score.text = "Score: " + str(score)
+	scoreText.text = str(score)
 
 
 func is_sequence_complete() -> bool:
@@ -93,26 +128,39 @@ func _on_Button1_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(1)
 		end_round()
+	SoundEngine.play_sound("Bug1", $Bug1/AudioStreamPlayer2D)
 
 
 func _on_Button2_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(2)
 		end_round()
+	SoundEngine.play_sound("Bug2", $Bug2/AudioStreamPlayer2D)
 
 
 func _on_Button3_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(3)
 		end_round()
+	SoundEngine.play_sound("Bug3", $Bug3/AudioStreamPlayer2D)
 
 
 func _on_Button4_pressed(human) -> void:
 	if not playback:
 		clicked_order.append(4)
 		end_round()
+	SoundEngine.play_sound("Bug4", $Bug4/AudioStreamPlayer2D)
 
 
 func _on_StartGame_pressed() -> void:
+	set_bugs_dancing(false)
+	var tween = get_node("Tween")
+	tween.interpolate_property(startButton, "modulate", 
+	  Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0, 
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	yield(get_tree().create_timer(1.0), "timeout")
+
+	startButton.hide()
+	
 	play_round(round_number)
-	$StartGame.hide()
