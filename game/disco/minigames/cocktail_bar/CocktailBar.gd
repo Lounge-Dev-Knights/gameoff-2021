@@ -15,8 +15,8 @@ onready var time_label := $CanvasLayer/Score/VBoxContainer/TimeLabel
 onready var tutorial := $CanvasLayer/Tutorial
 onready var game_timer := $GameTimer
 onready var menu_popup := $CanvasLayer/MenuPopup
-onready var gameover_score_label := $CanvasLayer/GameOverPopup/MarginContainer/VBoxContainer/Score
-onready var menu_continue := $CanvasLayer/GameOverPopup/MarginContainer/VBoxContainer/Continue
+onready var gameover_score_label := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Score
+onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
 onready var confirmation := $CanvasLayer/ConfirmationDialog
 
 
@@ -214,9 +214,9 @@ func _on_BackToParty_pressed():
 
 
 func _on_GameTimer_timeout():
-	game_state = GameState.ENDEND
+	game_state = GameState.ENDED
 	gameover_score_label.text = "Score: %d" % total_score
-	menu_popup.hide()
+	menu_popup.show()
 
 
 
@@ -226,12 +226,13 @@ func confirm_progress_loss() -> void:
 	confirm.popup_exclusive = true
 	confirm.connect("popup_hide", confirm, "queue_free")
 	$CanvasLayer.add_child(confirm)
+	confirm.popup_centered()
 	yield(confirm, "confirmed")
 	print("confirmed")
 
 
 func _on_Menu_pressed():
-	$CanvasLayer/PausePopup.popup_centered()
+	menu_popup.popup_centered()
 
 
 func _on_MenuPopup_about_to_show():
