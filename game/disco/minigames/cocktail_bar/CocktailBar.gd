@@ -15,9 +15,12 @@ onready var time_label := $CanvasLayer/Score/VBoxContainer/TimeLabel
 onready var tutorial := $CanvasLayer/Tutorial
 onready var game_timer := $GameTimer
 onready var menu_popup := $CanvasLayer/MenuPopup
-onready var gameover_score_label := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Score
+onready var menu_score := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Score
 onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
-onready var confirmation := $CanvasLayer/ConfirmationDialog
+onready var menu_restart := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/TryAgain
+onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ShowInstructions
+onready var menu_exit := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/BackToParty
+
 
 onready var background := $"Background/GameBackground-Bar"
 
@@ -241,8 +244,8 @@ func _on_GameTimer_timeout():
 			recipe_note.exit()
 	cocktail_shaker.reset_cocktail()
 	
-	gameover_score_label.text = "Score: %d" % total_score
-	menu_popup.show()
+	menu_score.text = "Score: %d" % total_score
+	menu_popup.popup_centered_minsize()
 
 
 
@@ -258,8 +261,17 @@ func confirm_progress_loss() -> void:
 
 
 func _on_Menu_pressed():
-	menu_popup.popup_centered()
+	menu_popup.popup_centered_minsize()
 
 
 func _on_MenuPopup_about_to_show():
-	pass # Replace with function body.
+	menu_score.visible = game_state == GameState.ENDED
+	menu_continue.visible = game_state == GameState.STARTED or game_state == GameState.INIT
+	menu_restart.visible = game_state == GameState.STARTED or game_state == GameState.ENDED
+	menu_instructions.visible = game_state == GameState.STARTED or game_state == GameState.ENDED
+	
+	menu_popup.minimum_size_changed()
+
+
+func _on_Continue_pressed() -> void:
+	menu_popup.hide()
