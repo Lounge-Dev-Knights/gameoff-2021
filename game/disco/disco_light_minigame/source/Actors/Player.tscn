@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://game/disco/disco_light_minigame/source/tileset_Kings and Pigs/Sprites/02-King Pig/Fall (38x28).png" type="Texture" id=2]
 [ext_resource path="res://game/assets/bugs/Game_Bug7.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -17,11 +16,6 @@ speed = Vector2( 800, 1000 )
 position = Vector2( 0, -61 )
 scale = Vector2( 0.238333, 0.238333 )
 texture = ExtResource( 3 )
-
-[node name="Idle(78X58)" type="Sprite" parent="."]
-position = Vector2( -2, -35 )
-scale = Vector2( 1.97368, 2.75 )
-texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -58 )
