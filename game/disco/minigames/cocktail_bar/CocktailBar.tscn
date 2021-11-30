@@ -297,7 +297,7 @@ custom_fonts/font = SubResource( 2 )
 text = "MENU"
 
 [node name="GameTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 120.0
 one_shot = true
 
 [node name="Background" type="CanvasLayer" parent="."]
