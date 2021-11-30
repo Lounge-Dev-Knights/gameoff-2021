@@ -43,7 +43,7 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.3
 
 [sub_resource type="DynamicFont" id=2]
 size = 40
-outline_size = 2
+outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
@@ -300,6 +300,7 @@ texture = ExtResource( 6 )
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/MenuPopup" to="." method="_on_MenuPopup_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/TryAgain" to="." method="_on_TryAgain_pressed"]

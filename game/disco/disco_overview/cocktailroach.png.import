@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cocktailroach_pressed.png-961a019534b257ab885b8c1cf0881fa4.stex"
+path="res://.import/cocktailroach.png-5d78db9717518666a41ca15e066e10eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/ui/images/cocktailroach_pressed.png"
-dest_files=[ "res://.import/cocktailroach_pressed.png-961a019534b257ab885b8c1cf0881fa4.stex" ]
+source_file="res://game/disco/disco_overview/cocktailroach.png"
+dest_files=[ "res://.import/cocktailroach.png-5d78db9717518666a41ca15e066e10eb.stex" ]
 
 [params]
 

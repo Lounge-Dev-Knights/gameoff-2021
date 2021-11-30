@@ -212,16 +212,16 @@ func _on_Start_pressed():
 
 
 func _on_TryAgain_pressed():
-	if game_state == GameState.STARTED:
-		confirm_progress_loss()
+	#if game_state == GameState.STARTED:
+	#	confirm_progress_loss()
 	
 	menu_popup.hide()
 	start_game()
 
 
 func _on_ShowInstructions_pressed():
-	if game_state == GameState.STARTED:
-		confirm_progress_loss()
+	#if game_state == GameState.STARTED:
+	#	confirm_progress_loss()
 	
 	tutorial.show()
 	total_score = 0
@@ -230,8 +230,8 @@ func _on_ShowInstructions_pressed():
 
 
 func _on_BackToParty_pressed():
-	if game_state == GameState.STARTED:
-		confirm_progress_loss()
+	#if game_state == GameState.STARTED:
+	#	confirm_progress_loss()
 		
 	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
 

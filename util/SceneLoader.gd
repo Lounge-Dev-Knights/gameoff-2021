@@ -3,12 +3,15 @@ extends Node
 # Define scenes which have to be loaded at game start
 # this will reduce stuttering when changing to big scenes
 var preloaded_scenes = {
+	"res://game/disco/disco_overview/DiscoOverview.tscn": preload("res://game/disco/disco_overview/DiscoOverview.tscn"),
+	"res://game/disco/minigames/cocktail_bar/CocktailBar.tscn": preload("res://game/disco/minigames/cocktail_bar/CocktailBar.tscn"),
+	"res://game/score_screen/ScoreScreen.tscn": preload("res://game/score_screen/ScoreScreen.tscn")
 }
 
 
 
 var fade_color := Color.black
-var fade_duration := 1.0
+var fade_duration := 0.5
 
 var tween = Tween.new()
 
@@ -42,7 +45,7 @@ func _deferred_goto_scene(path: String, properties: Dictionary) -> void:
 	# Load the new scene.
 	
 	
-	tween.interpolate_method(self, "_set_modulate", Color.white, fade_color, fade_duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.interpolate_method(self, "_set_modulate", Color.white, fade_color, fade_duration, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	tween.start()
 	
 	var s: Resource
