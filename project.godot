@@ -68,6 +68,11 @@ MusicEngine="*res://sound/MusicEngine.gd"
 SoundEngine="*res://sound/SoundEngine.gd"
 TotalScore="*res://game/score_screen/Scores.gd"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [editor_plugins]
 
 enabled=PoolStringArray(  )
