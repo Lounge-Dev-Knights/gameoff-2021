@@ -56,7 +56,7 @@ const sounds = {
 		"volume": -20
 		},
 	"OK": {
-		"stream": preload("res://sound/bug_buzz_low.wav"),
+		"stream": preload("res://sound/ORCH_Grunt_Short_01_mono.wav"),
 		"volume": -20
 		},
 }
