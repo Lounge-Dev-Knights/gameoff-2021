@@ -79,4 +79,5 @@ func _deferred_goto_scene(path: String, properties: Dictionary) -> void:
 	# SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 	
-	old_scene.free()
+	if old_scene:
+		old_scene.free()

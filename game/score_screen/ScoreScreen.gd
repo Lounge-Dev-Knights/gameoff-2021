@@ -27,10 +27,13 @@ func _process(delta):
 		bug_appears(bugs.pop_front())
 	score_text.text = str(int(score))
 	
-		
 	
 func bug_appears(bug: Object):
 	tween.interpolate_property(bug, "position",
 		bug.position, Vector2(bug.position.x, 150), 1,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+
+
+func _on_TextureButton_pressed():
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
