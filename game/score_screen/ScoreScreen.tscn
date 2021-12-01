@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=2]
@@ -27,7 +27,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=34]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -92,7 +92,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+shader = SubResource( 34 )
 shader_param/position = Vector2( 0, 0 )
 shader_param/color = Color( 1, 0.62, 0.626333, 0.8 )
 shader_param/speed = 2.0
@@ -102,7 +102,7 @@ shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 3 )
+shader = SubResource( 34 )
 shader_param/position = Vector2( 1, 0 )
 shader_param/color = Color( 0, 0.811765, 1, 1 )
 shader_param/speed = -1.0
@@ -111,8 +111,72 @@ shader_param/ray2_offset = 2.4
 shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
+[sub_resource type="Shader" id=33]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/god-rays
+
+Feel free to use, improve and change this shader according to your needs
+and consider sharing the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+
+uniform vec2 position = vec2(0.3);
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform float speed = 1.0;
+uniform float ray1_offset = 1.3;
+uniform float ray2_offset = 2.4;
+uniform float ray3_offset = 2.6;
+uniform float ray4_offset = 3.1;
+
+
+mat2 rotate(float _angle) {
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend) {
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment() {
+	float rotation = TIME * speed / 2.0;
+	float angle_ray1 = mod(ray1_offset + rotation, 3.14159);
+	float angle_ray2 = mod(ray2_offset + rotation, 3.14159);
+	float angle_ray3 = mod(ray3_offset + rotation, 3.14159);
+	float angle_ray4 = mod(ray4_offset + rotation, 3.14159);
+	
+	vec2 offset = UV - position;
+	float angle_current = acos((offset / length(offset)).x);
+	
+	
+	float dist = abs(angle_ray1 - angle_current);
+	dist = min(dist, abs(angle_ray2 - angle_current));
+	dist = min(dist, abs(angle_ray3 - angle_current));
+	dist = min(dist, abs(angle_ray4 - angle_current));
+	
+	if (dist > 3.14159 / 2.0) {
+		dist = 3.14159 - dist;
+	}
+	
+	vec3 shine = dist * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, 0.1 - dist * dist * 120.0);
+	//COLOR.a = 0.5;
+	
+	
+}"
+
 [sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 3 )
+shader = SubResource( 33 )
 shader_param/position = Vector2( 0.8, 0.3 )
 shader_param/color = Color( 1, 0.560784, 0, 0.941176 )
 shader_param/speed = 2.0
@@ -247,10 +311,10 @@ margin_top = 104.0
 margin_right = 300.0
 margin_bottom = 245.0
 rect_min_size = Vector2( 100, 100 )
-custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
 text = "0"
 align = 1
 __meta__ = {

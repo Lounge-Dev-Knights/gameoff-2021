@@ -182,37 +182,31 @@ texture = ExtResource( 9 )
 
 [node name="LegTopLeft" type="Sprite" parent="bug/Body"]
 position = Vector2( -147.904, 4.51202 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 10 )
 offset = Vector2( 147.904, -4.51202 )
 
 [node name="LegTopRight" type="Sprite" parent="bug/Body"]
 position = Vector2( 127.09, 12.0668 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 offset = Vector2( -127.09, -12.0668 )
 
 [node name="LegCenterLeft" type="Sprite" parent="bug/Body"]
 position = Vector2( -155.458, 104.235 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 11 )
 offset = Vector2( 155.459, -104.235 )
 
 [node name="LegCenterRight" type="Sprite" parent="bug/Body"]
 position = Vector2( 122.557, 98.1913 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 7 )
 offset = Vector2( -122.557, -98.1913 )
 
 [node name="LegBottomLeft" type="Sprite" parent="bug/Body"]
 position = Vector2( -167.546, 244.754 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 offset = Vector2( 167.546, -244.754 )
 
 [node name="LegBottomRight" type="Sprite" parent="bug/Body"]
 position = Vector2( 133.134, 261.375 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( -133.134, -261.375 )
 
@@ -225,25 +219,21 @@ offset = Vector2( -77.3975, 72.7466 )
 [node name="LeftWing" type="Sprite" parent="bug/Body"]
 show_behind_parent = true
 position = Vector2( -129.104, -74.2876 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 6 )
 offset = Vector2( 129.104, 74.2877 )
 
 [node name="Head" type="Sprite" parent="bug/Body"]
 position = Vector2( -20.9834, -234.219 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 offset = Vector2( 20.9834, 234.219 )
 
 [node name="EyeRight" type="Sprite" parent="bug/Body/Head"]
 position = Vector2( 3.02193, -7.55479 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( 17.9615, 241.774 )
 
 [node name="EyeLeft" type="Sprite" parent="bug/Body/Head"]
 position = Vector2( 1.51093, -3.02193 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 offset = Vector2( 19.4725, 237.241 )
 

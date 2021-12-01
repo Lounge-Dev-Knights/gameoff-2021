@@ -1,2 +1,2 @@
-extends "res://game/disco/disco_light_minigame/source/Actors/Actor.gd"
+extends "res://game/disco/disco_light_minigame/source/Actors/ActorBug.gd"
 
