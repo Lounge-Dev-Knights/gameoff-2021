@@ -1,8 +1,8 @@
 extends Node
 
 
-var earworm_score = 95
-var cocktail_score = 70
+var earworm_score = 20
+var cocktail_score = 50
 var light_score = 90
 
 var maximum_score = 300
