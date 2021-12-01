@@ -1,13 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/bugs/bug_queen/BugQueen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/disco/disco_overview/bee-j.png" type="Texture" id=5]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=6]
 [ext_resource path="res://game/disco/disco_overview/DiscoOverview.gd" type="Script" id=7]
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=8]
 [ext_resource path="res://game/disco/disco_overview/MinigamePortal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game/disco/disco_overview/cocktailroach.png" type="Texture" id=10]
+[ext_resource path="res://game/disco/disco_overview/lightning_bug.png" type="Texture" id=11]
 
 [sub_resource type="Shader" id=13]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
@@ -170,30 +173,92 @@ scale = Vector2( 0.657615, 0.619658 )
 
 [node name="DiscolightPortal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 453.259, 107.914 )
-label_text = "DiscoLight"
+label_text = ""
 scene = "res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.tscn"
 soundeffect = "Cocktail_drop"
 
+[node name="TextureRect" type="TextureRect" parent="DiscolightPortal/LabelContainer" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -43.0
+margin_right = 175.0
+margin_bottom = 57.0
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="DiscolightPortal/LabelContainer" index="1"]
+text = ""
+
 [node name="LightBug" parent="DiscolightPortal" instance=ExtResource( 3 )]
+show_behind_parent = true
 position = Vector2( -126.335, -6.9129 )
 rotation = -0.0786564
 scale = Vector2( 0.381244, 0.416327 )
 
 [node name="LightBug2" parent="DiscolightPortal" instance=ExtResource( 3 )]
+show_behind_parent = true
 position = Vector2( 139.203, -5.51529 )
 rotation = 0.223157
 scale = Vector2( 0.381244, 0.416327 )
 
 [node name="BarPortal" parent="." instance=ExtResource( 9 )]
-position = Vector2( 162.505, 395.132 )
-label_text = "Bar"
+position = Vector2( 199.923, 380.339 )
+label_text = ""
 scene = "res://game/disco/minigames/cocktail_bar/CocktailBar.tscn"
 soundeffect = "Cocktail_drop"
 
-[node name="EarwormPortal" parent="." instance=ExtResource( 9 )]
-position = Vector2( 794.716, 352.836 )
-label_text = "Earworm"
+[node name="TextureRect" type="TextureRect" parent="BarPortal/LabelContainer" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -43.0
+margin_right = 175.0
+margin_bottom = 57.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="BarPortal/LabelContainer" index="1"]
+text = ""
+
+[node name="BeeJPortal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 825.172, 371.11 )
+label_text = ""
 scene = "res://game/disco/minigames/earworm/Earworm.tscn"
+
+[node name="Label" parent="BeeJPortal/LabelContainer" index="0"]
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="BeeJPortal/LabelContainer" index="1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.144
+margin_top = -45.5862
+margin_right = 89.856
+margin_bottom = 47.4138
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BugBunny" parent="." instance=ExtResource( 1 )]
 position = Vector2( 453.922, 399.137 )
@@ -251,3 +316,7 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[editable path="DiscolightPortal"]
+[editable path="BarPortal"]
+[editable path="BeeJPortal"]
