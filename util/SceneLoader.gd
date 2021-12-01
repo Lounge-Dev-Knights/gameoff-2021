@@ -5,7 +5,8 @@ extends Node
 var preloaded_scenes = {
 	"res://game/disco/disco_overview/DiscoOverview.tscn": preload("res://game/disco/disco_overview/DiscoOverview.tscn"),
 	"res://game/disco/minigames/cocktail_bar/CocktailBar.tscn": preload("res://game/disco/minigames/cocktail_bar/CocktailBar.tscn"),
-	"res://game/score_screen/ScoreScreen.tscn": preload("res://game/score_screen/ScoreScreen.tscn")
+	"res://game/score_screen/ScoreScreen.tscn": preload("res://game/score_screen/ScoreScreen.tscn"),
+	"res://game/intro/DiscoArrival.tscn": preload("res://game/intro/DiscoArrival.tscn")
 }
 
 

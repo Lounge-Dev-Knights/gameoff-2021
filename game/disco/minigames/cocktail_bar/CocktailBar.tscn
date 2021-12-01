@@ -44,7 +44,7 @@ _data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.06829
 offsets = PoolRealArray( 0, 0.0233161, 0.313471, 0.388601, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.352941, 1, 1, 1, 0 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=18]
 size = 40
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -164,14 +164,14 @@ margin_bottom = 142.0
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
 margin_right = 163.0
 margin_bottom = 59.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "Score:   0"
 
 [node name="TimeLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
 margin_top = 63.0
 margin_right = 163.0
 margin_bottom = 122.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "Time: 2:00"
 
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
@@ -186,7 +186,7 @@ margin_left = 59.3461
 margin_top = 332.766
 margin_right = 363.346
 margin_bottom = 370.766
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "1. Collect ingredients"
 align = 1
 __meta__ = {
@@ -198,7 +198,7 @@ margin_left = 86.5222
 margin_top = 391.463
 margin_right = 533.522
 margin_bottom = 452.463
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "2. Click to create a cocktail"
 align = 1
 __meta__ = {
@@ -210,7 +210,7 @@ margin_left = 116.003
 margin_top = 446.553
 margin_right = 549.003
 margin_bottom = 505.553
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "3. Click on recipe to serve"
 align = 1
 __meta__ = {
@@ -229,7 +229,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="CanvasLayer/Tutorial/VBoxContainer"]
 margin_right = 500.0
 margin_bottom = 121.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "Serve as many good cocktails
  as possible in 2 minutes. "
 align = 1
@@ -276,7 +276,7 @@ __meta__ = {
 [node name="Score" type="Label" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
 margin_right = 300.0
 margin_bottom = 59.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 18 )
 text = "Score: 0"
 align = 1
 
