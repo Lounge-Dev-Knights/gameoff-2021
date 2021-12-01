@@ -103,6 +103,7 @@ func end_round() -> void:
 			play_round(round_number)
 		
 func game_over() -> void:
+	TotalScore.earworm_score = score
 	scoreText.text = "Game over."
 	$GameOver.show()
 	
