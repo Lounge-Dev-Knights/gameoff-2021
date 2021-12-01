@@ -1,4 +1,4 @@
-extends ColorRect
+extends CenterContainer
 
 
 # Declare member variables here. Examples:
@@ -8,15 +8,12 @@ extends ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	visible = false
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var mat = material as ShaderMaterial
-	
-	var c = mat.get_shader_param("color")
-	c.h += delta * 0.05
-	mat.set_shader_param("color", c)
-	
+#func _process(delta: float) -> void:
+#	pass
+
+

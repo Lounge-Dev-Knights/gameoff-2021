@@ -4,7 +4,7 @@
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/title_screen/Background_Light.png" type="Texture" id=4]
-[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LaserFly.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/disco/disco_light_minigame/source/ui/Game_Over.tscn" type="PackedScene" id=5]
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LightBug2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://game/bugs/chandelier_bug/ChandelierBUg.tscn" type="PackedScene" id=7]
 [ext_resource path="res://game/bugs/bug_pack/BugPack.tscn" type="PackedScene" id=8]
@@ -850,7 +850,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=34]
 shader = SubResource( 33 )
 shader_param/position = Vector2( 0, 0 )
-shader_param/color = Color( 1, 0.62, 0.626333, 0.8 )
+shader_param/color = Color( 1, 0.619608, 0.627451, 0.8 )
 shader_param/speed = 2.0
 shader_param/ray1_offset = 1.3
 shader_param/ray2_offset = 2.4
@@ -871,44 +871,57 @@ shader_param/ray4_offset = 3.1
 script = ExtResource( 11 )
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 2, 0 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 0, 31, 0, 1, 31, 0, 2, 28, 0, 3, 28, 0, 4, 28, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 8, 28, 0, 9, 28, 0, 10, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 18, 28, 0, 19, 28, 0, 20, 28, 0, 21, 28, 0, 22, 28, 0, 23, 28, 0, 24, 28, 0, 25, 28, 0, 26, 28, 0, 27, 28, 0, 28, 28, 0, 29, 28, 0, 30, 31, 0, 31, 31, 0, 65536, 31, 0, 65537, 31, 0, 65538, 21, 0, 65539, 21, 0, 65540, 21, 0, 65541, 21, 0, 65542, 21, 0, 65543, 21, 0, 65544, 21, 0, 65545, 21, 0, 65546, 21, 0, 65547, 21, 0, 65548, 21, 0, 65549, 21, 0, 65550, 21, 0, 65551, 21, 0, 65552, 21, 0, 65553, 21, 0, 65554, 21, 0, 65555, 21, 0, 65556, 21, 0, 65557, 21, 0, 65558, 21, 0, 65559, 21, 0, 65560, 21, 0, 65561, 21, 0, 65562, 21, 0, 65563, 21, 0, 65564, 21, 0, 65565, 21, 0, 65566, 31, 0, 65567, 31, 0, 131072, 31, 0, 131073, 31, 0, 131103, 31, 0, 196608, 31, 0, 196609, 31, 0, 196639, 31, 0, 262144, 31, 0, 262145, 31, 0, 262175, 31, 0, 327680, 31, 0, 327681, 31, 0, 327711, 31, 0, 393216, 31, 0, 393217, 31, 0, 393247, 31, 0, 458752, 31, 0, 458782, 31, 0, 458783, 31, 0, 524288, 31, 0, 524318, 31, 0, 524319, 31, 0, 589824, 31, 0, 589854, 31, 0, 589855, 31, 0, 655360, 31, 0, 655390, 31, 0, 655391, 31, 0, 720896, 31, 0, 720926, 31, 0, 720927, 31, 0, 786432, 31, 0, 786462, 31, 0, 786463, 31, 0, 851968, 31, 0, 851969, 31, 0, 851998, 31, 0, 851999, 31, 0, 917504, 31, 0, 917505, 31, 0, 917534, 31, 0, 917535, 31, 0, 983040, 31, 0, 983041, 31, 0, 983070, 31, 0, 983071, 31, 0, 1048576, 31, 0, 1048577, 31, 0, 1048606, 31, 0, 1048607, 31, 0, 1114112, 31, 0, 1114113, 31, 0, 1114114, 17, 0, 1114115, 17, 0, 1114116, 17, 0, 1114117, 17, 0, 1114118, 17, 0, 1114119, 17, 0, 1114120, 17, 0, 1114121, 17, 0, 1114122, 17, 0, 1114123, 17, 0, 1114124, 17, 0, 1114125, 17, 0, 1114126, 17, 0, 1114127, 17, 0, 1114128, 17, 0, 1114129, 17, 0, 1114130, 17, 0, 1114131, 17, 0, 1114132, 17, 0, 1114133, 17, 0, 1114134, 17, 0, 1114135, 17, 0, 1114136, 17, 0, 1114137, 17, 0, 1114138, 17, 0, 1114139, 17, 0, 1114140, 17, 0, 1114141, 17, 0, 1114142, 31, 0, 1114143, 31, 0, 1179648, 31, 0, 1179649, 31, 0, 1179650, 21, 0, 1179651, 21, 0, 1179652, 21, 0, 1179653, 21, 0, 1179654, 21, 0, 1179655, 21, 0, 1179656, 21, 0, 1179657, 21, 0, 1179658, 21, 0, 1179659, 21, 0, 1179660, 21, 0, 1179661, 21, 0, 1179662, 21, 0, 1179663, 21, 0, 1179664, 21, 0, 1179665, 21, 0, 1179666, 21, 0, 1179667, 21, 0, 1179668, 21, 0, 1179669, 21, 0, 1179670, 21, 0, 1179671, 21, 0, 1179672, 21, 0, 1179673, 21, 0, 1179674, 21, 0, 1179675, 21, 0, 1179676, 21, 0, 1179677, 21, 0, 1179678, 31, 0, 1179679, 31, 0 )
+tile_data = PoolIntArray( -65524, 31, 0, -65523, 31, 0, -65522, 31, 0, -65521, 31, 0, -65520, 31, 0, -65519, 31, 0, 0, 30, 0, 1, 30, 0, 2, 31, 0, 3, 31, 0, 4, 31, 0, 5, 31, 0, 6, 31, 0, 7, 31, 0, 8, 31, 0, 9, 31, 0, 10, 31, 0, 11, 31, 0, 12, 31, 0, 13, 31, 0, 14, 31, 0, 15, 31, 0, 16, 31, 0, 17, 31, 0, 18, 31, 0, 19, 31, 0, 20, 31, 0, 21, 31, 0, 22, 31, 0, 23, 31, 0, 24, 31, 0, 25, 31, 0, 26, 31, 0, 27, 31, 0, 28, 31, 0, 29, 31, 0, 30, 31, 0, 31, 31, 0, 65536, 31, 0, 65537, 31, 0, 65538, 31, 0, 65539, 31, 0, 65540, 31, 0, 65541, 31, 0, 65542, 31, 0, 65543, 31, 0, 65544, 31, 0, 65545, 31, 0, 65546, 31, 0, 65547, 31, 0, 65548, 31, 0, 65549, 31, 0, 65550, 31, 0, 65551, 31, 0, 65552, 31, 0, 65553, 31, 0, 65554, 31, 0, 65555, 31, 0, 65556, 31, 0, 65557, 31, 0, 65558, 31, 0, 65559, 31, 0, 65560, 31, 0, 65561, 31, 0, 65562, 31, 0, 65563, 31, 0, 65564, 31, 0, 65565, 31, 0, 65566, 31, 0, 65567, 31, 0, 131072, 31, 0, 131073, 31, 0, 131103, 31, 0, 196608, 31, 0, 196639, 31, 0, 262144, 31, 0, 262175, 31, 0, 327680, 31, 0, 327711, 31, 0, 393216, 31, 0, 393247, 31, 0, 458752, 31, 0, 458782, 31, 0, 458783, 31, 0, 524288, 31, 0, 524289, 31, 0, 524318, 31, 0, 524319, 31, 0, 589824, 31, 0, 589854, 31, 0, 589855, 31, 0, 655360, 31, 0, 655390, 31, 0, 655391, 31, 0, 720896, 31, 0, 720926, 31, 0, 720927, 31, 0, 786432, 31, 0, 786462, 31, 0, 786463, 31, 0, 851968, 31, 0, 851969, 31, 0, 851998, 31, 0, 851999, 31, 0, 917504, 31, 0, 917505, 31, 0, 917534, 31, 0, 917535, 31, 0, 983040, 31, 0, 983041, 31, 0, 983070, 31, 0, 983071, 31, 0, 1048576, 31, 0, 1048577, 31, 0, 1048606, 31, 0, 1048607, 31, 0, 1114112, 31, 0, 1114113, 31, 0, 1114114, 31, 0, 1114115, 31, 0, 1114116, 31, 0, 1114117, 31, 0, 1114118, 31, 0, 1114119, 31, 0, 1114120, 31, 0, 1114121, 31, 0, 1114122, 31, 0, 1114123, 31, 0, 1114124, 31, 0, 1114125, 31, 0, 1114126, 31, 0, 1114127, 31, 0, 1114128, 31, 0, 1114129, 31, 0, 1114130, 31, 0, 1114131, 31, 0, 1114132, 31, 0, 1114133, 31, 0, 1114134, 31, 0, 1114135, 31, 0, 1114136, 31, 0, 1114137, 31, 0, 1114138, 31, 0, 1114139, 31, 0, 1114140, 31, 0, 1114141, 31, 0, 1114142, 31, 0, 1114143, 31, 0, 1179648, 31, 0, 1179649, 31, 0, 1179650, 31, 0, 1179651, 31, 0, 1179652, 31, 0, 1179653, 31, 0, 1179654, 31, 0, 1179655, 31, 0, 1179656, 31, 0, 1179657, 31, 0, 1179658, 31, 0, 1179659, 31, 0, 1179660, 31, 0, 1179661, 31, 0, 1179662, 31, 0, 1179663, 31, 0, 1179664, 31, 0, 1179665, 31, 0, 1179666, 31, 0, 1179667, 31, 0, 1179668, 31, 0, 1179669, 31, 0, 1179670, 31, 0, 1179671, 31, 0, 1179672, 31, 0, 1179673, 31, 0, 1179674, 31, 0, 1179675, 31, 0, 1179676, 31, 0, 1179677, 31, 0, 1179678, 31, 0, 1179679, 31, 0 )
 
 [node name="DoctorBug" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.247059, 0.247059, 0.247059, 1 )
 position = Vector2( 789, 255 )
-rotation = -0.0872665
-scale = Vector2( 0.4, 0.6 )
+rotation = -0.0872664
+scale = Vector2( 0.25, 0.35 )
 
 [node name="DoctorBug2" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.247059, 0.247059, 0.247059, 1 )
 position = Vector2( 917, 291 )
 rotation = 0.261799
-scale = Vector2( 0.35, 0.37 )
+scale = Vector2( 0.32, 0.37 )
 
 [node name="ChandelierBug1" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.858824, 0.858824, 0.858824, 1 )
 position = Vector2( 283, 332 )
-rotation = -6.28319
+rotation = -1.74846e-07
 scale = Vector2( 0.07, 0.07 )
 
 [node name="BugPack" parent="." instance=ExtResource( 8 )]
+modulate = Color( 0.262745, 0.262745, 0.262745, 1 )
 position = Vector2( 332, 118 )
-rotation = -3.45575
+rotation = 2.82743
 scale = Vector2( 0.05, 0.05 )
 
-[node name="LaserFly" parent="." groups=["light_bugs"] instance=ExtResource( 5 )]
-position = Vector2( 85, 146 )
-
 [node name="LightBug1" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
-position = Vector2( 334, 385 )
-
-[node name="LightBug3" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
-position = Vector2( 582, 385 )
+position = Vector2( 170, 206 )
+texture_scale_light = 2
 
 [node name="LightBug2" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
-position = Vector2( 806, 443 )
+position = Vector2( 374, 387 )
+light_loss_speed = 6
+texture_scale_light = 2
+
+[node name="LightBug3" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
+position = Vector2( 639, 294 )
+light_loss_speed = 7
+texture_scale_light = 2
+
+[node name="LightBug4" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
+position = Vector2( 841, 161 )
+speed = Vector2( 10, 200 )
+light_loss_speed = 4
+texture_scale_light = 3
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 101, 509 )
@@ -919,6 +932,23 @@ light_mask = 13
 material = SubResource( 34 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 1
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoLights2" type="ColorRect" parent="."]
+light_mask = 3
+material = SubResource( 35 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 1
 color = Color( 0.192157, 0.192157, 0.192157, 1 )
 script = ExtResource( 12 )
 __meta__ = {
@@ -941,17 +971,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DiscoLights2" type="ColorRect" parent="."]
-light_mask = 3
-material = SubResource( 35 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="DiscoRoomBackground2" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -966,14 +985,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -1
-
 [node name="GameTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
 [node name="GameInfo" parent="." instance=ExtResource( 13 )]
+
+[node name="Game_Over" parent="." instance=ExtResource( 5 )]
+mouse_filter = 0
 
 [connection signal="ready" from="GameTimer" to="." method="_on_GameTimer_ready"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
