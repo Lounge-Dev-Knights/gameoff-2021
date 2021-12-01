@@ -234,7 +234,7 @@ color_ramp = SubResource( 10 )
 [node name="DiscolightPortal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 453.259, 107.914 )
 label_text = ""
-scene = "res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.tscn"
+scene = "res://game/disco/disco_light_minigame/LightMinigame.tscn"
 soundeffect = "Bug2"
 
 [node name="TextureRect" type="TextureRect" parent="DiscolightPortal/LabelContainer" index="0"]

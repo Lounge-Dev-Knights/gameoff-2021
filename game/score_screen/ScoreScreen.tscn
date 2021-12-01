@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=2]
@@ -18,8 +18,7 @@
 [ext_resource path="res://game/bugs/Bug_Vamp/Vamp.tscn" type="PackedScene" id=16]
 [ext_resource path="res://game/ui/images/menu.png" type="Texture" id=17]
 [ext_resource path="res://game/ui/images/menu_pressed.png" type="Texture" id=18]
-[ext_resource path="res://game/score_screen/bugbook.png" type="Texture" id=19]
-[ext_resource path="res://game/score_screen/bugbook_frame.png" type="Texture" id=20]
+[ext_resource path="res://game/score_screen/BugbookEntry.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -242,18 +241,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BugbookEntry" type="Node2D" parent="."]
-position = Vector2( 26.9695, 410.536 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BugbookFrame" type="Sprite" parent="BugbookEntry"]
-position = Vector2( 600.031, -200.536 )
-texture = ExtResource( 20 )
-
-[node name="Bugbook" type="Sprite" parent="BugbookEntry"]
-position = Vector2( 600.031, -200.536 )
-texture = ExtResource( 19 )
-
 [node name="PartyAudience" type="Node2D" parent="."]
 position = Vector2( 26.9695, 410.536 )
 
@@ -344,5 +331,12 @@ texture_hover = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BugbookEntry" parent="." instance=ExtResource( 19 )]
+margin_left = 234.0
+margin_top = 207.0
+margin_right = 434.0
+margin_bottom = 457.0
+rect_rotation = -4.90819
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
