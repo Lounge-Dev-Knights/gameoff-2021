@@ -1,98 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game/title_screen/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://game/ui/StartGameButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=3]
-[ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=4]
+[ext_resource path="res://game/title_screen/Startbildschirm_V1.png" type="Texture" id=3]
 [ext_resource path="res://game/ui/images/dumpster_party.png" type="Texture" id=5]
 [ext_resource path="res://game/ui/QuitButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://game/ui/CreditsButton.tscn" type="PackedScene" id=7]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-
-uniform vec2 position = vec2(0.3);
-uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
-
-uniform float speed = 1.0;
-uniform float ray1_offset = 1.3;
-uniform float ray2_offset = 2.4;
-uniform float ray3_offset = 2.6;
-uniform float ray4_offset = 3.1;
-
-
-mat2 rotate(float _angle) {
-    return mat2(vec2(cos(_angle), -sin(_angle)),
-                vec2(sin(_angle), cos(_angle)));
-}
-
-vec4 screen(vec4 base, vec4 blend) {
-	return 1.0 - (1.0 - base) * (1.0 - blend);
-}
-
-void fragment() {
-	float rotation = TIME * speed / 2.0;
-	float angle_ray1 = mod(ray1_offset + rotation, 3.14159);
-	float angle_ray2 = mod(ray2_offset + rotation, 3.14159);
-	float angle_ray3 = mod(ray3_offset + rotation, 3.14159);
-	float angle_ray4 = mod(ray4_offset + rotation, 3.14159);
-	
-	vec2 offset = UV - position;
-	float angle_current = acos((offset / length(offset)).x);
-	
-	
-	float dist = abs(angle_ray1 - angle_current);
-	dist = min(dist, abs(angle_ray2 - angle_current));
-	dist = min(dist, abs(angle_ray3 - angle_current));
-	dist = min(dist, abs(angle_ray4 - angle_current));
-	
-	if (dist > 3.14159 / 2.0) {
-		dist = 3.14159 - dist;
-	}
-	
-	vec3 shine = dist * color.rgb;
-
-	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
-	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
-	// With \"Screen\" blend mode:
-	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
-	
-	COLOR = vec4(shine, 0.1 - dist * dist * 120.0);
-	//COLOR.a = 0.5;
-	
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/position = Vector2( 0, 0 )
-shader_param/color = Color( 1, 0.740333, 0.62, 0.8 )
-shader_param/speed = 2.0
-shader_param/ray1_offset = 1.3
-shader_param/ray2_offset = 2.4
-shader_param/ray3_offset = 2.6
-shader_param/ray4_offset = 3.1
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 1 )
-shader_param/position = Vector2( 0.9, 0 )
-shader_param/color = Color( 0.58904, 0.4884, 0.74, 0.8 )
-shader_param/speed = 2.0
-shader_param/ray1_offset = 1.3
-shader_param/ray2_offset = 2.4
-shader_param/ray3_offset = 2.6
-shader_param/ray4_offset = 3.1
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 1 )
-shader_param/position = Vector2( 0.75, 0.32 )
-shader_param/color = Color( 1, 0.619608, 0.627451, 0.8 )
-shader_param/speed = 2.0
-shader_param/ray1_offset = 1.3
-shader_param/ray2_offset = 2.4
-shader_param/ray3_offset = 2.6
-shader_param/ray4_offset = 3.1
 
 [sub_resource type="Shader" id=13]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
@@ -147,39 +60,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DiscoLights" type="ColorRect" parent="Background"]
-material = SubResource( 2 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DiscoLights2" type="ColorRect" parent="Background"]
-material = SubResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DiscoLights3" type="ColorRect" parent="Background"]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.192157, 0.192157, 0.192157, 1 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="SmokeParticles" type="CPUParticles2D" parent="."]
 material = SubResource( 15 )
 position = Vector2( 1210.01, 528.911 )
@@ -195,6 +75,32 @@ initial_velocity_random = 0.3
 angle_random = 1.0
 scale_amount_curve = SubResource( 17 )
 color_ramp = SubResource( 18 )
+
+[node name="StartGameButton" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 464.0
+margin_top = 253.0
+margin_right = 864.0
+margin_bottom = 453.0
+
+[node name="Credits" parent="." instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 662.0
+margin_top = 440.0
+margin_right = 812.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 150, 60 )
+
+[node name="Quit" parent="." instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 888.0
+margin_top = 439.0
+margin_right = 988.0
+margin_bottom = 639.0
+rect_min_size = Vector2( 100, 50 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -214,47 +120,6 @@ custom_constants/margin_bottom = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 350.0
-margin_bottom = 275.0
-mouse_filter = 2
-custom_constants/separation = 5
-
-[node name="StartGameButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 300.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 300, 80 )
-
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 85.0
-margin_right = 300.0
-margin_bottom = 105.0
-disabled = true
-text = "Settings"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Credits" parent="MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 110.0
-margin_right = 300.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 300, 60 )
-
-[node name="Quit" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 175.0
-margin_right = 300.0
-margin_bottom = 225.0
-rect_min_size = Vector2( 300, 50 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
@@ -293,18 +158,17 @@ margin_bottom = 86.0
 text = "Cocktail Bar"
 
 [node name="DumpsterParty" type="Sprite" parent="."]
-position = Vector2( 496, 329 )
+position = Vector2( 636, 386 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 offset = Vector2( 32.5001, -507.5 )
 
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_Button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_Button_mouse_entered"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_Button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="mouse_entered" from="StartGameButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="mouse_entered" from="Credits" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+[connection signal="mouse_entered" from="Quit" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Earworm" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Earworm" to="." method="_on_Earworm_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Disco Light" to="." method="_on_Button_mouse_entered"]

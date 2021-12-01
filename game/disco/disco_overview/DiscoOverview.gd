@@ -26,11 +26,13 @@ func _ready() -> void:
 	MusicEngine.play_song("Club1")
 	
 	
-	var guest_count = int(12.0 * (float(TotalScore.calculate_total()) / float(TotalScore.maximum_score)))
-	print(guest_count)
+	var guest_count = int(BUGS.size() * (float(TotalScore.calculate_total()) / float(TotalScore.maximum_score)))
+	guest_count = min(guest_count, BUGS.size())
 	
-	for _i in guest_count:
-		var guest = BUGS[randi() % BUGS.size()].instance()
+	BUGS.shuffle()
+	
+	for i in range(guest_count):
+		var guest = BUGS[i].instance()
 		guest.position = Vector2(rand_range(-800, 800), rand_range(-300, 300))
 		party_audience.add_child(guest)
 	
