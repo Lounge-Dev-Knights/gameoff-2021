@@ -10,8 +10,7 @@ onready var background = $CanvasLayer/TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(modulate)
-	pass # Replace with function body.
+	SceneLoader.fade_color = Color.black
 	MusicEngine.play_song("Club1")
 
 
