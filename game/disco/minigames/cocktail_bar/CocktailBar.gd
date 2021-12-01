@@ -17,9 +17,9 @@ onready var game_timer := $GameTimer
 onready var menu_popup := $CanvasLayer/MenuPopup
 onready var menu_score_container := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/HBoxContainer
 onready var menu_score := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/HBoxContainer/Score
-onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
+onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ContinueButton
 onready var menu_restart := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/RestartButton
-onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ShowInstructions
+onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/InstructionsButton
 onready var menu_exit := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/DumpsterPartyButton
 
 
@@ -220,6 +220,8 @@ func _on_ShowInstructions_pressed():
 	
 	tutorial.show()
 	total_score = 0
+	$GameTimer.stop()
+	
 	menu_popup.hide()
 	
 
