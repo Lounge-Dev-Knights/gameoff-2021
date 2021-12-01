@@ -1,15 +1,17 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://game/disco/disco_light_minigame/source/tileset_Kings and Pigs/Sprites/14-TileSets/Terrain (32x32).png" type="Texture" id=1]
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/Firefly.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/disco/disco_light_minigame/source/images/DiscoRoomBackground_1.png" type="Texture" id=4]
+[ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/title_screen/Background_Light.png" type="Texture" id=4]
 [ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LaserFly.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LaserBeam.tscn" type="PackedScene" id=6]
-[ext_resource path="res://game/assets/bugs/Game_Bug6.png" type="Texture" id=7]
-[ext_resource path="res://game/assets/bugs/Game_Bug7.png" type="Texture" id=8]
-[ext_resource path="res://game/assets/bugs/Game_Bug3.png" type="Texture" id=9]
-[ext_resource path="res://game/assets/bugs/Game_Bug4.png" type="Texture" id=10]
+[ext_resource path="res://game/disco/disco_light_minigame/source/Actors/LightBug2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/bugs/chandelier_bug/ChandelierBUg.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game/bugs/bug_pack/BugPack.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.gd" type="Script" id=11]
+[ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=12]
+[ext_resource path="res://game/disco/disco_light_minigame/source/ui/GameInfo.tscn" type="PackedScene" id=13]
+[ext_resource path="res://game/disco/disco_light_minigame/source/images/Background_Light-FRONT.png" type="Texture" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -85,6 +87,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=26]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=36]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=27]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -756,49 +761,114 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 30/z_index = 0
+31/name = "Terrain (32x32).png 31"
+31/texture = ExtResource( 1 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 128, 0, 32, 32 )
+31/tile_mode = 0
+31/occluder_offset = Vector2( 0, 0 )
+31/navigation_offset = Vector2( 0, 0 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+31/shape = SubResource( 36 )
+31/shape_one_way = false
+31/shape_one_way_margin = 1.0
+31/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 36 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+31/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Shader" id=33]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/god-rays
 
-[node name="DiscoRoomBackground1" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
+Feel free to use, improve and change this shader according to your needs
+and consider sharing the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+
+uniform vec2 position = vec2(0.3);
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform float speed = 1.0;
+uniform float ray1_offset = 1.3;
+uniform float ray2_offset = 2.4;
+uniform float ray3_offset = 2.6;
+uniform float ray4_offset = 3.1;
+
+
+mat2 rotate(float _angle) {
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
 }
 
-[node name="GameBug1" type="Sprite" parent="."]
-position = Vector2( 927, 402 )
-scale = Vector2( 0.245117, 0.3425 )
-texture = ExtResource( 9 )
+vec4 screen(vec4 base, vec4 blend) {
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
 
-[node name="GameBug4" type="Sprite" parent="."]
-position = Vector2( 596, 426 )
-scale = Vector2( 0.245117, 0.3425 )
-texture = ExtResource( 10 )
+void fragment() {
+	float rotation = TIME * speed / 2.0;
+	float angle_ray1 = mod(ray1_offset + rotation, 3.14159);
+	float angle_ray2 = mod(ray2_offset + rotation, 3.14159);
+	float angle_ray3 = mod(ray3_offset + rotation, 3.14159);
+	float angle_ray4 = mod(ray4_offset + rotation, 3.14159);
+	
+	vec2 offset = UV - position;
+	float angle_current = acos((offset / length(offset)).x);
+	
+	
+	float dist = abs(angle_ray1 - angle_current);
+	dist = min(dist, abs(angle_ray2 - angle_current));
+	dist = min(dist, abs(angle_ray3 - angle_current));
+	dist = min(dist, abs(angle_ray4 - angle_current));
+	
+	if (dist > 3.14159 / 2.0) {
+		dist = 3.14159 - dist;
+	}
+	
+	vec3 shine = dist * color.rgb;
 
-[node name="GameBug6" type="Sprite" parent="."]
-position = Vector2( 343.84, 425.47 )
-scale = Vector2( 0.127266, 0.188235 )
-texture = ExtResource( 7 )
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, 0.1 - dist * dist * 120.0);
+	//COLOR.a = 0.5;
+	
+	
+}"
 
-[node name="GameBug2" type="Sprite" parent="."]
-position = Vector2( 269, 394 )
-scale = Vector2( 0.0904694, 0.143136 )
-texture = ExtResource( 7 )
+[sub_resource type="ShaderMaterial" id=34]
+shader = SubResource( 33 )
+shader_param/position = Vector2( 0, 0 )
+shader_param/color = Color( 1, 0.62, 0.626333, 0.8 )
+shader_param/speed = 2.0
+shader_param/ray1_offset = 1.3
+shader_param/ray2_offset = 2.4
+shader_param/ray3_offset = 2.6
+shader_param/ray4_offset = 3.1
 
-[node name="GameBug7" type="Sprite" parent="."]
-position = Vector2( 699, 418 )
-scale = Vector2( 0.199219, 0.251667 )
-texture = ExtResource( 8 )
+[sub_resource type="ShaderMaterial" id=35]
+shader = SubResource( 33 )
+shader_param/position = Vector2( 1, 0 )
+shader_param/color = Color( 0, 0.811765, 1, 1 )
+shader_param/speed = -1.0
+shader_param/ray1_offset = 1.3
+shader_param/ray2_offset = 2.4
+shader_param/ray3_offset = 2.6
+shader_param/ray4_offset = 3.1
 
-[node name="LaserFly" parent="." instance=ExtResource( 5 )]
-position = Vector2( 85, 144 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="Level1" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -806,23 +876,104 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 0, 15, 0, 1, 28, 0, 2, 28, 0, 3, 28, 0, 4, 28, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 8, 28, 0, 9, 28, 0, 10, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 18, 28, 0, 19, 28, 0, 20, 28, 0, 21, 28, 0, 22, 28, 0, 23, 28, 0, 24, 28, 0, 25, 28, 0, 26, 28, 0, 27, 28, 0, 28, 28, 0, 29, 28, 0, 30, 28, 0, 31, 28, 0, 65536, 15, 0, 65537, 21, 0, 65538, 21, 0, 65539, 21, 0, 65540, 21, 0, 65541, 21, 0, 65542, 21, 0, 65543, 21, 0, 65544, 21, 0, 65545, 21, 0, 65546, 21, 0, 65547, 21, 0, 65548, 21, 0, 65549, 21, 0, 65550, 21, 0, 65551, 21, 0, 65552, 21, 0, 65553, 21, 0, 65554, 21, 0, 65555, 21, 0, 65556, 21, 0, 65557, 21, 0, 65558, 21, 0, 65559, 21, 0, 65560, 21, 0, 65561, 21, 0, 65562, 21, 0, 65563, 21, 0, 65564, 21, 0, 65565, 21, 0, 65566, 21, 0, 65567, 19, 0, 131072, 15, 0, 131073, 19, 0, 131102, 15, 0, 131103, 19, 0, 196608, 15, 0, 196609, 19, 0, 196638, 15, 0, 196639, 19, 0, 262144, 15, 0, 262145, 19, 0, 262174, 15, 0, 262175, 19, 0, 327680, 15, 0, 327681, 19, 0, 327710, 15, 0, 327711, 19, 0, 393216, 15, 0, 393217, 19, 0, 393246, 15, 0, 393247, 19, 0, 458752, 15, 0, 458753, 19, 0, 458782, 15, 0, 458783, 19, 0, 524288, 15, 0, 524289, 19, 0, 524318, 15, 0, 524319, 19, 0, 589824, 15, 0, 589825, 19, 0, 589854, 15, 0, 589855, 19, 0, 655360, 15, 0, 655361, 19, 0, 655390, 15, 0, 655391, 19, 0, 720896, 15, 0, 720897, 19, 0, 720926, 15, 0, 720927, 19, 0, 786432, 15, 0, 786433, 19, 0, 786462, 15, 0, 786463, 19, 0, 851968, 15, 0, 851969, 19, 0, 851998, 15, 0, 851999, 19, 0, 917504, 15, 0, 917505, 19, 0, 917534, 15, 0, 917535, 19, 0, 983040, 15, 0, 983041, 19, 0, 983070, 15, 0, 983071, 19, 0, 1048576, 15, 0, 1048577, 19, 0, 1048606, 15, 0, 1048607, 19, 0, 1114112, 15, 0, 1114113, 21, 0, 1114114, 17, 0, 1114115, 17, 0, 1114116, 17, 0, 1114117, 17, 0, 1114118, 17, 0, 1114119, 17, 0, 1114120, 17, 0, 1114121, 17, 0, 1114122, 17, 0, 1114123, 17, 0, 1114124, 17, 0, 1114125, 17, 0, 1114126, 17, 0, 1114127, 17, 0, 1114128, 17, 0, 1114129, 17, 0, 1114130, 17, 0, 1114131, 17, 0, 1114132, 17, 0, 1114133, 17, 0, 1114134, 17, 0, 1114135, 17, 0, 1114136, 17, 0, 1114137, 17, 0, 1114138, 17, 0, 1114139, 17, 0, 1114140, 17, 0, 1114141, 17, 0, 1114142, 21, 0, 1114143, 30, 0, 1179648, 15, 0, 1179649, 21, 0, 1179650, 21, 0, 1179651, 21, 0, 1179652, 21, 0, 1179653, 21, 0, 1179654, 21, 0, 1179655, 21, 0, 1179656, 21, 0, 1179657, 21, 0, 1179658, 21, 0, 1179659, 21, 0, 1179660, 21, 0, 1179661, 21, 0, 1179662, 21, 0, 1179663, 21, 0, 1179664, 21, 0, 1179665, 21, 0, 1179666, 21, 0, 1179667, 21, 0, 1179668, 21, 0, 1179669, 21, 0, 1179670, 21, 0, 1179671, 21, 0, 1179672, 21, 0, 1179673, 21, 0, 1179674, 21, 0, 1179675, 21, 0, 1179676, 21, 0, 1179677, 21, 0, 1179678, 21, 0, 1179679, 21, 0 )
+tile_data = PoolIntArray( 0, 31, 0, 1, 31, 0, 2, 28, 0, 3, 28, 0, 4, 28, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 8, 28, 0, 9, 28, 0, 10, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 18, 28, 0, 19, 28, 0, 20, 28, 0, 21, 28, 0, 22, 28, 0, 23, 28, 0, 24, 28, 0, 25, 28, 0, 26, 28, 0, 27, 28, 0, 28, 28, 0, 29, 28, 0, 30, 31, 0, 31, 31, 0, 65536, 31, 0, 65537, 31, 0, 65538, 21, 0, 65539, 21, 0, 65540, 21, 0, 65541, 21, 0, 65542, 21, 0, 65543, 21, 0, 65544, 21, 0, 65545, 21, 0, 65546, 21, 0, 65547, 21, 0, 65548, 21, 0, 65549, 21, 0, 65550, 21, 0, 65551, 21, 0, 65552, 21, 0, 65553, 21, 0, 65554, 21, 0, 65555, 21, 0, 65556, 21, 0, 65557, 21, 0, 65558, 21, 0, 65559, 21, 0, 65560, 21, 0, 65561, 21, 0, 65562, 21, 0, 65563, 21, 0, 65564, 21, 0, 65565, 21, 0, 65566, 31, 0, 65567, 31, 0, 131072, 31, 0, 131073, 31, 0, 131103, 31, 0, 196608, 31, 0, 196609, 31, 0, 196639, 31, 0, 262144, 31, 0, 262145, 31, 0, 262175, 31, 0, 327680, 31, 0, 327681, 31, 0, 327711, 31, 0, 393216, 31, 0, 393217, 31, 0, 393247, 31, 0, 458752, 31, 0, 458782, 31, 0, 458783, 31, 0, 524288, 31, 0, 524318, 31, 0, 524319, 31, 0, 589824, 31, 0, 589854, 31, 0, 589855, 31, 0, 655360, 31, 0, 655390, 31, 0, 655391, 31, 0, 720896, 31, 0, 720926, 31, 0, 720927, 31, 0, 786432, 31, 0, 786462, 31, 0, 786463, 31, 0, 851968, 31, 0, 851969, 31, 0, 851998, 31, 0, 851999, 31, 0, 917504, 31, 0, 917505, 31, 0, 917534, 31, 0, 917535, 31, 0, 983040, 31, 0, 983041, 31, 0, 983070, 31, 0, 983071, 31, 0, 1048576, 31, 0, 1048577, 31, 0, 1048606, 31, 0, 1048607, 31, 0, 1114112, 31, 0, 1114113, 31, 0, 1114114, 17, 0, 1114115, 17, 0, 1114116, 17, 0, 1114117, 17, 0, 1114118, 17, 0, 1114119, 17, 0, 1114120, 17, 0, 1114121, 17, 0, 1114122, 17, 0, 1114123, 17, 0, 1114124, 17, 0, 1114125, 17, 0, 1114126, 17, 0, 1114127, 17, 0, 1114128, 17, 0, 1114129, 17, 0, 1114130, 17, 0, 1114131, 17, 0, 1114132, 17, 0, 1114133, 17, 0, 1114134, 17, 0, 1114135, 17, 0, 1114136, 17, 0, 1114137, 17, 0, 1114138, 17, 0, 1114139, 17, 0, 1114140, 17, 0, 1114141, 17, 0, 1114142, 31, 0, 1114143, 31, 0, 1179648, 31, 0, 1179649, 31, 0, 1179650, 21, 0, 1179651, 21, 0, 1179652, 21, 0, 1179653, 21, 0, 1179654, 21, 0, 1179655, 21, 0, 1179656, 21, 0, 1179657, 21, 0, 1179658, 21, 0, 1179659, 21, 0, 1179660, 21, 0, 1179661, 21, 0, 1179662, 21, 0, 1179663, 21, 0, 1179664, 21, 0, 1179665, 21, 0, 1179666, 21, 0, 1179667, 21, 0, 1179668, 21, 0, 1179669, 21, 0, 1179670, 21, 0, 1179671, 21, 0, 1179672, 21, 0, 1179673, 21, 0, 1179674, 21, 0, 1179675, 21, 0, 1179676, 21, 0, 1179677, 21, 0, 1179678, 31, 0, 1179679, 31, 0 )
 
-[node name="Firefly" parent="." instance=ExtResource( 3 )]
-position = Vector2( 251, 332 )
-speed = Vector2( 300, 100 )
-max_light_hp = 110
-light_loss_speed = 15
+[node name="DoctorBug" parent="." instance=ExtResource( 3 )]
+position = Vector2( 789, 255 )
+rotation = -0.0872665
+scale = Vector2( 0.4, 0.6 )
 
-[node name="Firefly2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 478, 479 )
+[node name="DoctorBug2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 917, 291 )
+rotation = 0.261799
+scale = Vector2( 0.35, 0.37 )
 
-[node name="Firefly3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 797, 510 )
-speed = Vector2( 250, 150 )
+[node name="ChandelierBug1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 283, 332 )
+rotation = -6.28319
+scale = Vector2( 0.07, 0.07 )
+
+[node name="BugPack" parent="." instance=ExtResource( 8 )]
+position = Vector2( 332, 118 )
+rotation = -3.45575
+scale = Vector2( 0.05, 0.05 )
+
+[node name="LaserFly" parent="." groups=["light_bugs"] instance=ExtResource( 5 )]
+position = Vector2( 85, 146 )
+
+[node name="LightBug1" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
+position = Vector2( 334, 385 )
+
+[node name="LightBug3" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
+position = Vector2( 582, 385 )
+
+[node name="LightBug2" parent="." groups=["light_bugs"] instance=ExtResource( 6 )]
+position = Vector2( 806, 443 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 101, 509 )
+light_give_speed = 100
 
-[node name="LaserBeam2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 946, 78 )
+[node name="DiscoLights" type="ColorRect" parent="."]
+light_mask = 13
+material = SubResource( 34 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoRoomBackground1" type="TextureRect" parent="."]
+modulate = Color( 0.4, 0.0470588, 0.262745, 1 )
+self_modulate = Color( 0.517647, 1, 0.592157, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -50.0
+margin_right = 1024.0
+margin_bottom = 650.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoLights2" type="ColorRect" parent="."]
+light_mask = 3
+material = SubResource( 35 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoRoomBackground2" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = -54.0
+margin_right = 1028.0
+margin_bottom = 701.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="GameInfo" parent="." instance=ExtResource( 13 )]
+
+[connection signal="ready" from="GameTimer" to="." method="_on_GameTimer_ready"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

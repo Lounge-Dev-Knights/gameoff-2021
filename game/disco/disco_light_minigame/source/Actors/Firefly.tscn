@@ -29,7 +29,7 @@ height = 112.0
 extents = Vector2( 14, 28.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 12, 25.5 )
+extents = Vector2( 36, 49.5 )
 
 [node name="Firefly" type="KinematicBody2D"]
 collision_layer = 16
@@ -74,6 +74,7 @@ shape = SubResource( 2 )
 [node name="LightRefillerArea2d" type="Area2D" parent="."]
 
 [node name="Lightrefillercollision" type="CollisionShape2D" parent="LightRefillerArea2d"]
+position = Vector2( 1, 12 )
 shape = SubResource( 4 )
 
 [node name="LightHPbar" parent="." instance=ExtResource( 1 )]
@@ -83,3 +84,4 @@ margin_right = -20.0
 margin_bottom = 29.0
 
 [connection signal="body_entered" from="LightRefillerArea2d" to="." method="_on_LightRefillerArea2d_body_entered"]
+[connection signal="body_exited" from="LightRefillerArea2d" to="." method="_on_LightRefillerArea2d_body_exited"]
