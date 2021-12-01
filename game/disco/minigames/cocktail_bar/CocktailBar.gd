@@ -3,8 +3,10 @@ extends Node2D
 
 const INGREDIENTS := [
 	preload("./ingredients/Blood.tscn"),
-	preload("./ingredients/Cheese.tscn"),
-	preload("./ingredients/IceCube.tscn")
+	preload("./ingredients/Leaf.tscn"),
+	preload("./ingredients/Honey.tscn"),
+	preload("./ingredients/Flower Petal.tscn"),
+	preload("./ingredients/Ice Cube.tscn")
 ]
 
 
