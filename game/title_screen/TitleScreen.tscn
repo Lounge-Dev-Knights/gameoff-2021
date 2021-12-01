@@ -1,6 +1,127 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game/title_screen/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://game/ui/StartGameButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=3]
+[ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=4]
+[ext_resource path="res://game/ui/images/dumpster_party.png" type="Texture" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+
+uniform vec2 position = vec2(0.3);
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform float speed = 1.0;
+uniform float ray1_offset = 1.3;
+uniform float ray2_offset = 2.4;
+uniform float ray3_offset = 2.6;
+uniform float ray4_offset = 3.1;
+
+
+mat2 rotate(float _angle) {
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend) {
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment() {
+	float rotation = TIME * speed / 2.0;
+	float angle_ray1 = mod(ray1_offset + rotation, 3.14159);
+	float angle_ray2 = mod(ray2_offset + rotation, 3.14159);
+	float angle_ray3 = mod(ray3_offset + rotation, 3.14159);
+	float angle_ray4 = mod(ray4_offset + rotation, 3.14159);
+	
+	vec2 offset = UV - position;
+	float angle_current = acos((offset / length(offset)).x);
+	
+	
+	float dist = abs(angle_ray1 - angle_current);
+	dist = min(dist, abs(angle_ray2 - angle_current));
+	dist = min(dist, abs(angle_ray3 - angle_current));
+	dist = min(dist, abs(angle_ray4 - angle_current));
+	
+	if (dist > 3.14159 / 2.0) {
+		dist = 3.14159 - dist;
+	}
+	
+	vec3 shine = dist * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, 0.1 - dist * dist * 120.0);
+	//COLOR.a = 0.5;
+	
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/position = Vector2( 0, 0 )
+shader_param/color = Color( 1, 0.740333, 0.62, 0.8 )
+shader_param/speed = 2.0
+shader_param/ray1_offset = 1.3
+shader_param/ray2_offset = 2.4
+shader_param/ray3_offset = 2.6
+shader_param/ray4_offset = 3.1
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/position = Vector2( 0.9, 0 )
+shader_param/color = Color( 0.58904, 0.4884, 0.74, 0.8 )
+shader_param/speed = 2.0
+shader_param/ray1_offset = 1.3
+shader_param/ray2_offset = 2.4
+shader_param/ray3_offset = 2.6
+shader_param/ray4_offset = 3.1
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/position = Vector2( 0.75, 0.32 )
+shader_param/color = Color( 1, 0.619608, 0.627451, 0.8 )
+shader_param/speed = 2.0
+shader_param/ray1_offset = 1.3
+shader_param/ray2_offset = 2.4
+shader_param/ray3_offset = 2.6
+shader_param/ray4_offset = 3.1
+
+[sub_resource type="Shader" id=13]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+
+void fragment() {
+	vec2 offset = (UV - vec2(0.5)) * 2.0;
+	float r = offset.x * offset.x + offset.y * offset.y;
+	
+	
+	COLOR.a *= texture(TEXTURE, UV).r - r;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 13 )
+
+[sub_resource type="OpenSimplexNoise" id=14]
+
+[sub_resource type="NoiseTexture" id=16]
+noise = SubResource( 14 )
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.0682907, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.0233161, 0.313471, 0.388601, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.352941, 1, 1, 1, 0 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -11,69 +132,141 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color( 1, 0.73, 0.73, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -311, -17 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoLights" type="ColorRect" parent="Background"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 463.0
-margin_top = 235.0
-margin_right = 560.0
-margin_bottom = 364.0
+[node name="DiscoLights2" type="ColorRect" parent="Background"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscoLights3" type="ColorRect" parent="Background"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.192157, 0.192157, 0.192157, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+material = SubResource( 15 )
+position = Vector2( 1210.01, 528.911 )
+amount = 16
+lifetime = 30.0
+randomness = 0.12
+texture = SubResource( 16 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, -1 )
+initial_velocity = 50.0
+initial_velocity_random = 0.3
+angle_random = 1.0
+scale_amount_curve = SubResource( 17 )
+color_ramp = SubResource( 18 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -189.0
+margin_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 350.0
+margin_bottom = 239.0
 mouse_filter = 2
 custom_constants/separation = 5
 
-[node name="NewGame" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 97.0
-margin_bottom = 20.0
-text = "Start party!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="StartGameButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 300.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 300, 80 )
 
-[node name="Gallery" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 25.0
-margin_right = 97.0
-margin_bottom = 45.0
+[node name="Gallery" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 85.0
+margin_right = 300.0
+margin_bottom = 105.0
 disabled = true
 text = "Party reviews"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
-margin_top = 50.0
-margin_right = 97.0
-margin_bottom = 54.0
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 300.0
+margin_bottom = 114.0
 
-[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 59.0
-margin_right = 97.0
-margin_bottom = 79.0
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 119.0
+margin_right = 300.0
+margin_bottom = 139.0
 disabled = true
 text = "Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 84.0
-margin_right = 97.0
-margin_bottom = 104.0
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 144.0
+margin_right = 300.0
+margin_bottom = 164.0
 disabled = true
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 109.0
-margin_right = 97.0
-margin_bottom = 129.0
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 169.0
+margin_right = 300.0
+margin_bottom = 189.0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,13 +307,19 @@ margin_right = 97.0
 margin_bottom = 86.0
 text = "Cocktail Bar"
 
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_Button_mouse_entered"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Gallery" to="." method="_on_Button_mouse_entered"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_Button_mouse_entered"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_Button_mouse_entered"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Button_mouse_entered"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[node name="DumpsterParty" type="Sprite" parent="."]
+position = Vector2( 496, 329 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+offset = Vector2( 32.5001, -507.5 )
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Gallery" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Earworm" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Earworm" to="." method="_on_Earworm_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Disco Light" to="." method="_on_Button_mouse_entered"]

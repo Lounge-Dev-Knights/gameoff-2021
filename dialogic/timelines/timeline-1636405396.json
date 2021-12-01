@@ -4,7 +4,7 @@
 			"character": "character-1636405327.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Finally!\nYou're really late, mate...\nEverybody's waiting for instructions!"
+			"text": "Finally!\nYou're really late...\nEverybody's waiting for instructions!"
 		},
 		{
 			"character": "character-1636405418.json",
@@ -16,7 +16,7 @@
 			"character": "character-1636405327.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Very funny... We don't have time for this!\nWait, you forgot your nameplate again. Here is a new one... "
+			"text": "Very funny... We don't have time for this!\nYou forgot your nameplate again. Here is a new one... "
 		}
 	],
 	"metadata": {
