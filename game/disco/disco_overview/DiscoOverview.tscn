@@ -1,15 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://game/bugs/bug_bunny/BugBunny.tscn" type="PackedScene" id=1]
-[ext_resource path="res://game/bugs/doctor_bug/DoctorBug.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/bugs/bug_queen/BugQueen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/disco/disco_overview/bee-j.png" type="Texture" id=5]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=6]
 [ext_resource path="res://game/disco/disco_overview/DiscoOverview.gd" type="Script" id=7]
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=8]
 [ext_resource path="res://game/disco/disco_overview/MinigamePortal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://game/disco/disco_overview/cocktailroach.png" type="Texture" id=10]
+[ext_resource path="res://game/disco/disco_overview/lightning_bug.png" type="Texture" id=11]
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=16]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
 
 shader_type canvas_item;
@@ -26,12 +27,12 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 7 )
+shader = SubResource( 16 )
 
-[sub_resource type="OpenSimplexNoise" id=8]
+[sub_resource type="OpenSimplexNoise" id=17]
 
 [sub_resource type="NoiseTexture" id=6]
-noise = SubResource( 8 )
+noise = SubResource( 17 )
 
 [sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.0682907, 0.0, 0, 0 ]
@@ -51,7 +52,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=12]
 shader = SubResource( 11 )
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=19]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -116,7 +117,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 19 )
 shader_param/position = Vector2( 0, 0 )
 shader_param/color = Color( 1, 0.62, 0.626333, 0.8 )
 shader_param/speed = 2.0
@@ -125,8 +126,64 @@ shader_param/ray2_offset = 2.4
 shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
+[sub_resource type="Shader" id=20]
+code = "shader_type canvas_item;
+
+
+uniform vec2 position = vec2(0.3);
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform float speed = 1.0;
+uniform float ray1_offset = 1.3;
+uniform float ray2_offset = 2.4;
+uniform float ray3_offset = 2.6;
+uniform float ray4_offset = 3.1;
+
+
+mat2 rotate(float _angle) {
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend) {
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment() {
+	float rotation = TIME * speed / 2.0;
+	float angle_ray1 = mod(ray1_offset + rotation, 3.14159);
+	float angle_ray2 = mod(ray2_offset + rotation, 3.14159);
+	float angle_ray3 = mod(ray3_offset + rotation, 3.14159);
+	float angle_ray4 = mod(ray4_offset + rotation, 3.14159);
+	
+	vec2 offset = UV - position;
+	float angle_current = acos((offset / length(offset)).x);
+	
+	
+	float dist = abs(angle_ray1 - angle_current);
+	dist = min(dist, abs(angle_ray2 - angle_current));
+	dist = min(dist, abs(angle_ray3 - angle_current));
+	dist = min(dist, abs(angle_ray4 - angle_current));
+	
+	if (dist > 3.14159 / 2.0) {
+		dist = 3.14159 - dist;
+	}
+	
+	vec3 shine = dist * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, 0.1 - dist * dist * 120.0);
+	//COLOR.a = 0.5;
+	
+	
+}"
+
 [sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 1 )
+shader = SubResource( 20 )
 shader_param/position = Vector2( 1, 0 )
 shader_param/color = Color( 0, 0.811765, 1, 1 )
 shader_param/speed = -1.0
@@ -136,7 +193,7 @@ shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 1 )
+shader = SubResource( 20 )
 shader_param/position = Vector2( 0.8, 0.3 )
 shader_param/color = Color( 1, 0.560784, 0, 0.941176 )
 shader_param/speed = 2.0
@@ -145,10 +202,20 @@ shader_param/ray2_offset = 2.4
 shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
+[sub_resource type="DynamicFont" id=18]
+size = 40
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
 [node name="DiscoOverview" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="PartyAudience" type="YSort" parent="."]
+position = Vector2( 475, 412 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
 material = SubResource( 5 )
 position = Vector2( 1210.01, 528.911 )
 amount = 16
@@ -164,44 +231,95 @@ angle_random = 1.0
 scale_amount_curve = SubResource( 9 )
 color_ramp = SubResource( 10 )
 
-[node name="BugQueen" parent="." instance=ExtResource( 4 )]
-position = Vector2( 390.299, 482.857 )
-scale = Vector2( 0.657615, 0.619658 )
-
 [node name="DiscolightPortal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 453.259, 107.914 )
-label_text = "DiscoLight"
+label_text = ""
 scene = "res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.tscn"
-soundeffect = "Cocktail_drop"
+soundeffect = "Bug2"
+
+[node name="TextureRect" type="TextureRect" parent="DiscolightPortal/LabelContainer" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -43.0
+margin_right = 175.0
+margin_bottom = 57.0
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="DiscolightPortal/LabelContainer" index="1"]
+text = ""
 
 [node name="LightBug" parent="DiscolightPortal" instance=ExtResource( 3 )]
+show_behind_parent = true
 position = Vector2( -126.335, -6.9129 )
 rotation = -0.0786564
 scale = Vector2( 0.381244, 0.416327 )
 
 [node name="LightBug2" parent="DiscolightPortal" instance=ExtResource( 3 )]
+show_behind_parent = true
 position = Vector2( 139.203, -5.51529 )
 rotation = 0.223157
 scale = Vector2( 0.381244, 0.416327 )
 
 [node name="BarPortal" parent="." instance=ExtResource( 9 )]
-position = Vector2( 162.505, 395.132 )
-label_text = "Bar"
+position = Vector2( 199.923, 380.339 )
+label_text = ""
 scene = "res://game/disco/minigames/cocktail_bar/CocktailBar.tscn"
 soundeffect = "Cocktail_drop"
 
-[node name="EarwormPortal" parent="." instance=ExtResource( 9 )]
-position = Vector2( 794.716, 352.836 )
-label_text = "Earworm"
+[node name="TextureRect" type="TextureRect" parent="BarPortal/LabelContainer" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -181.0
+margin_top = -43.0
+margin_right = 175.0
+margin_bottom = 57.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="BarPortal/LabelContainer" index="1"]
+text = ""
+
+[node name="BeeJPortal" parent="." instance=ExtResource( 9 )]
+position = Vector2( 825.172, 371.11 )
+label_text = ""
 scene = "res://game/disco/minigames/earworm/Earworm.tscn"
+soundeffect = "Bug3"
 
-[node name="BugBunny" parent="." instance=ExtResource( 1 )]
-position = Vector2( 453.922, 399.137 )
-scale = Vector2( 0.426156, 0.466252 )
+[node name="Label" parent="BeeJPortal/LabelContainer" index="0"]
+text = ""
 
-[node name="DoctorBug" parent="." instance=ExtResource( 2 )]
-position = Vector2( 552.005, 428.901 )
-scale = Vector2( 0.513268, 0.633729 )
+[node name="TextureRect" type="TextureRect" parent="BeeJPortal/LabelContainer" index="1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -93.144
+margin_top = -45.5862
+margin_right = 89.856
+margin_bottom = 47.4138
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -251,3 +369,23 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Choose" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -234.0
+margin_top = -59.0
+margin_right = 234.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_fonts/font = SubResource( 18 )
+text = "Choose a staff member to introduce them to their job."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="DiscolightPortal"]
+[editable path="BarPortal"]
+[editable path="BeeJPortal"]

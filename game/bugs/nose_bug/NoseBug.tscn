@@ -175,7 +175,7 @@ tracks/2/keys = {
 [node name="NoseBug" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="Body" type="Sprite" parent="bug"]
 texture = ExtResource( 9 )

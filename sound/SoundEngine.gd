@@ -43,6 +43,22 @@ const sounds = {
 		"stream": preload("res://sound/bug_buzz_low.wav"),
 		"volume": -20
 		},
+	"PERFECT": {
+		"stream": preload("res://sound/EXCLAMATION_Smurf_Yay_mono.wav"),
+		"volume": -20
+		},
+	"GREAT": {
+		"stream": preload("res://sound/bug_buzz_bass.wav"),
+		"volume": -20
+		},
+	"NICE": {
+		"stream": preload("res://sound/bug_buzz_high.wav"),
+		"volume": -20
+		},
+	"OK": {
+		"stream": preload("res://sound/ORCH_Grunt_Short_01_mono.wav"),
+		"volume": -20
+		},
 }
 
 

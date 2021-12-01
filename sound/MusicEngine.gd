@@ -31,6 +31,10 @@ const songs = {
 	"stream": preload("res://sound/music/club3.ogg"),
 		"volume": -25
 	},
+	"Club4": {
+	"stream": preload("res://sound/music/club4.ogg"),
+		"volume": -25
+	},
 	#"Awakening": {
 	#	"stream": preload("res://audio/songs/ZitronSound - Awakening.ogg"),
 	#	"volume": 0

@@ -1,21 +1,92 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailBar.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/cocktail_bar/CocktailShaker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://game/ui/StartButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/ui/RestartButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Background-BAR.png" type="Texture" id=6]
+[ext_resource path="res://game/disco/minigames/cocktail_bar/Game_Front-BAR.png" type="Texture" id=7]
+[ext_resource path="res://game/ui/DumpsterPartyButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game/ui/MenuButton.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 226, 49.5 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 24
+[sub_resource type="Shader" id=7]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+
+void fragment() {
+	vec2 offset = (UV - vec2(0.5)) * 2.0;
+	float r = offset.x * offset.x + offset.y * offset.y;
+	
+	
+	COLOR.a *= texture(TEXTURE, UV).r - r;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 7 )
+
+[sub_resource type="OpenSimplexNoise" id=8]
+
+[sub_resource type="NoiseTexture" id=10]
+noise = SubResource( 8 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0.00271416 ), 0.0, 3.54454, 0, 0, Vector2( 1, 1 ), 0.0682907, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.0233161, 0.313471, 0.388601, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.364706, 1, 1, 1, 0.352941, 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 40
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Tutorial/VBoxContainer/Start:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "startbutton"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Tutorial/VBoxContainer/Start:rect_scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.95, 0.95 ) ]
+}
 
 [node name="CocktailBar" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="IngredientSpawner" type="CollisionShape2D" parent="."]
-position = Vector2( 226, -50 )
+position = Vector2( 226, -51 )
 shape = SubResource( 1 )
 
 [node name="IngredientSpawnTimer" type="Timer" parent="."]
@@ -26,11 +97,11 @@ autostart = true
 z_index = 2
 
 [node name="RecipeSlot1" type="Node2D" parent="." groups=["recipe_slots"]]
-position = Vector2( 631.464, 343.856 )
+position = Vector2( 620.61, 361.947 )
 z_index = 1
 
 [node name="RecipeSlot2" type="Node2D" parent="." groups=["recipe_slots"]]
-position = Vector2( 782.253, 339 )
+position = Vector2( 783.158, 311.864 )
 z_index = 1
 
 [node name="RecipeSlot3" type="Node2D" parent="." groups=["recipe_slots"]]
@@ -38,17 +109,39 @@ position = Vector2( 930.695, 340.053 )
 z_index = 1
 
 [node name="RecipeTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+material = SubResource( 9 )
+position = Vector2( 1175.12, 613.048 )
+amount = 16
+lifetime = 30.0
+randomness = 0.12
+texture = SubResource( 10 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, -1 )
+initial_velocity = 50.0
+initial_velocity_random = 0.3
+angle_random = 1.0
+scale_amount_curve = SubResource( 11 )
+color_ramp = SubResource( 12 )
+
+[node name="GameFront-Bar" type="Sprite" parent="."]
+position = Vector2( 512.652, 213.688 )
+scale = Vector2( 0.26, 0.26 )
+texture = ExtResource( 7 )
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 position = Vector2( -6.50079, -20.431 )
 color = Color( 0.447059, 0.286275, 0.235294, 1 )
 polygon = PoolVector2Array( -72.4363, 354.088, 1164.57, 342.944, 1138.57, 727.419, -60.3634, 679.127 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="Score" type="MarginContainer" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -40.0
@@ -62,29 +155,201 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Score"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 131.0
-margin_bottom = 82.0
+margin_right = 183.0
+margin_bottom = 142.0
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-margin_right = 111.0
-margin_bottom = 29.0
-custom_fonts/font = SubResource( 2 )
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
+margin_right = 163.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 18 )
 text = "Score:   0"
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-margin_top = 33.0
-margin_right = 111.0
-margin_bottom = 62.0
-custom_fonts/font = SubResource( 2 )
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Score/VBoxContainer"]
+margin_top = 63.0
+margin_right = 163.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 18 )
 text = "Time: 2:00"
+
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Collect" type="Label" parent="CanvasLayer/Tutorial"]
+margin_left = 59.3461
+margin_top = 332.766
+margin_right = 363.346
+margin_bottom = 370.766
+custom_fonts/font = SubResource( 18 )
+text = "1. Collect ingredients"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Create" type="Label" parent="CanvasLayer/Tutorial"]
+margin_left = 86.5222
+margin_top = 391.463
+margin_right = 533.522
+margin_bottom = 452.463
+custom_fonts/font = SubResource( 18 )
+text = "2. Click to create a cocktail"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Serve" type="Label" parent="CanvasLayer/Tutorial"]
+margin_left = 116.003
+margin_top = 446.553
+margin_right = 549.003
+margin_bottom = 505.553
+custom_fonts/font = SubResource( 18 )
+text = "3. Click on recipe to serve"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Tutorial"]
+margin_left = 301.471
+margin_top = 52.2822
+margin_right = 801.471
+margin_bottom = 327.282
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 18 )
+text = "Serve as many good cocktails
+ as possible in 2 minutes. "
+align = 1
+valign = 1
+
+[node name="Start" parent="CanvasLayer/Tutorial/VBoxContainer" instance=ExtResource( 4 )]
+rect_pivot_offset = Vector2( 250, 75 )
+
+[node name="MenuPopup" type="PopupPanel" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.5
+margin_top = -47.0
+margin_right = 86.5
+margin_bottom = 139.0
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MenuPopup"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 324.0
+margin_bottom = 323.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPopup/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 310.0
+margin_bottom = 309.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 18 )
+text = "Score: 0"
+align = 1
+
+[node name="Continue" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
+margin_top = 69.0
+margin_right = 300.0
+margin_bottom = 89.0
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 99.0
+margin_right = 300.0
+margin_bottom = 179.0
+rect_min_size = Vector2( 300, 80 )
+
+[node name="ShowInstructions" type="Button" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer"]
+margin_top = 189.0
+margin_right = 300.0
+margin_bottom = 209.0
+text = "Show instructions"
+
+[node name="DumpsterPartyButton" parent="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 219.0
+margin_right = 300.0
+margin_bottom = 299.0
+rect_min_size = Vector2( 300, 80 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" parent="CanvasLayer/MarginContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 200.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 80 )
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 120.0
 one_shot = true
-autostart = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="GameBackground-Bar" type="Sprite" parent="Background"]
+modulate = Color( 1, 0.72, 0.804, 1 )
+position = Vector2( 516.938, 297.306 )
+scale = Vector2( 0.26, 0.26 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "startbutton"
+anims/RESET = SubResource( 13 )
+anims/startbutton = SubResource( 14 )
 
 [connection signal="timeout" from="IngredientSpawnTimer" to="." method="_on_IngredientSpawnTimer_timeout"]
 [connection signal="timeout" from="RecipeTimer" to="." method="_on_RecipeTimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="about_to_show" from="CanvasLayer/MenuPopup" to="." method="_on_MenuPopup_about_to_show"]
+[connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ShowInstructions" to="." method="_on_ShowInstructions_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/DumpsterPartyButton" to="." method="_on_DumpsterPartyButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/MenuButton" to="." method="_on_Menu_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
