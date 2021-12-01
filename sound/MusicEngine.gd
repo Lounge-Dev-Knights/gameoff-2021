@@ -30,7 +30,7 @@ const songs = {
 	"Club3": {
 	"stream": preload("res://sound/music/club3.ogg"),
 		"volume": -25
-		},
+	},
 	"Club4": {
 	"stream": preload("res://sound/music/club4.ogg"),
 		"volume": -25
