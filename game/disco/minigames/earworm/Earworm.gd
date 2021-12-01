@@ -7,8 +7,8 @@ onready var blue = get_node("Bug2/TextureButton")
 onready var yellow = get_node("Bug3/TextureButton")
 onready var green = get_node("Bug4/TextureButton")
 
-onready var scoreText = get_node("CenterContainer/Score")
-onready var startButton = get_node("CenterContainer/StartGame")
+onready var scoreText = get_node("Score")
+onready var startButton = get_node("StartGame")
 
 onready var buttons = {
 	1: red,
@@ -59,6 +59,9 @@ func _ready() -> void:
 	rng.randomize()
 	order = generate_order(100)
 	MusicEngine.play_song("Club3")
+	
+func _process(delta) -> void:
+	$CanvasLayer/Background.modulate.h = wrapf($CanvasLayer/Background.modulate.h+delta*0.1, 0, 360) 
 	
 func set_bugs_moving(moving = true, speed = 500) -> void:
 	var all_bugs = get_tree().get_nodes_in_group("bugs")
