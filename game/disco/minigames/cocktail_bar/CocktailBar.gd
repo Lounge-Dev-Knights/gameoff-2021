@@ -231,6 +231,9 @@ func _on_GameTimer_timeout():
 			recipe_note.exit()
 	cocktail_shaker.reset_cocktail()
 	
+	
+	TotalScore.cocktail_score = max(TotalScore.cocktail_score, total_score)
+	
 	menu_score.text = "Score: %d" % total_score
 	menu_popup.popup_centered_minsize()
 

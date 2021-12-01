@@ -244,10 +244,10 @@ __meta__ = {
 margin_right = 100.0
 margin_bottom = 141.0
 rect_min_size = Vector2( 100, 100 )
-custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
 text = "0"
 align = 1
 __meta__ = {
@@ -266,4 +266,5 @@ texture_hover = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
