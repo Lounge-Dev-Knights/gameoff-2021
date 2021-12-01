@@ -52,7 +52,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=12]
 shader = SubResource( 11 )
 
-[sub_resource type="Shader" id=15]
+[sub_resource type="Shader" id=19]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -117,7 +117,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 15 )
+shader = SubResource( 19 )
 shader_param/position = Vector2( 0, 0 )
 shader_param/color = Color( 1, 0.62, 0.626333, 0.8 )
 shader_param/speed = 2.0
@@ -126,7 +126,7 @@ shader_param/ray2_offset = 2.4
 shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=20]
 code = "shader_type canvas_item;
 
 
@@ -183,7 +183,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 1 )
+shader = SubResource( 20 )
 shader_param/position = Vector2( 1, 0 )
 shader_param/color = Color( 0, 0.811765, 1, 1 )
 shader_param/speed = -1.0
@@ -193,7 +193,7 @@ shader_param/ray3_offset = 2.6
 shader_param/ray4_offset = 3.1
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 1 )
+shader = SubResource( 20 )
 shader_param/position = Vector2( 0.8, 0.3 )
 shader_param/color = Color( 1, 0.560784, 0, 0.941176 )
 shader_param/speed = 2.0

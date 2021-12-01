@@ -19,6 +19,12 @@ func _process(delta: float) -> void:
 	
 	background.modulate.h = wrapf(background.modulate.h + delta * 0.2, 0.0, 1.0)
 	#print(modulate.h)
+	
+	
+
+# hover
+func _on_Button_mouse_entered():
+	SoundEngine.play_sound("MenuButtonHoverSound")
 
 
 func _on_Quit_pressed() -> void:
@@ -36,9 +42,10 @@ func _on_Disco_Light_pressed():
 func _on_Cocktail_Bar_pressed():
 	SceneLoader.goto_scene("res://game/disco/minigames/cocktail_bar/CocktailBar.tscn")
 	SoundEngine.play_sound("MenuButtonSound")
-
-func _on_Button_mouse_entered():
-	SoundEngine.play_sound("MenuButtonHoverSound")
+	
+func _on_Credits_pressed() -> void:
+	SceneLoader.goto_scene("res://game/credits/Credits.tscn")
+	SoundEngine.play_sound("MenuButtonSound")
 
 
 func _on_StartGameButton_pressed():

@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://game/title_screen/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://game/ui/StartGameButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=3]
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=4]
 [ext_resource path="res://game/ui/images/dumpster_party.png" type="Texture" id=5]
+[ext_resource path="res://game/ui/QuitButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/ui/CreditsButton.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -217,7 +219,7 @@ __meta__ = {
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 350.0
-margin_bottom = 239.0
+margin_bottom = 275.0
 mouse_filter = 2
 custom_constants/separation = 5
 
@@ -228,51 +230,34 @@ margin_right = 300.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 300, 80 )
 
-[node name="Gallery" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_top = 85.0
 margin_right = 300.0
 margin_bottom = 105.0
-disabled = true
-text = "Party reviews"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 110.0
-margin_right = 300.0
-margin_bottom = 114.0
-
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 119.0
-margin_right = 300.0
-margin_bottom = 139.0
 disabled = true
 text = "Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 144.0
+[node name="Credits" parent="MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 110.0
 margin_right = 300.0
-margin_bottom = 164.0
-disabled = true
-text = "Credits"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 170.0
+rect_min_size = Vector2( 300, 60 )
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 169.0
+[node name="Quit" parent="MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 175.0
 margin_right = 300.0
-margin_bottom = 189.0
-text = "Quit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 225.0
+rect_min_size = Vector2( 300, 50 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -22.0
@@ -315,9 +300,9 @@ offset = Vector2( 32.5001, -507.5 )
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_StartGameButton_pressed"]
-[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Gallery" to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/Earworm" to="." method="_on_Button_mouse_entered"]
