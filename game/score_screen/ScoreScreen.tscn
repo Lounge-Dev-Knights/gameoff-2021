@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=2]
@@ -13,9 +13,11 @@
 [ext_resource path="res://game/score_screen/ScoreScreen.gd" type="Script" id=11]
 [ext_resource path="res://game/bugs/chandelier_bug/ChandelierBUg.tscn" type="PackedScene" id=12]
 [ext_resource path="res://game/ui/images/final_score.png" type="Texture" id=13]
-[ext_resource path="res://earworm/bug2/MothBug.tscn" type="PackedScene" id=14]
-[ext_resource path="res://earworm/bug3/EggBug.tscn" type="PackedScene" id=15]
-[ext_resource path="res://earworm/bug4/ButterflyBug.tscn" type="PackedScene" id=16]
+[ext_resource path="res://game/bugs/Bug_Ant/BugAnt.tscn" type="PackedScene" id=14]
+[ext_resource path="res://game/bugs/Bug_Cute/BugCute.tscn" type="PackedScene" id=15]
+[ext_resource path="res://game/bugs/Bug_Vamp/Vamp.tscn" type="PackedScene" id=16]
+[ext_resource path="res://game/ui/images/menu.png" type="Texture" id=17]
+[ext_resource path="res://game/ui/images/menu_pressed.png" type="Texture" id=18]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -203,15 +205,17 @@ position = Vector2( 975.15, 541.089 )
 position = Vector2( 647.71, 519.016 )
 scale = Vector2( 0.259259, 0.28 )
 
-[node name="Body2" parent="PartyAudience" instance=ExtResource( 14 )]
-position = Vector2( 799.787, 472.926 )
-scale = Vector2( 0.489947, 0.489947 )
+[node name="BugAnt" parent="PartyAudience" instance=ExtResource( 14 )]
+position = Vector2( 0, 554 )
+scale = Vector2( 0.6, 0.6 )
 
-[node name="Body3" parent="PartyAudience" instance=ExtResource( 15 )]
-position = Vector2( 170.276, 479.38 )
+[node name="BugCute" parent="PartyAudience" instance=ExtResource( 15 )]
+position = Vector2( 854, 476 )
+scale = Vector2( 0.581056, 0.581056 )
 
-[node name="Body4" parent="PartyAudience" instance=ExtResource( 16 )]
-position = Vector2( 918.495, 420.666 )
+[node name="Vamp" parent="PartyAudience" instance=ExtResource( 16 )]
+position = Vector2( 712, 528 )
+scale = Vector2( 0.72, 0.72 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_left = 0.533092
@@ -222,6 +226,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreTitle" type="Sprite" parent="CenterContainer"]
+position = Vector2( 520.193, 183.384 )
+scale = Vector2( 0.420778, 0.420778 )
+texture = ExtResource( 13 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 467.0
 margin_top = 230.0
@@ -230,11 +239,6 @@ margin_bottom = 371.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ScoreTitle" type="Sprite" parent="CenterContainer/VBoxContainer"]
-position = Vector2( 53.1931, -46.6164 )
-scale = Vector2( 0.420778, 0.420778 )
-texture = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 100.0
@@ -251,3 +255,15 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.16, 0.16 )
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
