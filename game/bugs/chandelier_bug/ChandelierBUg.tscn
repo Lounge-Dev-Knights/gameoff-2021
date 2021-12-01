@@ -14,6 +14,7 @@
 [node name="ChandelierBug" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
 
 [node name="UntitledArtwork-1" type="Sprite" parent="bug"]
 position = Vector2( -23.9532, -174.032 )

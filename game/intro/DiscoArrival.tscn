@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/intro/DiscoArrival.gd" type="Script" id=1]
-[ext_resource path="res://game/assets/bugs/Game_Bug8.png" type="Texture" id=2]
+[ext_resource path="res://game/bugs/Bug_Vamp/Vamp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/intro/Background-Outside2.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=3]
@@ -78,7 +78,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.15, 0.15 ) ]
 }
@@ -143,9 +143,9 @@ position = Vector2( 514.506, 292.794 )
 scale = Vector2( 0.52, 0.52 )
 texture = ExtResource( 4 )
 
-[node name="BugMate" type="Sprite" parent="."]
-position = Vector2( 766.582, 367.816 )
-texture = ExtResource( 2 )
+[node name="Vamp" parent="Background" instance=ExtResource( 2 )]
+position = Vector2( 830.698, 416.587 )
+rotation = 0.00336892
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

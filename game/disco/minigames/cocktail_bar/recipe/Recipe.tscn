@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/disco/minigames/cocktail_bar/recipe/Recipe.gd" type="Script" id=1]
-[ext_resource path="res://game/assets/bugs/Game_Bug7.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -104,7 +103,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 150 ), Vector2( 0, 50 ) ]
+"values": [ Vector2( 0, 150 ), Vector2( 0, 20 ) ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("../Timer")
@@ -217,21 +216,17 @@ anims/RESET = SubResource( 1 )
 anims/enter = SubResource( 2 )
 anims/exit = SubResource( 3 )
 
-[node name="Guest" type="Sprite" parent="."]
+[node name="Guest" type="Node2D" parent="."]
 position = Vector2( 0, 100 )
 z_index = -2
-texture = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 margin_left = -7.0
-margin_top = -16.0
 margin_right = 7.0
-margin_bottom = 16.0
+margin_bottom = 37.0
 grow_horizontal = 2
 mouse_filter = 1
 __meta__ = {
@@ -242,7 +237,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 7.0
-margin_bottom = 25.0
+margin_bottom = 30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -251,7 +246,7 @@ __meta__ = {
 
 [node name="TimeLeft" type="Label" parent="PanelContainer/VBoxContainer"]
 margin_top = 4.0
-margin_bottom = 18.0
+margin_bottom = 23.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 4 )
 align = 1

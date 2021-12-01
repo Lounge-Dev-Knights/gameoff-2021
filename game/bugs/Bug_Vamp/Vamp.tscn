@@ -233,5 +233,6 @@ texture = ExtResource( 8 )
 offset = Vector2( 1.24921, 27.1434 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
