@@ -28,6 +28,7 @@ var play_order = []
 var clicked_order = []
 
 var score = 0
+var started = false
 
 
 func generate_order(num=1000) -> Array:
@@ -96,15 +97,17 @@ func end_round() -> void:
 			if round_number == 4:
 				set_bugs_moving(true)
 				
-			if round_number == 6:
+			if round_number > 6:
 				set_bugs_moving(true, get_avg_bug_speed()+(round_number^2))
 				
 
 			play_round(round_number)
 		
 func game_over() -> void:
-	TotalScore.earworm_score = score
+	# set highest score to 20
+	TotalScore.earworm_score = clamp(0, score*4, 100)
 	scoreText.text = "Game over."
+	$ScoreSprite.hide()
 	$GameOver.show()
 	
 	
@@ -129,28 +132,28 @@ func is_sequence_correct() -> bool:
 
 
 func _on_Button1_pressed(human) -> void:
-	if not playback:
+	if started and not playback:
 		clicked_order.append(1)
 		end_round()
 	SoundEngine.play_sound("Bug1", $Bug1/AudioStreamPlayer2D)
 
 
 func _on_Button2_pressed(human) -> void:
-	if not playback:
+	if started and not playback:
 		clicked_order.append(2)
 		end_round()
 	SoundEngine.play_sound("Bug2", $Bug2/AudioStreamPlayer2D)
 
 
 func _on_Button3_pressed(human) -> void:
-	if not playback:
+	if started and not playback:
 		clicked_order.append(3)
 		end_round()
 	SoundEngine.play_sound("Bug3", $Bug3/AudioStreamPlayer2D)
 
 
 func _on_Button4_pressed(human) -> void:
-	if not playback:
+	if started and not playback:
 		clicked_order.append(4)
 		end_round()
 	SoundEngine.play_sound("Bug4", $Bug4/AudioStreamPlayer2D)
@@ -167,10 +170,11 @@ func _on_StartGame_pressed() -> void:
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(get_tree().create_timer(1.0), "timeout")
-
+	started = true
 	startButton.hide()
 	$Instructions.hide()
 	
+	$ScoreSprite.show()
 	play_round(round_number)
 
 

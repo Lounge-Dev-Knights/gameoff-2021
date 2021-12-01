@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://game/disco/minigames/earworm/Earworm.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/minigames/earworm/Button.gd" type="Script" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://game/ui/images/restart.png" type="Texture" id=55]
 [ext_resource path="res://game/ui/images/menu.png" type="Texture" id=56]
 [ext_resource path="res://game/ui/images/menu_pressed.png" type="Texture" id=57]
+[ext_resource path="res://game/ui/images/score.png" type="Texture" id=58]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -1409,10 +1410,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 164 )
+scale = Vector2( 0.200001, 0.200001 )
+texture = ExtResource( 58 )
+
 [node name="Score" type="RichTextLabel" parent="."]
-margin_left = 412.0
+margin_left = 472.0
 margin_top = 161.0
-margin_right = 612.0
+margin_right = 672.0
 margin_bottom = 261.0
 rect_min_size = Vector2( 200, 100 )
 mouse_filter = 2
