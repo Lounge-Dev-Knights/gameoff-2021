@@ -19,5 +19,5 @@ func _on_Start_again_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().paused = false
-	SceneLoader.goto_scene("res://game/title_screen/TitleScreen.tscn")
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
 	pass # Replace with function body.

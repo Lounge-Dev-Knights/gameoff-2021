@@ -10,6 +10,6 @@ func _on_Start_pressed() -> void:
 
 
 func _on_Quit_pressed() -> void:
-	SceneLoader.goto_scene("res://game/title_screen/TitleScreen.tscn")
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
 	
 	pass # Replace with function body.
