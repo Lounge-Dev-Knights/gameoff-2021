@@ -401,7 +401,7 @@ tracks/9/keys = {
 [node name="DoctorBug" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="WingLowerLeft" type="Sprite" parent="bug"]
 position = Vector2( -189.454, -24.6526 )

@@ -349,7 +349,7 @@ script = ExtResource( 14 )
 
 [node name="bug" type="Node2D" parent="."]
 position = Vector2( -9.70322, 29.5867 )
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="TailLight" type="Sprite" parent="bug"]
 position = Vector2( 128.136, 639.397 )

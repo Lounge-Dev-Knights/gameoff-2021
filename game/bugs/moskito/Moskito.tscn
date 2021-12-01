@@ -206,7 +206,8 @@ tracks/3/keys = {
 [node name="Moskito" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 12.8181, -71.2119 )
+scale = Vector2( 0.3, 0.3 )
 
 [node name="Body" type="Sprite" parent="bug"]
 texture = ExtResource( 8 )

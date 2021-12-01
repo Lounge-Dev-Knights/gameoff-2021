@@ -1387,10 +1387,10 @@ __meta__ = {
 }
 
 [node name="Score" type="RichTextLabel" parent="."]
-margin_left = 737.0
-margin_top = 41.0
-margin_right = 937.0
-margin_bottom = 141.0
+margin_left = 414.0
+margin_top = 246.0
+margin_right = 614.0
+margin_bottom = 346.0
 rect_min_size = Vector2( 200, 100 )
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 26 )
