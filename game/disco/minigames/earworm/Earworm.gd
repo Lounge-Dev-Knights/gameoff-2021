@@ -104,7 +104,7 @@ func end_round() -> void:
 		
 func game_over() -> void:
 	scoreText.text = "Game over."
-	print("Game over")
+	$GameOver.show()
 	
 	
 func increase_score() -> void:
@@ -161,9 +161,21 @@ func _on_StartGame_pressed() -> void:
 	tween.interpolate_property(startButton, "modulate", 
 	  Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0, 
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property($Instructions, "modulate", 
+	  Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.0, 
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(get_tree().create_timer(1.0), "timeout")
 
 	startButton.hide()
+	$Instructions.hide()
 	
 	play_round(round_number)
+
+
+func _on_Restart_pressed():
+	get_tree().reload_current_scene()
+
+
+func _on_Menu_pressed():
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
