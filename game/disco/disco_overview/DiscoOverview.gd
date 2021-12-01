@@ -43,3 +43,11 @@ func _process(delta: float) -> void:
 	
 	background.modulate.h = wrapf(background.modulate.h + delta * 0.2, 0.0, 1.0)
 	#print(modulate.h)
+
+
+func _on_FinalScoreButton_pressed():
+	SceneLoader.goto_scene("res://game/score_screen/ScoreScreen.tscn")
+
+
+func _on_FinalScoreButton_mouse_entered():
+	SoundEngine.play_sound("MenuButtonHoverSound")

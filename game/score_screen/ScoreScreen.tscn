@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://game/disco/disco_overview/DiscoLight.gd" type="Script" id=1]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://game/ui/images/menu.png" type="Texture" id=17]
 [ext_resource path="res://game/ui/images/menu_pressed.png" type="Texture" id=18]
 [ext_resource path="res://game/score_screen/BugbookEntry.tscn" type="PackedScene" id=19]
+[ext_resource path="res://game/score_screen/lightbug.png" type="Texture" id=20]
+[ext_resource path="res://game/score_screen/cocktail.png" type="Texture" id=21]
+[ext_resource path="res://game/score_screen/beej.png" type="Texture" id=22]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -333,10 +336,44 @@ __meta__ = {
 }
 
 [node name="BugbookEntry" parent="." instance=ExtResource( 19 )]
-margin_left = 234.0
-margin_top = 207.0
-margin_right = 434.0
-margin_bottom = 457.0
+margin_left = 393.0
+margin_top = 267.0
+margin_right = 593.0
+margin_bottom = 517.0
+rect_rotation = -5.52647
+
+[node name="image" parent="BugbookEntry/Control2" index="0"]
+texture = ExtResource( 20 )
+
+[node name="beej" parent="BugbookEntry/Control" index="1"]
+text = "What a lightshow!
+Mezmerizing!"
+
+[node name="BugbookEntry2" parent="." instance=ExtResource( 19 )]
+margin_left = 640.0
+margin_top = 229.0
+margin_right = 840.0
+margin_bottom = 479.0
+rect_rotation = 6.07249
+
+[node name="image" parent="BugbookEntry2/Control2" index="0"]
+texture = ExtResource( 21 )
+
+[node name="beej" parent="BugbookEntry2/Control" index="1"]
+text = "Wasted..."
+
+[node name="BugbookEntry3" parent="." instance=ExtResource( 19 )]
+margin_left = 137.0
+margin_top = 200.0
+margin_right = 337.0
+margin_bottom = 450.0
 rect_rotation = -4.90819
 
+[node name="image" parent="BugbookEntry3/Control2" index="0"]
+texture = ExtResource( 22 )
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
+
+[editable path="BugbookEntry"]
+[editable path="BugbookEntry2"]
+[editable path="BugbookEntry3"]

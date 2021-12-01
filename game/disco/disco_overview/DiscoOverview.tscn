@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://fonts/Indie_Flower/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://game/ui/FinalScoreButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/bugs/light_bug/LightBug.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/disco/disco_overview/bee-j.png" type="Texture" id=5]
 [ext_resource path="res://game/disco/disco_overview/background.png" type="Texture" id=6]
@@ -385,6 +386,16 @@ text = "Choose a staff member to introduce them to their job."
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FinalScoreButton" parent="." instance=ExtResource( 2 )]
+margin_left = 826.0
+margin_top = -1.0
+margin_right = 1026.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 200, 100 )
+
+[connection signal="mouse_entered" from="FinalScoreButton" to="." method="_on_FinalScoreButton_mouse_entered"]
+[connection signal="pressed" from="FinalScoreButton" to="." method="_on_FinalScoreButton_pressed"]
 
 [editable path="DiscolightPortal"]
 [editable path="BarPortal"]
