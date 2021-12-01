@@ -40,7 +40,7 @@ var total_score := 0 setget _set_score
 func _ready():
 	randomize()
 	generate_recipe()
-	MusicEngine.play_song("Club2")
+	MusicEngine.play_song("Club4")
 
 
 
