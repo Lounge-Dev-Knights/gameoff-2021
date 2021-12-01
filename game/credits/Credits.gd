@@ -12,7 +12,7 @@ var step = -1
 func _ready() -> void:
 	for credit in $Credits.get_children():
 		credit.modulate = Color.transparent
-	
+		MusicEngine.play_song("Club1")
 	next_page()
 
 
