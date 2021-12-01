@@ -346,8 +346,9 @@ offset = Vector2( -106.458, -676.022 )
 
 [node name="Light2D" type="Light2D" parent="bug/TailLight"]
 position = Vector2( -3.136, 123.103 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
-texture_scale = 4.0
+texture_scale = 3.0
 
 [node name="LegTopRight" type="Sprite" parent="bug"]
 position = Vector2( 271.259, -328.497 )
@@ -428,9 +429,9 @@ anims/idle = SubResource( 8 )
 position = Vector2( -3, -20 )
 shape = SubResource( 9 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LightRefillerArea2d" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Lightrefillercollision" type="CollisionShape2D" parent="LightRefillerArea2d"]
 position = Vector2( 17, 40 )
 shape = SubResource( 10 )
 
@@ -439,3 +440,6 @@ margin_left = -53.0
 margin_top = 45.0
 margin_right = -53.0
 margin_bottom = 45.0
+
+[connection signal="body_entered" from="LightRefillerArea2d" to="." method="_on_LightRefillerArea2d_body_entered"]
+[connection signal="body_exited" from="LightRefillerArea2d" to="." method="_on_LightRefillerArea2d_body_exited"]

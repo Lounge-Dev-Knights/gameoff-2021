@@ -69,6 +69,16 @@ texture = ExtResource( 4 )
 show_behind_parent = true
 position = Vector2( 1, 14 )
 
+[node name="LaserBeam" parent="." instance=ExtResource( 5 )]
+modulate = Color( 0.811765, 0.301961, 0.301961, 1 )
+show_behind_parent = true
+position = Vector2( 1, 11 )
+
+[node name="LaserBeam3" parent="." instance=ExtResource( 5 )]
+modulate = Color( 0.161972, 0.545804, 0.753906, 1 )
+show_behind_parent = true
+position = Vector2( 1, 11 )
+
 [node name="LightRefillSource" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false

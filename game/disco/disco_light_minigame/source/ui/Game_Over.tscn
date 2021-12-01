@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/disco/disco_light_minigame/source/ui/Game_Over.gd" type="Script" id=1]
+
+[node name="Game_Over" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = 157.0
+margin_right = 1024.0
+margin_bottom = 512.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer"]
+visible = false
+margin_left = 512.0
+margin_top = 177.0
+margin_right = 512.0
+margin_bottom = 177.0
+mouse_filter = 1
+
+[node name="NameCard" type="PanelContainer" parent="CenterContainer"]
+margin_left = 463.0
+margin_top = 109.0
+margin_right = 561.0
+margin_bottom = 245.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/NameCard"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 91.0
+margin_bottom = 129.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Game Over" type="Label" parent="CenterContainer/NameCard/VBoxContainer"]
+margin_right = 84.0
+margin_bottom = 14.0
+text = "Game Over"
+align = 1
+
+[node name="ScoreText" type="Label" parent="CenterContainer/NameCard/VBoxContainer"]
+margin_top = 24.0
+margin_right = 84.0
+margin_bottom = 38.0
+text = "Score:"
+align = 1
+
+[node name="Score" type="Label" parent="CenterContainer/NameCard/VBoxContainer"]
+margin_top = 48.0
+margin_right = 84.0
+margin_bottom = 62.0
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start again\?" type="Button" parent="CenterContainer/NameCard/VBoxContainer"]
+margin_top = 72.0
+margin_right = 84.0
+margin_bottom = 92.0
+size_flags_horizontal = 4
+text = "Start again?"
+
+[node name="Medium" type="Button" parent="CenterContainer/NameCard/VBoxContainer"]
+visible = false
+margin_top = 54.0
+margin_right = 65.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
+text = "Medium"
+
+[node name="Hard" type="Button" parent="CenterContainer/NameCard/VBoxContainer"]
+visible = false
+margin_left = 9.0
+margin_top = 54.0
+margin_right = 51.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
+text = "Hard"
+
+[node name="Quit" type="Button" parent="CenterContainer/NameCard/VBoxContainer"]
+margin_left = 22.0
+margin_top = 102.0
+margin_right = 62.0
+margin_bottom = 122.0
+size_flags_horizontal = 4
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/NameCard/VBoxContainer/Start again?" to="." method="_on_Start_again_pressed"]
+[connection signal="pressed" from="CenterContainer/NameCard/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
