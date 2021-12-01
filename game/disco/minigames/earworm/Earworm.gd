@@ -160,6 +160,7 @@ func _on_Button4_pressed(human) -> void:
 
 
 func _on_StartGame_pressed() -> void:
+	SoundEngine.play_sound("MenuButtonSound")
 	set_bugs_dancing(false)
 	var tween = get_node("Tween")
 	tween.interpolate_property(startButton, "modulate", 
@@ -179,8 +180,14 @@ func _on_StartGame_pressed() -> void:
 
 
 func _on_Restart_pressed():
+	SoundEngine.play_sound("MenuButtonSound")
 	get_tree().reload_current_scene()
 
 
 func _on_Menu_pressed():
+	SoundEngine.play_sound("MenuButtonSound")
 	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
+
+
+func _on_Button_mouse_entered():
+	SoundEngine.play_sound("MenuButtonHoverSound")
