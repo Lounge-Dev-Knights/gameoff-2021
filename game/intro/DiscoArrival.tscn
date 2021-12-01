@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/intro/DiscoArrival.gd" type="Script" id=1]
-[ext_resource path="res://game/assets/bugs/Game_Bug8.png" type="Texture" id=2]
-[ext_resource path="res://game/intro/Background-Outside.ogv" type="VideoStream" id=3]
+[ext_resource path="res://game/bugs/Bug_Vamp/Vamp.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/intro/Background-Outside2.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -78,7 +78,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.15, 0.15 ) ]
 }
@@ -137,25 +137,15 @@ script = ExtResource( 1 )
 [node name="Background" type="Node2D" parent="."]
 position = Vector2( -4.76837e-07, 0 )
 
-[node name="VideoPlayer" type="VideoPlayer" parent="Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -6.99988
-margin_top = -58.3808
-margin_right = 4025.0
-margin_bottom = 2965.62
-rect_scale = Vector2( 0.26, 0.26 )
-stream = ExtResource( 3 )
-autoplay = true
-expand = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="BackgroundOutside" type="Sprite" parent="Background"]
+modulate = Color( 1, 0.8, 0.803333, 1 )
+position = Vector2( 514.506, 292.794 )
+scale = Vector2( 0.52, 0.52 )
+texture = ExtResource( 4 )
 
-[node name="BugMate" type="Sprite" parent="."]
-position = Vector2( 829.51, 258.582 )
-scale = Vector2( 0.579121, 0.586957 )
-texture = ExtResource( 2 )
+[node name="Vamp" parent="Background" instance=ExtResource( 2 )]
+position = Vector2( 830.698, 416.587 )
+rotation = 0.00336892
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -223,5 +213,7 @@ position = Vector2( 512, 300 )
 rotating = true
 current = true
 
-[connection signal="finished" from="Background/VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[node name="BackgorundHueTween" type="Tween" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/CenterContainer/CenterContainerRight/NameCard/VBoxContainer/OK" to="." method="_on_name_entered"]
+[connection signal="tween_all_completed" from="BackgorundHueTween" to="." method="_on_BackgorundHueTween_tween_all_completed"]

@@ -169,13 +169,13 @@ color_ramp = SubResource( 10 )
 
 [node name="BugQueen" parent="." instance=ExtResource( 4 )]
 position = Vector2( 390.299, 482.857 )
-scale = Vector2( 0.657615, 0.619658 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="DiscolightPortal" parent="." instance=ExtResource( 9 )]
 position = Vector2( 453.259, 107.914 )
 label_text = ""
 scene = "res://game/disco/disco_light_minigame/source/Levels/LMG_Level_1.tscn"
-soundeffect = "Cocktail_drop"
+soundeffect = "Bug2"
 
 [node name="TextureRect" type="TextureRect" parent="DiscolightPortal/LabelContainer" index="0"]
 anchor_left = 0.5
@@ -239,6 +239,7 @@ text = ""
 position = Vector2( 825.172, 371.11 )
 label_text = ""
 scene = "res://game/disco/minigames/earworm/Earworm.tscn"
+soundeffect = "Bug3"
 
 [node name="Label" parent="BeeJPortal/LabelContainer" index="0"]
 text = ""
@@ -262,11 +263,11 @@ __meta__ = {
 
 [node name="BugBunny" parent="." instance=ExtResource( 1 )]
 position = Vector2( 453.922, 399.137 )
-scale = Vector2( 0.426156, 0.466252 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="DoctorBug" parent="." instance=ExtResource( 2 )]
 position = Vector2( 552.005, 428.901 )
-scale = Vector2( 0.513268, 0.633729 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

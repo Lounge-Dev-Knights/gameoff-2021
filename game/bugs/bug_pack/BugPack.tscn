@@ -17,6 +17,7 @@
 [node name="BugPack" type="Node2D"]
 
 [node name="Node2D" type="Node2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
 
 [node name="UntitledArtwork-1" type="Sprite" parent="Node2D"]
 texture = ExtResource( 13 )

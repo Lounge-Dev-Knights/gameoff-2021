@@ -11,9 +11,10 @@
 [ext_resource path="res://game/bugs/chandelier_bug/Untitled_Artwork-4.png" type="Texture" id=9]
 [ext_resource path="res://game/bugs/chandelier_bug/Untitled_Artwork-1.png" type="Texture" id=10]
 
-[node name="Node2D" type="Node2D"]
+[node name="ChandelierBug" type="Node2D"]
 
 [node name="bug" type="Node2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
 
 [node name="UntitledArtwork-1" type="Sprite" parent="bug"]
 position = Vector2( -23.9532, -174.032 )

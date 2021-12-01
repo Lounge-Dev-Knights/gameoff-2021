@@ -17,9 +17,9 @@ onready var game_timer := $GameTimer
 onready var menu_popup := $CanvasLayer/MenuPopup
 onready var menu_score := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Score
 onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
-onready var menu_restart := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/TryAgain
+onready var menu_restart := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/RestartButton
 onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ShowInstructions
-onready var menu_exit := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/BackToParty
+onready var menu_exit := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/DumpsterPartyButton
 
 
 onready var background := $"Background/GameBackground-Bar"
@@ -211,12 +211,6 @@ func _on_Start_pressed():
 	start_game()
 
 
-func _on_TryAgain_pressed():
-	#if game_state == GameState.STARTED:
-	#	confirm_progress_loss()
-	
-	menu_popup.hide()
-	start_game()
 
 
 func _on_ShowInstructions_pressed():
@@ -227,13 +221,6 @@ func _on_ShowInstructions_pressed():
 	total_score = 0
 	menu_popup.hide()
 	
-
-
-func _on_BackToParty_pressed():
-	#if game_state == GameState.STARTED:
-	#	confirm_progress_loss()
-		
-	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")
 
 
 func _on_GameTimer_timeout():
@@ -275,3 +262,18 @@ func _on_MenuPopup_about_to_show():
 
 func _on_Continue_pressed() -> void:
 	menu_popup.hide()
+
+
+func _on_RestartButton_pressed() -> void:
+	#if game_state == GameState.STARTED:
+	#	confirm_progress_loss()
+	
+	menu_popup.hide()
+	start_game()
+
+
+func _on_DumpsterPartyButton_pressed() -> void:
+	#if game_state == GameState.STARTED:
+	#	confirm_progress_loss()
+		
+	SceneLoader.goto_scene("res://game/disco/disco_overview/DiscoOverview.tscn")

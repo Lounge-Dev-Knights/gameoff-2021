@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bug_mate.png-61b3d4323a66605d3c80dc6c25ab18be.stex"
+path="res://.import/Vamp5.png-6e763bbc98a1f354bd6c2d9d9f8be744.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/intro/bug_mate.png"
-dest_files=[ "res://.import/bug_mate.png-61b3d4323a66605d3c80dc6c25ab18be.stex" ]
+source_file="res://game/bugs/Bug_Vamp/Vamp5.png"
+dest_files=[ "res://.import/Vamp5.png-6e763bbc98a1f354bd6c2d9d9f8be744.stex" ]
 
 [params]
 

@@ -4,10 +4,17 @@ signal recipe_clicked(recipe_note)
 
 
 const BUGS = [
-	preload("res://game/assets/bugs/Game_Bug6.png"),
-	preload("res://game/assets/bugs/Game_Bug7.png"),
-	preload("res://game/assets/bugs/Game_Bug8.png"),
-	preload("res://game/assets/bugs/Game_Bug9.png"),
+	preload("res://game/bugs/doctor_bug/DoctorBug.tscn"),
+	preload("res://game/bugs/chandelier_bug/ChandelierBUg.tscn"),
+	preload("res://game/bugs/bug_queen/BugQueen.tscn"),
+	preload("res://game/bugs/bug_pack/BugPack.tscn"),
+	preload("res://game/bugs/light_bug/LightBug.tscn"),
+	preload("res://game/bugs/light_bug/LightBug.tscn"),
+	preload("res://game/bugs/nose_bug/NoseBug.tscn"),
+	preload("res://game/bugs/bug_bunny/BugBunny.tscn"),
+	preload("res://game/bugs/Bug_Vamp/Vamp.tscn"),
+	preload("res://game/bugs/Bug_Cute/BugCute.tscn"),
+	preload("res://game/bugs/Bug_Ant/BugAnt.tscn")
 ]
 
 
@@ -21,7 +28,7 @@ onready var timer := $Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	$Guest.texture = BUGS[randi() % BUGS.size()]
+	$Guest.add_child(BUGS[randi() % BUGS.size()].instance())
 	
 	for ingredient in ingredients.keys():
 		var label = preload("res://game/disco/minigames/cocktail_bar/recipe/IngredientLabel.tscn").instance()
