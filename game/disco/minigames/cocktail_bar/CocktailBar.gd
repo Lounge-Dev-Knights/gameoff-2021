@@ -15,10 +15,11 @@ onready var time_label := $CanvasLayer/Score/VBoxContainer/TimeLabel
 onready var tutorial := $CanvasLayer/Tutorial
 onready var game_timer := $GameTimer
 onready var menu_popup := $CanvasLayer/MenuPopup
-onready var menu_score := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Score
-onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/Continue
+onready var menu_score_container := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/HBoxContainer
+onready var menu_score := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/HBoxContainer/Score
+onready var menu_continue := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ContinueButton
 onready var menu_restart := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/RestartButton
-onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/ShowInstructions
+onready var menu_instructions := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/InstructionsButton
 onready var menu_exit := $CanvasLayer/MenuPopup/MarginContainer/VBoxContainer/DumpsterPartyButton
 
 
@@ -219,6 +220,8 @@ func _on_ShowInstructions_pressed():
 	
 	tutorial.show()
 	total_score = 0
+	$GameTimer.stop()
+	
 	menu_popup.hide()
 	
 
@@ -234,7 +237,7 @@ func _on_GameTimer_timeout():
 	
 	TotalScore.cocktail_score = max(TotalScore.cocktail_score, total_score)
 	
-	menu_score.text = "Score: %d" % total_score
+	menu_score.text = str(total_score)
 	menu_popup.popup_centered_minsize()
 
 
@@ -255,7 +258,7 @@ func _on_Menu_pressed():
 
 
 func _on_MenuPopup_about_to_show():
-	menu_score.visible = game_state == GameState.ENDED
+	menu_score_container.visible = game_state == GameState.ENDED
 	menu_continue.visible = game_state == GameState.STARTED or game_state == GameState.INIT
 	menu_restart.visible = game_state == GameState.STARTED or game_state == GameState.ENDED
 	menu_instructions.visible = game_state == GameState.STARTED or game_state == GameState.ENDED

@@ -9,7 +9,9 @@ var light_score = 0
 var maximum_score = 300
 
 
-func _ready() -> void:
+
+
+func _init():
 	filepath = "user://scores.json"
 
 
