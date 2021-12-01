@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bug_mate.png-61b3d4323a66605d3c80dc6c25ab18be.stex"
+path="res://.import/Background-Outside2.png-7efd6703fe92ee09a5e2991c97098f1d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/intro/bug_mate.png"
-dest_files=[ "res://.import/bug_mate.png-61b3d4323a66605d3c80dc6c25ab18be.stex" ]
+source_file="res://game/intro/Background-Outside2.png"
+dest_files=[ "res://.import/Background-Outside2.png-7efd6703fe92ee09a5e2991c97098f1d.stex" ]
 
 [params]
 
