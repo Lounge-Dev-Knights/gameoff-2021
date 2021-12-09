@@ -45,10 +45,11 @@ func next_page() -> void:
 		
 		tween.start()
 		
-func _on_MenutButton_pressed() -> void:
+func _on_MenuButton_pressed() -> void:
 	SoundEngine.play_sound("MenuButtonSound")
 	SceneLoader.goto_scene("res://game/title_screen/TitleScreen.tscn")
 	
 	
-func _on_MenutButton_mouse_entered() -> void:
+func _on_MenuButton_mouse_entered() -> void:
 	SoundEngine.play_sound("MenuButtonSound")
+
